@@ -1,19 +1,30 @@
 import "./Main.css";
+import { Link } from "react-router-dom";
 
-import SearchForm from "../SearchForm/SearchForm";
 import About from "../About/About";
 
 function Main() {
   return (
     <main className="main">
       <section className="hero">
-        <h1>EcoBuildLab</h1>
-        <p>
-          Explora estrategias de diseño sostenible mediante datos climáticos.
-        </p>
-      </section>
+        <div className="hero__content">
+          <h1 className="hero__title">De los datos climáticos al diseño</h1>
 
-      <SearchForm />
+          <p className="hero__description">
+            Analiza las condiciones climáticas de una ciudad y obtén estrategias
+            bioclimáticas para apoyar las primeras decisiones de diseño
+            arquitectónico.
+          </p>
+
+          <Link to="/results" className="hero__button">
+            Explorar estrategias
+          </Link>
+        </div>
+
+        <div className="hero__image">
+          {/* Aquí agregaremos la ilustración del Figma más adelante */}
+        </div>
+      </section>
 
       <About />
     </main>
