@@ -1,12 +1,15 @@
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
+import logo from "../../images/logo.png";
 
 function Navigation() {
   return (
     <nav className="navigation">
-      <NavLink to="/" className="navigation__logo">
-        EcoBuildLab
-      </NavLink>
+      <img
+        src={logo}
+        alt="Logo EcoBuildLab"
+        className="navigation__logo-image"
+      />
 
       <NavLink to="/results" className="navigation__link">
         Explorar estrategias

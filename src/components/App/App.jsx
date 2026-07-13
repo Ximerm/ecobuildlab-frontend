@@ -10,14 +10,16 @@ import Results from "../Results/Results";
 function App() {
   return (
     <>
-      <Header />
+      <div className="page">
+        <Header />
 
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/results" element={<Results />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/results" element={<Results />} />
+        </Routes>
 
-      <Footer />
+        <Footer />
+      </div>
     </>
   );
 }
