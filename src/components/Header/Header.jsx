@@ -1,7 +1,12 @@
 import "./Header.css";
-
+import Navigation from "../Navigation/Navigation";
+g;
 function Header() {
-  return <header>Header</header>;
+  return (
+    <header className="header">
+      <Navigation />
+    </header>
+  );
 }
 
 export default Header;
