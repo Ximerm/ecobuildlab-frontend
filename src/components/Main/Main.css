@@ -8,12 +8,14 @@
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  min-height: 550px;
+  min-height: 672px;
+  padding: 80px 0;
 }
 
 .hero__content {
   width: 590px;
-  padding-top: 150px;
+  height: 374px;
+  margin-top: 138px;
 }
 
 .hero__title {
@@ -22,13 +24,13 @@
   font-weight: 700;
   line-height: 64px;
   margin: 0;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
 }
 
 .hero__description {
   font-size: 18px;
   margin: 0;
-  padding-bottom: 60px;
+  padding-bottom: 80px;
   width: 505px;
 }
 
@@ -51,11 +53,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
 }
 
 .hero__image img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
 }
