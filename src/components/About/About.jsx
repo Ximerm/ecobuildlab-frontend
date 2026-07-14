@@ -1,6 +1,6 @@
 import "./About.css";
 
-import profileImage from "../../images/profile-image.jpg";
+import profileImage from "../../images/profileImage.png";
 
 function About() {
   return (
@@ -29,8 +29,8 @@ function About() {
             Mi formación como arquitecta complementa mi perfil como
             desarrolladora, permitiéndome crear herramientas digitales
             orientadas a resolver problemas reales. <strong>EcoBuildLab</strong>
-            transforma datos climáticos en estrategias bioclimáticas para apoyar
-            las primeras decisiones de diseño arquitectónico.
+            , transforma datos climáticos en estrategias bioclimáticas para
+            apoyar las primeras decisiones de diseño arquitectónico.
           </p>
         </div>
       </div>
