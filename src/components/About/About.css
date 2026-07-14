@@ -41,6 +41,7 @@
   margin: 0 0 22px;
   font-size: 18px;
   line-height: 24px;
+  text-align: justify;
 }
 
 .about__paragraph:last-child {
