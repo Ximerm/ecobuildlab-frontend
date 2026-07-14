@@ -2,18 +2,21 @@ import "./SearchForm.css";
 
 function SearchForm() {
   return (
-    <section className="search-form">
-      <h2>Buscar ubicación</h2>
-
-      <form className="search-form__form">
+    <form className="search-form">
+      <div className="search-form__field">
         <input
+          className="search-form__input"
           type="text"
+          name="city"
+          autoComplete="off"
           placeholder="Ingresa una ciudad (ej.: Bogotá, Colombia)"
         />
+      </div>
 
-        <button type="submit">Analizar clima</button>
-      </form>
-    </section>
+      <button className="search-form__button" type="submit">
+        Analizar clima
+      </button>
+    </form>
   );
 }
 

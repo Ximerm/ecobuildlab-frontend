@@ -6,34 +6,32 @@
   height: 100%;
 }
 
+.navigation__logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
 .navigation__logo-image {
   width: 192px;
   height: 40px;
   object-fit: contain;
 }
 
-.navigation__menu {
-  display: flex;
-  align-items: center;
-  gap: 45px;
-}
-
-.navigation__link {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 24px;
-  text-decoration: none;
-}
-
 .navigation__login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 176px;
   height: 48px;
   border: 1px solid #2e7d32;
   border-radius: 100px;
-  text-decoration: none;
+  background: transparent;
+  color: #2e7d32;
   font-size: 18px;
   font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.navigation__login:hover {
+  background: #2e7d32;
+  color: white;
 }

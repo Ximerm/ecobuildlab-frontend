@@ -1,5 +1,6 @@
 import "./Hero.css";
-import { Link } from "react-router-dom";
+
+import SearchForm from "../SearchForm/SearchForm";
 
 import heroImage from "../../images/heroImage.png";
 
@@ -16,9 +17,7 @@ function Hero() {
             arquitectónico.
           </p>
 
-          <Link to="/results" className="hero__button">
-            Explorar estrategias
-          </Link>
+          <SearchForm />
         </div>
 
         <div className="hero__image">

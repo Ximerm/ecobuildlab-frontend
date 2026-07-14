@@ -1,27 +1,17 @@
 import "./Results.css";
 
-import SearchForm from "../SearchForm/SearchForm";
+import Hero from "../Hero/Hero";
+import ClimateSummary from "../ClimateSummary/ClimateSummary";
+import StrategySection from "../StrategySection/StrategySection";
 
 function Results() {
   return (
     <main className="main">
-      <section className="hero">
-        <div className="hero__content">
-          <h1 className="hero__title">De los datos climáticos al diseño</h1>
+      <Hero />
 
-          <p className="hero__description">
-            Analiza las condiciones climáticas de una ciudad y obtén estrategias
-            bioclimáticas para apoyar las primeras decisiones de diseño
-            arquitectónico.
-          </p>
-        </div>
+      <ClimateSummary />
 
-        <div className="hero__image">
-          {/* Aquí agregaremos la ilustración del Figma más adelante */}
-        </div>
-      </section>
-
-      <SearchForm />
+      <StrategySection />
     </main>
   );
 }
