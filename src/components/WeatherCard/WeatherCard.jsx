@@ -1,25 +1,15 @@
 import "./WeatherCard.css";
 
-import climateClassificationIcon from "../../images/icons/climate-classification.png";
-
-function WeatherCard() {
+function WeatherCard({ icon, title, children }) {
   return (
     <article className="weather-card">
       <div className="weather-card__header">
-        <img
-          src={climateClassificationIcon}
-          alt="Clasificación climática"
-          className="weather-card__icon"
-        />
+        <img src={icon} alt={title} className="weather-card__icon" />
 
-        <h3 className="weather-card__title">Clasificación climática</h3>
+        <h3 className="weather-card__title">{title}</h3>
       </div>
 
-      <div className="weather-card__content">
-        <p className="weather-card__subtitle">Caldas-Lang</p>
-
-        <p className="weather-card__value">Frío húmedo</p>
-      </div>
+      <div className="weather-card__content">{children}</div>
     </article>
   );
 }
