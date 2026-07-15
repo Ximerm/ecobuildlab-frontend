@@ -1,0 +1,103 @@
+.save-analysis {
+  width: 100%;
+}
+
+.save-analysis__content {
+  width: 1232px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  padding: 32px 103px;
+  background: #eef7ea;
+  border-radius: 24px;
+}
+
+/* Columna izquierda */
+
+.save-analysis__left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex: 1;
+}
+
+.save-analysis__icon-wrapper {
+  flex-shrink: 0;
+}
+
+.save-analysis__icon {
+  width: 80px;
+  height: 80px;
+}
+
+.save-analysis__text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.save-analysis__title {
+  margin: 0;
+  font-family: "Roboto Slab", serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 30px;
+
+  color: #2e7d32;
+}
+
+.save-analysis__description {
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/* Columna derecha */
+
+.save-analysis__right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.save-analysis__button {
+  width: 288px;
+  height: 64px;
+  border: 2px solid #2e7d32;
+  border-radius: 100px;
+  background: #ffffff;
+  color: #2e7d32;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.save-analysis__button:hover {
+  background: #2e7d32;
+  color: #ffffff;
+}
+
+.save-analysis__login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #979797;
+  text-align: center;
+}
+
+.save-analysis__lock {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
