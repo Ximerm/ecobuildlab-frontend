@@ -1,6 +1,8 @@
 import "./StrategySection.css";
 
 import StrategyCardList from "../StrategyCardList/StrategyCardList";
+import SaveAnalysis from "../SaveAnalysis/SaveAnalysis";
+import StrategyNote from "../StrategyNote/StrategyNote";
 
 function StrategySection() {
   return (
@@ -16,6 +18,10 @@ function StrategySection() {
         </p>
 
         <StrategyCardList />
+
+        <SaveAnalysis />
+
+        <StrategyNote />
       </div>
     </section>
   );

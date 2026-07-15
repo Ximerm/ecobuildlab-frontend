@@ -3,6 +3,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   width: 100%;
+  padding-bottom: 80px;
 }
 
 .strategy-card-list__button {
