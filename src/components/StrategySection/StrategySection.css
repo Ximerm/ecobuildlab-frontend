@@ -1,0 +1,26 @@
+.strategy-section {
+  width: 100%;
+}
+
+.strategy-section__container {
+  max-width: 1232px;
+  margin: 0 auto;
+  padding: 80px 0;
+}
+
+.strategy-section__title {
+  margin: 0;
+  padding-bottom: 12px;
+  font-family: "Roboto Slab";
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 46px;
+}
+
+.strategy-section__description {
+  margin: 0;
+  font-size: 18px;
+  line-height: 28px;
+  color: #979797;
+  padding-bottom: 48px;
+}

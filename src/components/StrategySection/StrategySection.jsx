@@ -1,4 +1,5 @@
 import "./StrategySection.css";
+
 import StrategyCardList from "../StrategyCardList/StrategyCardList";
 
 function StrategySection() {

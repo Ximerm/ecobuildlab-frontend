@@ -1,0 +1,74 @@
+.strategy-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid #bfd7be;
+}
+
+.strategy-card-list .strategy-card:last-child {
+  border-bottom: none;
+}
+
+.strategy-card__content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.strategy-card__icon-wrapper {
+  flex-shrink: 0;
+}
+
+.strategy-card__icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.strategy-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.strategy-card__title {
+  margin: 0;
+  font-family: "Roboto Slab", serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.strategy-card__description {
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.strategy-card__priority {
+  width: 192px;
+  height: 36px;
+  padding: 12px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+}
+
+.strategy-card__priority--high {
+  background: #eaf5e4;
+  color: #2e7d32;
+}
+
+.strategy-card__priority--medium {
+  background: #fff4d6;
+  color: #c28b00;
+}
+
+.strategy-card__priority--low {
+  background: #e7f0ff;
+  color: #3a78d5;
+}
