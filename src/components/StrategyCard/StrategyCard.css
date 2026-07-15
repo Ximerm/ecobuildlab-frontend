@@ -1,29 +1,24 @@
 .strategy-card {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  padding: 24px 0;
-  border-bottom: 1px solid #bfd7be;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
 }
 
-.strategy-card-list .strategy-card:last-child {
-  border-bottom: none;
-}
-
-.strategy-card__content {
+.strategy-card__header {
   display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.strategy-card__icon-wrapper {
-  flex-shrink: 0;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .strategy-card__icon {
   width: 80px;
   height: 80px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .strategy-card__text {
@@ -37,38 +32,102 @@
   font-family: "Roboto Slab", serif;
   font-size: 22px;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 28px;
 }
 
 .strategy-card__description {
   margin: 0;
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 22px;
+  color: #979797;
+  text-align: justify;
 }
 
-.strategy-card__priority {
-  width: 192px;
-  height: 36px;
-  padding: 12px;
-  border-radius: 100px;
-  font-size: 14px;
-  font-weight: 500;
-  white-space: nowrap;
+.strategy-card__impact {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 24px;
 }
 
-.strategy-card__priority--high {
-  background: #eaf5e4;
+.strategy-card__impact-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.strategy-card__impact-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.strategy-card__info-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.strategy-card__info-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.strategy-card__score {
+  font-family: "Roboto Slab", serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.strategy-card__progress {
+  width: 100%;
+  height: 10px;
+  background: #d9d9d9;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.strategy-card__progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: #2e7d32;
+}
+
+.strategy-card__link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  padding-top: 24px;
+  border: none;
+  background: transparent;
+  color: #6a8f5a;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.strategy-card__link:hover {
   color: #2e7d32;
 }
 
-.strategy-card__priority--medium {
-  background: #fff4d6;
-  color: #c28b00;
+.strategy-card__arrow {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: transform 0.25s ease;
 }
 
-.strategy-card__priority--low {
-  background: #e7f0ff;
-  color: #3a78d5;
+.strategy-card__link:hover .strategy-card__arrow {
+  opacity: 1;
+  transform: translateX(4px);
 }

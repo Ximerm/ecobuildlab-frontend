@@ -1,29 +1,13 @@
 import "./StrategyCard.css";
 
-function StrategyCard({ icon, title, description, priority }) {
-  const priorities = {
-    high: {
-      label: "Alta prioridad",
-      className: "strategy-card__priority--high",
-    },
-    medium: {
-      label: "Media prioridad",
-      className: "strategy-card__priority--medium",
-    },
-    low: {
-      label: "Complementaria",
-      className: "strategy-card__priority--low",
-    },
-  };
+import infoIcon from "../../images/icons/info.png";
+import arrowRightIcon from "../../images/icons/arrow.png";
 
-  const currentPriority = priorities[priority];
-
+function StrategyCard({ icon, title, description, impact, onMoreInfo }) {
   return (
     <article className="strategy-card">
-      <div className="strategy-card__content">
-        <div className="strategy-card__icon-wrapper">
-          <img src={icon} alt={title} className="strategy-card__icon" />
-        </div>
+      <div className="strategy-card__header">
+        <img src={icon} alt={title} className="strategy-card__icon" />
 
         <div className="strategy-card__text">
           <h3 className="strategy-card__title">{title}</h3>
@@ -32,9 +16,45 @@ function StrategyCard({ icon, title, description, priority }) {
         </div>
       </div>
 
-      <span className={`strategy-card__priority ${currentPriority.className}`}>
-        {currentPriority.label}
-      </span>
+      <div className="strategy-card__impact">
+        <div className="strategy-card__impact-header">
+          <div className="strategy-card__impact-title">
+            <span>Impacto estimado</span>
+
+            <button type="button" className="strategy-card__info-button">
+              <img
+                src={infoIcon}
+                alt="Información"
+                className="strategy-card__info-icon"
+              />
+            </button>
+          </div>
+
+          <span className="strategy-card__score">{impact}/100</span>
+        </div>
+
+        <div className="strategy-card__progress">
+          <div
+            className="strategy-card__progress-fill"
+            style={{ width: `${impact}%` }}
+          />
+        </div>
+      </div>
+
+      <button
+        type="button"
+        className="strategy-card__link"
+        onClick={onMoreInfo}
+      >
+        <span>Recomendaciones de diseño</span>
+
+        <img
+          src={arrowRightIcon}
+          alt="flecha"
+          aria-hidden="true"
+          className="strategy-card__arrow"
+        />
+      </button>
     </article>
   );
 }

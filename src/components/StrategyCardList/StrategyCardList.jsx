@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./StrategyCardList.css";
 
 import StrategyCard from "../StrategyCard/StrategyCard";
@@ -10,42 +11,85 @@ import insulationIcon from "../../images/icons/insulation.png";
 import orientationIcon from "../../images/icons/orientation.png";
 
 function StrategyCardList() {
+  const [showAll, setShowAll] = useState(false);
+
+  const strategies = [
+    {
+      id: 1,
+      icon: solarIcon,
+      title: "Protección solar",
+      description:
+        "Reduce la ganancia térmica causada por la radiación solar y mejora el confort interior.",
+      impact: 92,
+    },
+    {
+      id: 2,
+      icon: ventilationIcon,
+      title: "Ventilación natural",
+      description:
+        "Favorece la circulación del aire para disipar el calor y mejorar la calidad ambiental interior.",
+      impact: 89,
+    },
+    {
+      id: 3,
+      icon: humidityIcon,
+      title: "Control de humedad",
+      description:
+        "Reduce los efectos del exceso o déficit de humedad para mejorar el confort y la durabilidad del edificio.",
+      impact: 84,
+    },
+    {
+      id: 4,
+      icon: thermalMassIcon,
+      title: "Masa térmica",
+      description:
+        "Estabiliza la temperatura interior mediante materiales que almacenan y liberan calor de forma gradual.",
+      impact: 70,
+    },
+    {
+      id: 5,
+      icon: insulationIcon,
+      title: "Aislamiento térmico",
+      description:
+        "Disminuye las pérdidas y ganancias de calor a través de la envolvente para mejorar la eficiencia energética.",
+      impact: 58,
+    },
+    {
+      id: 6,
+      icon: orientationIcon,
+      title: "Orientación",
+      description:
+        "Optimiza la ubicación del edificio para aprovechar el clima local, mejorar el confort y reducir la demanda energética.",
+      impact: 50,
+    },
+  ];
+
+  const visibleStrategies = showAll ? strategies : strategies.slice(0, 3);
+
+  const remainingStrategies = strategies.length - 3;
+
   return (
     <section className="strategy-card-list">
-      <StrategyCard
-        icon={solarIcon}
-        title="Protección solar"
-        description="Incorpora aleros, parasoles y elementos de sombreado para reducir la ganancia térmica."
-        priority="high"
-      />
+      {visibleStrategies.map((strategy) => (
+        <StrategyCard
+          key={strategy.id}
+          icon={strategy.icon}
+          title={strategy.title}
+          description={strategy.description}
+          impact={strategy.impact}
+          onMoreInfo={() => {}}
+        />
+      ))}
 
-      <StrategyCard
-        icon={ventilationIcon}
-        title="Ventilación natural"
-        description="Aprovechar la dirección predominante del viento para favorecer la ventilación cruzada."
-        priority="high"
-      />
-
-      <StrategyCard
-        icon={humidityIcon}
-        title="Control humedad"
-        description="Favorecer la ventilación y seleccionar materiales resistentes a la humedad."
-        priority="high"
-      />
-
-      <StrategyCard
-        icon={thermalMassIcon}
-        title="Masa térmica"
-        description="Emplear materiales con alta inercia térmica para estabilizar la temperatura interior."
-        priority="medium"
-      />
-
-      <StrategyCard
-        icon={insulationIcon}
-        title="Aislamiento térmico"
-        description="Mejorar el aislamiento en cubierta y muros para reducir pérdidas de calor."
-        priority="low"
-      />
+      {remainingStrategies > 0 && (
+        <button
+          type="button"
+          className="strategy-card-list__button"
+          onClick={() => setShowAll(!showAll)}
+        >
+          {showAll ? "Mostrar menos" : `Ver todas las estrategias`}
+        </button>
+      )}
     </section>
   );
 }

@@ -11,8 +11,8 @@ function StrategySection() {
         </h2>
 
         <p className="strategy-section__description">
-          Se seleccionaron automáticamente 5 estrategias de diseño según el
-          análisis climático de Bogotá.
+          Se muestran las estrategias con mayor impacto para apoyar las primeras
+          decisiones de diseño de la ubicación analizada.
         </p>
 
         <StrategyCardList />
