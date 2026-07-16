@@ -77,7 +77,7 @@ function StrategyCardList({ onOpenModal }) {
           title={strategy.title}
           description={strategy.description}
           impact={strategy.impact}
-          onMoreInfo={onOpenModal}
+          onMoreInfo={() => onOpenModal(strategy)}
         />
       ))}
 

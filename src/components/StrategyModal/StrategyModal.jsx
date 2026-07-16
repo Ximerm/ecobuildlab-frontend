@@ -17,7 +17,7 @@ import windIcon from "../../images/icons/wind.png";
 import precipitationIcon from "../../images/icons/precipitation.png";
 import radiationIcon from "../../images/icons/radiation.png";
 
-function StrategyModal({ onClose }) {
+function StrategyModal({ onClose, strategy }) {
   //Cerrar con Esc
   useEffect(() => {
     const handleEsc = (event) => {
@@ -31,6 +31,8 @@ function StrategyModal({ onClose }) {
       document.removeEventListener("keydown", handleEsc);
     };
   }, [onClose]);
+
+  if (!strategy) return null;
 
   return (
     <div className="strategy-modal" onClick={onClose}>
@@ -56,14 +58,14 @@ function StrategyModal({ onClose }) {
           <header className="strategy-modal__header">
             <div className="strategy-modal__header-icon">
               <img
-                src={solarIcon}
-                alt="Protección solar"
+                src={strategy.icon}
+                alt={strategy.title}
                 className="strategy-modal__icon"
               />
             </div>
 
             <div className="strategy-modal__heading">
-              <h2 className="strategy-modal__title">Protección solar</h2>
+              <h2 className="strategy-modal__title">{strategy.title}</h2>
 
               <div className="strategy-modal__impact">
                 <div className="strategy-modal__impact-header">

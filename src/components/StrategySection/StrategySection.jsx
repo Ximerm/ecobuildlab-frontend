@@ -8,15 +8,18 @@ import StrategyNote from "../StrategyNote/StrategyNote";
 import StrategyModal from "../StrategyModal/StrategyModal";
 
 function StrategySection() {
-  //Funciones modal
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedStrategy, setSelectedStrategy] = useState(null);
 
-  const handleOpenModal = () => {
+  //Modal functions
+  const handleOpenModal = (strategy) => {
+    setSelectedStrategy(strategy);
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setSelectedStrategy(null);
   };
 
   return (
@@ -37,7 +40,12 @@ function StrategySection() {
 
         <StrategyNote />
 
-        {isModalOpen && <StrategyModal onClose={handleCloseModal} />}
+        {isModalOpen && (
+          <StrategyModal
+            strategy={selectedStrategy}
+            onClose={handleCloseModal}
+          />
+        )}
       </div>
     </section>
   );
