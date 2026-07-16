@@ -21,10 +21,10 @@
 .navigation__login {
   width: 176px;
   height: 48px;
-  border: 1px solid #2e7d32;
+  border: 1px solid #516d3f;
   border-radius: 100px;
   background: transparent;
-  color: #2e7d32;
+  color: #516d3f;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
@@ -32,6 +32,6 @@
 }
 
 .navigation__login:hover {
-  background: #2e7d32;
-  color: white;
+  background: #516d3f;
+  color: #e6ece2;
 }

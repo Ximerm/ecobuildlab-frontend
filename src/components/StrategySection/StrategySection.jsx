@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import "./StrategySection.css";
 
 import StrategyCardList from "../StrategyCardList/StrategyCardList";
@@ -6,6 +8,17 @@ import StrategyNote from "../StrategyNote/StrategyNote";
 import StrategyModal from "../StrategyModal/StrategyModal";
 
 function StrategySection() {
+  //Funciones modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <section className="strategy-section">
       <div className="strategy-section__container">
@@ -18,13 +31,13 @@ function StrategySection() {
           decisiones de diseño de la ubicación analizada.
         </p>
 
-        <StrategyCardList />
+        <StrategyCardList onOpenModal={handleOpenModal} />
 
         <SaveAnalysis />
 
         <StrategyNote />
 
-        <StrategyModal />
+        {isModalOpen && <StrategyModal onClose={handleCloseModal} />}
       </div>
     </section>
   );

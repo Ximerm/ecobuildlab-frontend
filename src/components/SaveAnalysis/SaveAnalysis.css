@@ -10,7 +10,7 @@
   align-items: center;
   gap: 50px;
   padding: 32px 103px;
-  background: #eef7ea;
+  background: #e6ece2;
   border-radius: 24px;
 }
 
@@ -45,14 +45,13 @@
   font-size: 22px;
   font-weight: 700;
   line-height: 30px;
-
-  color: #2e7d32;
 }
 
 .save-analysis__description {
   margin: 0;
   font-size: 18px;
   line-height: 24px;
+  color: #688556;
 }
 
 /* Columna derecha */
@@ -69,10 +68,10 @@
 .save-analysis__button {
   width: 288px;
   height: 64px;
-  border: 2px solid #2e7d32;
+  border: 2px solid #516d3f;
   border-radius: 100px;
   background: #ffffff;
-  color: #2e7d32;
+  color: #516d3f;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
@@ -80,8 +79,8 @@
 }
 
 .save-analysis__button:hover {
-  background: #2e7d32;
-  color: #ffffff;
+  background: #516d3f;
+  color: #e6ece2;
 }
 
 .save-analysis__login {
@@ -92,7 +91,7 @@
   margin: 0;
   font-size: 14px;
   line-height: 20px;
-  color: #979797;
+  color: #688556;
   text-align: center;
 }
 

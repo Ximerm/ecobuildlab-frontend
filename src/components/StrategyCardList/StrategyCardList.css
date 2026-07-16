@@ -14,7 +14,7 @@
   height: 64px;
   border: none;
   border-radius: 100px;
-  background: #2e7d32;
+  background-color: #97b483;
   color: #ffffff;
   font-size: 18px;
   font-weight: 500;
@@ -23,5 +23,5 @@
 }
 
 .strategy-card-list__button:hover {
-  background: #256628;
+  background: #516d3f;
 }

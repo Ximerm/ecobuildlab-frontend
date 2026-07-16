@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #2e7d32;
+  border-top: 1px solid #97b483;
 }
 
 .footer__copyright {
@@ -20,7 +20,7 @@
 
 .footer__year,
 .footer__brand {
-  color: #2e7d32;
+  color: #516d3f;
 }
 
 .footer__brand-dark {

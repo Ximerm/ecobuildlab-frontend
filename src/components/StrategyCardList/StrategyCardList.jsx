@@ -10,7 +10,7 @@ import thermalMassIcon from "../../images/icons/thermal-mass.png";
 import insulationIcon from "../../images/icons/insulation.png";
 import orientationIcon from "../../images/icons/orientation.png";
 
-function StrategyCardList() {
+function StrategyCardList({ onOpenModal }) {
   const [showAll, setShowAll] = useState(false);
 
   const strategies = [
@@ -77,7 +77,7 @@ function StrategyCardList() {
           title={strategy.title}
           description={strategy.description}
           impact={strategy.impact}
-          onMoreInfo={() => {}}
+          onMoreInfo={onOpenModal}
         />
       ))}
 

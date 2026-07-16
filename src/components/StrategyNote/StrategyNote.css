@@ -11,7 +11,7 @@
   justify-content: center;
   gap: 30px;
   padding-top: 80px;
-  border-top: 1px solid #bfd7be;
+  border-top: 1px solid #97b483;
 }
 
 .strategy-note__icon-wrapper {
@@ -29,5 +29,5 @@
   font-size: 18px;
   font-weight: 400;
   line-height: 28px;
-  color: #979797;
+  color: #688556;
 }

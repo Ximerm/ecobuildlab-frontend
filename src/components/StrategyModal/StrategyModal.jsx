@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import "./StrategyModal.css";
 
 import closeIcon from "../../images/icons/close.svg";
@@ -15,18 +17,36 @@ import windIcon from "../../images/icons/wind.png";
 import precipitationIcon from "../../images/icons/precipitation.png";
 import radiationIcon from "../../images/icons/radiation.png";
 
-function StrategyModal() {
+function StrategyModal({ onClose }) {
+  //Cerrar con Esc
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+    document.addEventListener("keydown", handleEsc);
+
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+    };
+  }, [onClose]);
+
   return (
-    <div className="strategy-modal">
-      <div className="strategy-modal__container">
+    <div className="strategy-modal" onClick={onClose}>
+      <div
+        className="strategy-modal__container"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           type="button"
           className="strategy-modal__close"
           aria-label="Cerrar"
+          onClick={onClose}
         >
           <img
             src={closeIcon}
-            alt=""
+            alt="Ícono cerrar"
             aria-hidden="true"
             className="strategy-modal__close-icon"
           />

@@ -44,7 +44,10 @@ function StrategyCard({ icon, title, description, impact, onMoreInfo }) {
       <button
         type="button"
         className="strategy-card__link"
-        onClick={onMoreInfo}
+        onClick={(e) => {
+          e.currentTarget.blur();
+          onMoreInfo();
+        }}
       >
         <span>Recomendaciones de diseño</span>
 

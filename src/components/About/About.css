@@ -1,6 +1,6 @@
 .about {
   width: 100%;
-  background: #f6f7f5;
+  background: #e6ece2;
 }
 
 .about__container {
@@ -42,6 +42,7 @@
   font-size: 18px;
   line-height: 24px;
   text-align: justify;
+  color: #688556;
 }
 
 .about__paragraph:last-child {

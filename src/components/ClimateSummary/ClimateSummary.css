@@ -1,7 +1,6 @@
 .climate-summary {
   width: 100%;
-
-  background: #f6f7f5;
+  background: #e6ece2;
 }
 
 .climate-summary__container {
@@ -36,13 +35,13 @@
   font-family: "Roboto Slab";
   font-size: 36px;
   font-weight: 400;
-  color: #222;
+  color: #688556;
 }
 
 .climate-summary__description {
   margin: 0;
   font-size: 18px;
-  color: #979797;
+  color: #688556;
 }
 
 .climate-summary__location {
@@ -56,6 +55,7 @@
   align-items: center;
   gap: 12px;
   font-size: 16px;
+  font-weight: 700;
 }
 
 .climate-summary__icon {
@@ -67,6 +67,6 @@
 .climate-summary__source {
   margin: 0;
   font-size: 18px;
-  color: #979797;
+  color: #688556;
   padding-top: 48px;
 }
