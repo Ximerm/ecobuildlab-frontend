@@ -3,6 +3,7 @@ import "./StrategySection.css";
 import StrategyCardList from "../StrategyCardList/StrategyCardList";
 import SaveAnalysis from "../SaveAnalysis/SaveAnalysis";
 import StrategyNote from "../StrategyNote/StrategyNote";
+import StrategyModal from "../StrategyModal/StrategyModal";
 
 function StrategySection() {
   return (
@@ -22,6 +23,8 @@ function StrategySection() {
         <SaveAnalysis />
 
         <StrategyNote />
+
+        <StrategyModal />
       </div>
     </section>
   );

@@ -4,7 +4,7 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 
 import climateClassificationIcon from "../../images/icons/climate-classification.png";
 import temperatureIcon from "../../images/icons/temperature.png";
-import humityIcon from "../../images/icons/humity.png";
+import humidityIcon from "../../images/icons/humidity.png";
 import windIcon from "../../images/icons/wind.png";
 import precipitationIcon from "../../images/icons/precipitation.png";
 import radiationIcon from "../../images/icons/radiation.png";
@@ -40,7 +40,7 @@ function WeatherCardList() {
         </div>
       </WeatherCard>
 
-      <WeatherCard icon={humityIcon} title="Humedad relativa(%)">
+      <WeatherCard icon={humidityIcon} title="Humedad relativa(%)">
         <div className="weather-card__stats">
           <div className="weather-card__stat">
             <span className="weather-card__label">Máxima</span>

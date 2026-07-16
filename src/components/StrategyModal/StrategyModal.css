@@ -1,0 +1,272 @@
+.strategy-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: rgba(26, 51, 31, 0.45);
+  backdrop-filter: blur(6px);
+  z-index: 1;
+}
+
+.strategy-modal__container {
+  position: relative;
+  width: 100%;
+  min-width: 680px;
+  max-width: 80vh;
+  max-height: 90vh;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+}
+
+.strategy-modal__content {
+  padding: 32px;
+}
+
+.strategy-modal__close {
+  position: absolute;
+  top: -40px;
+  right: -30px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.strategy-modal__close:hover {
+  transform: scale(1.08);
+}
+
+.strategy-modal__close-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* HEADER */
+
+.strategy-modal__header {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #bfd7be;
+}
+
+.strategy-modal__header-icon {
+  flex-shrink: 0;
+}
+
+.strategy-modal__icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.strategy-modal__heading {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.strategy-modal__title {
+  margin: 0;
+  font-family: "Roboto Slab", serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.strategy-modal__impact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.strategy-modal__impact-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.strategy-modal__impact-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #979797;
+}
+
+.strategy-modal__impact-value {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.strategy-modal__progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 75%;
+}
+
+.strategy-modal__progress {
+  flex: 1;
+  height: 6px;
+  background: #d9d9d9;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.strategy-modal__progress-fill {
+  height: 100%;
+  background: #2e7d32;
+  border-radius: 100px;
+}
+
+.strategy-modal__factors {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.strategy-modal__factors-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #979797;
+}
+
+.strategy-modal__chips {
+  width: 75%;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.strategy-modal__chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #eef7ea;
+  border-radius: 100px;
+}
+
+.strategy-modal__chip img {
+  width: 20px;
+  height: 20px;
+}
+
+.strategy-modal__chip span {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* SECTION */
+
+.strategy-modal__section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 0;
+  border-bottom: 1px solid #d9e6d6;
+}
+
+.strategy-modal__section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.strategy-modal__section-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.strategy-modal__section-title {
+  margin: 0;
+  font-family: "Roboto Slab", serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.strategy-modal__section-content {
+  margin: 0;
+  font-size: 16px;
+  line-height: 20px;
+  color: #979797;
+  padding-left: 50px;
+  text-align: justify;
+}
+
+.strategy-modal__recommendations {
+  margin: 0;
+  padding-left: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.strategy-modal__recommendations li {
+  font-size: 16px;
+  line-height: 18px;
+  color: #979797;
+}
+
+.strategy-modal__variables {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-left: 70px;
+}
+
+.strategy-modal__variable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 60px;
+}
+
+.strategy-modal__variable--inactive {
+  opacity: 0.35;
+}
+
+.strategy-modal__variable img {
+  width: 60px;
+  height: 60px;
+}
+
+.strategy-modal__variable span {
+  text-align: center;
+  font-size: 14px;
+  line-height: 16px;
+  color: #979797;
+}
+
+.strategy-modal__variables-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #5f7b5c;
+  padding-top: 14px;
+}
+.strategy-modal__variables-note-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
