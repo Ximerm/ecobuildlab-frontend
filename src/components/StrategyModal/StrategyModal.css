@@ -47,12 +47,6 @@
   gap: 12px;
 }
 
-.strategy-modal__impact-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 .strategy-modal__impact-label {
   font-size: 14px;
   font-weight: 400;
@@ -91,12 +85,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.strategy-modal__factors-title {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 400;
 }
 
 .strategy-modal__chips {

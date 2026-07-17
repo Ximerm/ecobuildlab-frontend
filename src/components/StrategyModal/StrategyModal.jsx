@@ -34,11 +34,9 @@ function StrategyModal({ strategy, onClose }) {
             <h2 className="strategy-modal__title">{strategy.title}</h2>
 
             <div className="strategy-modal__impact">
-              <div className="strategy-modal__impact-header">
-                <span className="strategy-modal__impact-label">
-                  Impacto estimado a partir de:
-                </span>
-              </div>
+              <span className="strategy-modal__impact-label">
+                Impacto estimado a partir de:
+              </span>
 
               <div className="strategy-modal__factors">
                 <div className="strategy-modal__chips">

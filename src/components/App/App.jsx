@@ -14,6 +14,7 @@ import Results from "../Results/Results";
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleOpenLoginModal = () => {
     setIsRegisterOpen(false);
@@ -33,10 +34,18 @@ function App() {
     setIsRegisterOpen(false);
   };
 
+  const handleLogout = () => {
+    console.log("Cerrar sesión");
+  };
+
   return (
     <>
       <div className="page">
-        <Header handleOpenLoginModal={handleOpenLoginModal} />
+        <Header
+          isLoggedIn={isLoggedIn}
+          handleOpenLoginModal={handleOpenLoginModal}
+          handleLogout={handleLogout}
+        />
 
         {isLoginOpen && (
           <LoginModal
@@ -56,7 +65,12 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route
             path="/results"
-            element={<Results handleOpenLoginModal={handleOpenLoginModal} />}
+            element={
+              <Results
+                isLoggedIn={isLoggedIn}
+                handleOpenLoginModal={handleOpenLoginModal}
+              />
+            }
           />
         </Routes>
 

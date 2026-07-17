@@ -1,11 +1,15 @@
 import "./Header.css";
 import Navigation from "../Navigation/Navigation";
 
-function Header({ handleOpenLoginModal }) {
+function Header({ isLoggedIn, handleOpenLoginModal, handleLogout }) {
   return (
     <header className="header">
       <div className="header__container">
-        <Navigation onOpenLogin={handleOpenLoginModal} />
+        <Navigation
+          isLoggedIn={isLoggedIn}
+          onLoginClick={handleOpenLoginModal}
+          onLogout={handleLogout}
+        />
       </div>
     </header>
   );

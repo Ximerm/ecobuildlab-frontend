@@ -8,17 +8,17 @@ import StrategyNote from "../StrategyNote/StrategyNote";
 import StrategyModal from "../StrategyModal/StrategyModal";
 
 function StrategySection({ handleOpenLoginModal }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isStrategyModalOpen, setIsStrategyModalOpen] = useState(false);
   const [selectedStrategy, setSelectedStrategy] = useState(null);
 
   //Modal functions
-  const handleOpenModal = (strategy) => {
+  const handleOpenStrategyModal = (strategy) => {
     setSelectedStrategy(strategy);
-    setIsModalOpen(true);
+    setIsStrategyModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const handleCloseStrategyModal = () => {
+    setIsStrategyModalOpen(false);
     setSelectedStrategy(null);
   };
 
@@ -34,16 +34,16 @@ function StrategySection({ handleOpenLoginModal }) {
           decisiones de diseño de la ubicación analizada.
         </p>
 
-        <StrategyCardList onOpenModal={handleOpenModal} />
+        <StrategyCardList onOpenModal={handleOpenStrategyModal} />
 
         <SaveAnalysis onLoginClick={handleOpenLoginModal} />
 
         <StrategyNote />
 
-        {isModalOpen && (
+        {isStrategyModalOpen && (
           <StrategyModal
             strategy={selectedStrategy}
-            onClose={handleCloseModal}
+            onClose={handleCloseStrategyModal}
           />
         )}
       </div>
