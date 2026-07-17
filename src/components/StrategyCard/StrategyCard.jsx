@@ -1,5 +1,7 @@
 import "./StrategyCard.css";
 
+import Tooltip from "../Tooltip/Tooltip";
+
 import infoIcon from "../../images/icons/info.png";
 import arrowRightIcon from "../../images/icons/arrow.png";
 
@@ -21,13 +23,20 @@ function StrategyCard({ icon, title, description, impact, onMoreInfo }) {
           <div className="strategy-card__impact-title">
             <span>Impacto estimado</span>
 
-            <button type="button" className="strategy-card__info-button">
-              <img
-                src={infoIcon}
-                alt="Información"
-                className="strategy-card__info-icon"
-              />
-            </button>
+            <Tooltip text="El impacto estimado refleja la influencia potencial de esta estrategia sobre el confort térmico, a partir de los indicadores climáticos analizados.">
+              <button
+                type="button"
+                className="strategy-card__info-button"
+                aria-label="Información sobre el impacto estimado"
+              >
+                <img
+                  src={infoIcon}
+                  alt="Ícono información"
+                  aria-hidden="true"
+                  className="strategy-card__info-icon"
+                />
+              </button>
+            </Tooltip>
           </div>
 
           <span className="strategy-card__score">{impact}/100</span>

@@ -75,9 +75,13 @@
   cursor: pointer;
 }
 
+.strategy-card__info-button:hover {
+  opacity: 0.8;
+}
+
 .strategy-card__info-icon {
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
 }
 
 .strategy-card__score {
