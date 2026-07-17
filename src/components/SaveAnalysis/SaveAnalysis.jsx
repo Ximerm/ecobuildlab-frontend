@@ -3,7 +3,7 @@ import "./SaveAnalysis.css";
 import saveIcon from "../../images/icons/save.png";
 import lockIcon from "../../images/icons/lock.png";
 
-function SaveAnalysis() {
+function SaveAnalysis({ onLoginClick }) {
   return (
     <section className="save-analysis">
       <div className="save-analysis__content">
@@ -30,7 +30,11 @@ function SaveAnalysis() {
         </div>
 
         <div className="save-analysis__right">
-          <button type="button" className="save-analysis__button">
+          <button
+            type="button"
+            className="save-analysis__button"
+            onClick={onLoginClick}
+          >
             Guardar análisis
           </button>
 

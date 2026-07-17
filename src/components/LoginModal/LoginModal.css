@@ -1,0 +1,111 @@
+.login-modal {
+  max-width: 430px;
+}
+
+.login-modal__content {
+  padding: 40px 36px;
+}
+
+.login-modal__title {
+  margin: 0 0 36px;
+  font-family: "Roboto Slab", serif;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.login-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.login-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.login-modal__error {
+  min-height: 16px;
+  font-size: 12px;
+  color: #d9534f;
+}
+
+.login-modal__label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #516d3f;
+}
+
+.login-modal__input {
+  width: 100%;
+  margin: 0;
+  padding: 0 0 10px;
+  border: none;
+  border-bottom: 1px solid #97b483;
+  background: #ffffff;
+  font-size: 14px;
+  color: #688556;
+  transition:
+    border-bottom-color 0.25s ease,
+    border-bottom-width 0.25s ease;
+}
+
+.login-modal__input::placeholder {
+  color: #aecc99;
+  font-weight: 400;
+}
+
+.login-modal__input:focus {
+  outline: none;
+  border-bottom: 2px solid #516d3f;
+}
+
+.login-modal__button {
+  margin-top: 14px;
+  width: 100%;
+  height: 64px;
+  border: none;
+  border-radius: 100px;
+  background-color: #97b483;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.login-modal__button:hover {
+  background-color: #516d3f;
+}
+
+.login-modal__button:active {
+  transform: scale(0.98);
+}
+
+.login-modal__footer {
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: #688556;
+}
+
+.login-modal__link {
+  margin-left: 4px;
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: #516d3f;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.login-modal__link:hover {
+  color: #3e5531;
+  text-decoration: underline;
+}

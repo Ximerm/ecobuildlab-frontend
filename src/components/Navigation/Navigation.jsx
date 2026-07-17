@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import logo from "../../images/logo.png";
 
-function Navigation() {
+function Navigation({ onOpenLogin }) {
   return (
     <nav className="navigation">
       <NavLink to="/" className="navigation__logo">
@@ -15,7 +15,7 @@ function Navigation() {
         />
       </NavLink>
 
-      <button type="button" className="navigation__login">
+      <button type="button" className="navigation__login" onClick={onOpenLogin}>
         Iniciar sesión
       </button>
     </nav>

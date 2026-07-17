@@ -7,7 +7,7 @@ import SaveAnalysis from "../SaveAnalysis/SaveAnalysis";
 import StrategyNote from "../StrategyNote/StrategyNote";
 import StrategyModal from "../StrategyModal/StrategyModal";
 
-function StrategySection() {
+function StrategySection({ handleOpenLoginModal }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStrategy, setSelectedStrategy] = useState(null);
 
@@ -36,7 +36,7 @@ function StrategySection() {
 
         <StrategyCardList onOpenModal={handleOpenModal} />
 
-        <SaveAnalysis />
+        <SaveAnalysis onLoginClick={handleOpenLoginModal} />
 
         <StrategyNote />
 

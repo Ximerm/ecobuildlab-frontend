@@ -4,14 +4,14 @@ import Hero from "../Hero/Hero";
 import ClimateSummary from "../ClimateSummary/ClimateSummary";
 import StrategySection from "../StrategySection/StrategySection";
 
-function Results() {
+function Results({ handleOpenLoginModal }) {
   return (
     <main className="main">
       <Hero />
 
       <ClimateSummary />
 
-      <StrategySection />
+      <StrategySection handleOpenLoginModal={handleOpenLoginModal} />
     </main>
   );
 }
