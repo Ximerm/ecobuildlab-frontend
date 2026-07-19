@@ -19,7 +19,7 @@ function Notification({ isOpen, type = "success", title, message }) {
     >
       <img
         src={icons[type]}
-        alt=""
+        alt="Icon"
         aria-hidden="true"
         className="notification__icon"
       />

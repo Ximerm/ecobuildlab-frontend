@@ -32,7 +32,7 @@ function Modal({ children, onClose, className = "" }) {
         >
           <img
             src={closeIcon}
-            alt=""
+            alt="Close"
             aria-hidden="true"
             className="modal__close-icon"
           />

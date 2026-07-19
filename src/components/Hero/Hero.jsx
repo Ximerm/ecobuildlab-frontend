@@ -17,15 +17,20 @@ function Hero() {
             arquitectónico.
           </p>
 
-          <SearchForm />
+          <div className="hero__search hero__search--desktop">
+            <SearchForm />
+          </div>
         </div>
 
         <div className="hero__image">
           <img
             src={heroImage}
-            alt="Ilustración de vivienda"
+            alt="Home ilustration"
             className="hero__image-element"
           />
+        </div>
+        <div className="hero__search hero__search--mobile">
+          <SearchForm />
         </div>
       </div>
     </section>

@@ -31,7 +31,7 @@ function StrategyCard({ icon, title, description, impact, onMoreInfo }) {
               >
                 <img
                   src={infoIcon}
-                  alt="Ícono información"
+                  alt="Information"
                   aria-hidden="true"
                   className="strategy-card__info-icon"
                 />
@@ -62,7 +62,7 @@ function StrategyCard({ icon, title, description, impact, onMoreInfo }) {
 
         <img
           src={arrowRightIcon}
-          alt="flecha"
+          alt="Arrow"
           aria-hidden="true"
           className="strategy-card__arrow"
         />

@@ -10,7 +10,6 @@ function SavedAnalysisHeader({ userName, analysisCount, locations }) {
     <section className="saved-analysis-header">
       <div className="saved-analysis-header__content">
         <div className="saved-analysis-header__info">
-          
           <h1 className="saved-analysis-header__title">
             <strong>{userName}</strong>, tienes <strong>{analysisCount}</strong>{" "}
             análisis climáticos guardados
@@ -49,7 +48,7 @@ function SavedAnalysisHeader({ userName, analysisCount, locations }) {
         <div className="saved-analysis-header__illustration">
           <img
             src={climateIllustration}
-            alt=""
+            alt="Climate ilustration"
             className="saved-analysis-header__image"
           />
         </div>

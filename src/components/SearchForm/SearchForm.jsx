@@ -9,7 +9,7 @@ function SearchForm() {
           type="text"
           name="city"
           autoComplete="off"
-          placeholder="Ingresa una ciudad (ej.: Bogotá, Colombia)"
+          placeholder="Ingresa una ciudad, pais."
         />
       </div>
 

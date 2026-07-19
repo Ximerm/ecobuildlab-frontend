@@ -9,7 +9,7 @@ function StrategyNote() {
         <div className="strategy-note__icon-wrapper">
           <img
             src={infoIcon}
-            alt=""
+            alt="Information"
             aria-hidden="true"
             className="strategy-note__icon"
           />

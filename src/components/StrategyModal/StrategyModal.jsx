@@ -41,12 +41,20 @@ function StrategyModal({ strategy, onClose }) {
               <div className="strategy-modal__factors">
                 <div className="strategy-modal__chips">
                   <div className="strategy-modal__chip">
-                    <img src={radiationIcon} alt="" aria-hidden="true" />
+                    <img
+                      src={radiationIcon}
+                      alt="Radiation"
+                      aria-hidden="true"
+                    />
                     <span>Radiación solar</span>
                   </div>
 
                   <div className="strategy-modal__chip">
-                    <img src={temperatureIcon} alt="" aria-hidden="true" />
+                    <img
+                      src={temperatureIcon}
+                      alt="Temperature"
+                      aria-hidden="true"
+                    />
                     <span>Temperatura máxima</span>
                   </div>
                 </div>
@@ -70,7 +78,7 @@ function StrategyModal({ strategy, onClose }) {
           <div className="strategy-modal__section-header">
             <img
               src={objectiveIcon}
-              alt=""
+              alt="Objective"
               aria-hidden="true"
               className="strategy-modal__section-icon"
             />
@@ -87,7 +95,7 @@ function StrategyModal({ strategy, onClose }) {
           <div className="strategy-modal__section-header">
             <img
               src={questionIcon}
-              alt=""
+              alt="Question"
               aria-hidden="true"
               className="strategy-modal__section-icon"
             />
@@ -109,7 +117,7 @@ function StrategyModal({ strategy, onClose }) {
           <div className="strategy-modal__section-header">
             <img
               src={recommendationIcon}
-              alt=""
+              alt="Recommendation"
               aria-hidden="true"
               className="strategy-modal__section-icon"
             />
@@ -131,7 +139,7 @@ function StrategyModal({ strategy, onClose }) {
           <div className="strategy-modal__section-header">
             <img
               src={climateIcon}
-              alt=""
+              alt="Climate"
               aria-hidden="true"
               className="strategy-modal__section-icon"
             />
@@ -143,27 +151,27 @@ function StrategyModal({ strategy, onClose }) {
 
           <div className="strategy-modal__variables">
             <div className="strategy-modal__variable strategy-modal__variable--active">
-              <img src={temperatureIcon} alt="" />
+              <img src={temperatureIcon} alt="Temperature" />
               <span>Temperatura</span>
             </div>
 
             <div className="strategy-modal__variable strategy-modal__variable--active">
-              <img src={humidityIcon} alt="" />
+              <img src={humidityIcon} alt="Humidity" />
               <span>Humedad</span>
             </div>
 
             <div className="strategy-modal__variable strategy-modal__variable--inactive">
-              <img src={windIcon} alt="" />
+              <img src={windIcon} alt="Wind" />
               <span>Viento</span>
             </div>
 
             <div className="strategy-modal__variable strategy-modal__variable--inactive">
-              <img src={precipitationIcon} alt="" />
+              <img src={precipitationIcon} alt="Precipitation" />
               <span>Precipitación</span>
             </div>
 
             <div className="strategy-modal__variable strategy-modal__variable--active">
-              <img src={radiationIcon} alt="" />
+              <img src={radiationIcon} alt="Radiation" />
               <span>Radiación</span>
             </div>
           </div>
@@ -172,7 +180,7 @@ function StrategyModal({ strategy, onClose }) {
         <div className="strategy-modal__variables-note">
           <img
             src={infoIcon}
-            alt=""
+            alt="Information"
             aria-hidden="true"
             className="strategy-modal__variables-note-icon"
           />

@@ -8,7 +8,7 @@ function NoResults() {
       <div className="no-results__container">
         <img
           src={notFoundIcon}
-          alt=""
+          alt="Not found"
           aria-hidden="true"
           className="no-results__icon"
         />

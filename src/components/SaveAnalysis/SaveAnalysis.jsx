@@ -30,7 +30,7 @@ function SaveAnalysis({ isLoggedIn, isSaved, onSaveAnalysis }) {
           <div className="save-analysis__icon-wrapper">
             <img
               src={saveIcon}
-              alt=""
+              alt="Save"
               aria-hidden="true"
               className="save-analysis__icon"
             />
@@ -68,7 +68,7 @@ function SaveAnalysis({ isLoggedIn, isSaved, onSaveAnalysis }) {
               <>
                 <img
                   src={successIcon}
-                  alt=""
+                  alt="Success"
                   aria-hidden="true"
                   className="save-analysis__button-icon"
                 />
@@ -84,7 +84,7 @@ function SaveAnalysis({ isLoggedIn, isSaved, onSaveAnalysis }) {
             <div className="save-analysis__login">
               <img
                 src={lockIcon}
-                alt=""
+                alt="Lock"
                 aria-hidden="true"
                 className="save-analysis__lock"
               />

@@ -26,7 +26,7 @@ function ClimateSummary() {
             <div className="climate-summary__item">
               <img
                 src={latitudeIcon}
-                alt="Latitud"
+                alt="Latitude"
                 className="climate-summary__icon"
               />
 
@@ -36,7 +36,7 @@ function ClimateSummary() {
             <div className="climate-summary__item">
               <img
                 src={longitudeIcon}
-                alt="Longitud"
+                alt="Longitude"
                 className="climate-summary__icon"
               />
 
@@ -46,7 +46,7 @@ function ClimateSummary() {
             <div className="climate-summary__item">
               <img
                 src={elevationIcon}
-                alt="Altitud"
+                alt="Elevation"
                 className="climate-summary__icon"
               />
 

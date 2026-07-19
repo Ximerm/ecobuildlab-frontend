@@ -22,7 +22,11 @@ function AnalysisCard({
           onDelete();
         }}
       >
-        <img src={deleteIcon} alt="" className="analysis-card__delete-icon" />
+        <img
+          src={deleteIcon}
+          alt="Delete"
+          className="analysis-card__delete-icon"
+        />
       </button>
 
       <div className="analysis-card__header">
@@ -46,7 +50,7 @@ function AnalysisCard({
             <li key={strategy.name} className="analysis-card__strategy">
               <img
                 src={strategy.icon}
-                alt=""
+                alt="Strategy icon"
                 className="analysis-card__strategy-icon"
               />
 
