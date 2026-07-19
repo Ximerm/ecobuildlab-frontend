@@ -1,9 +1,28 @@
+import { useEffect, useState } from "react";
+
 import "./SaveAnalysis.css";
 
 import saveIcon from "../../images/icons/save.png";
 import lockIcon from "../../images/icons/lock.png";
+import successIcon from "../../images/icons/success-light.png";
 
-function SaveAnalysis({ onLoginClick }) {
+import Notification from "../Notification/Notification";
+
+function SaveAnalysis({ isLoggedIn, isSaved, onSaveAnalysis }) {
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isSaved) return;
+
+    setIsNotificationOpen(true);
+
+    const timer = setTimeout(() => {
+      setIsNotificationOpen(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [isSaved]);
+
   return (
     <section className="save-analysis">
       <div className="save-analysis__content">
@@ -24,30 +43,55 @@ function SaveAnalysis({ onLoginClick }) {
 
             <p className="save-analysis__description">
               Guarda los indicadores climáticos y las recomendaciones de diseño
-              para consultarlos cuando lo necesites.
+              para consultarlos fácilmente cuando los necesites.
             </p>
           </div>
         </div>
 
         <div className="save-analysis__right">
+          <Notification
+            isOpen={isNotificationOpen}
+            type="success"
+            title="Análisis guardado"
+            message="Disponible en Mis análisis."
+          />
+
           <button
             type="button"
-            className="save-analysis__button"
-            onClick={onLoginClick}
+            className={`save-analysis__button ${
+              isSaved ? "save-analysis__button--saved" : ""
+            }`}
+            onClick={onSaveAnalysis}
+            disabled={isSaved}
           >
-            Guardar análisis
+            {isSaved ? (
+              <>
+                <img
+                  src={successIcon}
+                  alt=""
+                  aria-hidden="true"
+                  className="save-analysis__button-icon"
+                />
+
+                <span>Análisis guardado</span>
+              </>
+            ) : (
+              "Guardar análisis"
+            )}
           </button>
 
-          <div className="save-analysis__login">
-            <img
-              src={lockIcon}
-              alt=""
-              aria-hidden="true"
-              className="save-analysis__lock"
-            />
+          {!isLoggedIn && (
+            <div className="save-analysis__login">
+              <img
+                src={lockIcon}
+                alt=""
+                aria-hidden="true"
+                className="save-analysis__lock"
+              />
 
-            <span>Inicia sesión para guardar este análisis.</span>
-          </div>
+              <span>Inicia sesión para guardar este análisis.</span>
+            </div>
+          )}
         </div>
       </div>
     </section>

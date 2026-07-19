@@ -57,6 +57,7 @@
 /* Columna derecha */
 
 .save-analysis__right {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,6 +67,10 @@
 }
 
 .save-analysis__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
   width: 288px;
   height: 64px;
   border: 2px solid #516d3f;
@@ -81,6 +86,26 @@
 .save-analysis__button:hover {
   background: #516d3f;
   color: #e6ece2;
+}
+
+.save-analysis__button:disabled {
+  cursor: default;
+}
+
+.save-analysis__button--saved {
+  background-color: #516d3f;
+  color: #fff;
+}
+
+.save-analysis__button--saved:hover {
+  background-color: #516d3f;
+  color: #e6ece2;
+}
+
+.save-analysis__button-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
 }
 
 .save-analysis__login {

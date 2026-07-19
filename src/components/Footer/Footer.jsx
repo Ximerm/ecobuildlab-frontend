@@ -6,7 +6,7 @@ import githubIcon from "../../images/github.svg";
 import linkedinIcon from "../../images/linkedin.svg";
 import emailIcon from "../../images/email.svg";
 
-function Footer() {
+function Footer({ isLoggedIn }) {
   return (
     <footer className="footer">
       <div className="footer__container">
@@ -17,13 +17,25 @@ function Footer() {
           <span className="footer__brand">Lab</span>
         </p>
 
-        <div className="footer__menu">
-          <Link className="footer__home" to="/">
+        <nav className="footer__navigation">
+          <Link className="footer__nav-link" to="/">
             Inicio
           </Link>
 
+          <Link className="footer__nav-link" to="/">
+            Nuevo análisis
+          </Link>
+
+          {isLoggedIn && (
+            <Link className="footer__nav-link" to="/saved-analysis">
+              Mis análisis
+            </Link>
+          )}
+        </nav>
+
+        <div className="footer__social">
           <a
-            className="footer__link"
+            className="footer__social-link"
             href="mailto:arq.xrm@gmail.com"
             aria-label="Correo"
           >
@@ -31,7 +43,7 @@ function Footer() {
           </a>
 
           <a
-            className="footer__link"
+            className="footer__social-link"
             href="https://github.com/Ximerm"
             target="_blank"
             rel="noopener noreferrer"
@@ -41,7 +53,7 @@ function Footer() {
           </a>
 
           <a
-            className="footer__link"
+            className="footer__social-link"
             href="https://www.linkedin.com/in/arqximenarm"
             target="_blank"
             rel="noopener noreferrer"

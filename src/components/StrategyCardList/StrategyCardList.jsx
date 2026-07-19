@@ -3,12 +3,12 @@ import "./StrategyCardList.css";
 
 import StrategyCard from "../StrategyCard/StrategyCard";
 
-import solarIcon from "../../images/icons/protection-solar.png";
-import ventilationIcon from "../../images/icons/ventilation.png";
-import humidityIcon from "../../images/icons/control-humidity.png";
-import thermalMassIcon from "../../images/icons/thermal-mass.png";
-import insulationIcon from "../../images/icons/insulation.png";
-import orientationIcon from "../../images/icons/orientation.png";
+import solarIcon from "../../images/strategies/protection-solar.png";
+import ventilationIcon from "../../images/strategies/ventilation.png";
+import humidityIcon from "../../images/strategies/control-humidity.png";
+import thermalMassIcon from "../../images/strategies/thermal-mass.png";
+import insulationIcon from "../../images/strategies/insulation.png";
+import orientationIcon from "../../images/strategies/orientation.png";
 
 function StrategyCardList({ onOpenModal }) {
   const [showAll, setShowAll] = useState(false);

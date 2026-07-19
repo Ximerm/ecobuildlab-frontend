@@ -2,12 +2,12 @@ import "./WeatherCardList.css";
 
 import WeatherCard from "../WeatherCard/WeatherCard";
 
-import climateClassificationIcon from "../../images/icons/climate-classification.png";
-import temperatureIcon from "../../images/icons/temperature.png";
-import humidityIcon from "../../images/icons/humidity.png";
-import windIcon from "../../images/icons/wind.png";
-import precipitationIcon from "../../images/icons/precipitation.png";
-import radiationIcon from "../../images/icons/radiation.png";
+import climateClassificationIcon from "../../images/indicators/climate-classification.png";
+import temperatureIcon from "../../images/indicators/temperature.png";
+import humidityIcon from "../../images/indicators/humidity.png";
+import windIcon from "../../images/indicators/wind.png";
+import precipitationIcon from "../../images/indicators/precipitation.png";
+import radiationIcon from "../../images/indicators/radiation.png";
 
 function WeatherCardList() {
   return (

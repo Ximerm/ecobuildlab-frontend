@@ -10,6 +10,8 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import Results from "../Results/Results";
+import SavedAnalysis from "../SavedAnalysis/SavedAnalysis";
+import AnalysisPage from "../AnalysisPage/AnalysisPage";
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -63,6 +65,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Main />} />
+
           <Route
             path="/results"
             element={
@@ -72,9 +75,18 @@ function App() {
               />
             }
           />
+          <Route
+            path="/saved-analysis"
+            element={<SavedAnalysis isLoggedIn={isLoggedIn} />}
+          />
+
+          <Route
+            path="/analysis/:id"
+            element={<AnalysisPage isLoggedIn={isLoggedIn} />}
+          />
         </Routes>
 
-        <Footer />
+        <Footer isLoggedIn={isLoggedIn} />
       </div>
     </>
   );

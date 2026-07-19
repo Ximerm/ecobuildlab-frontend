@@ -9,11 +9,11 @@ import questionIcon from "../../images/icons/question.png";
 import recommendationIcon from "../../images/icons/recommendation.png";
 import climateIcon from "../../images/icons/climate.png";
 
-import temperatureIcon from "../../images/icons/temperature.png";
-import humidityIcon from "../../images/icons/humidity.png";
-import windIcon from "../../images/icons/wind.png";
-import precipitationIcon from "../../images/icons/precipitation.png";
-import radiationIcon from "../../images/icons/radiation.png";
+import temperatureIcon from "../../images/indicators/temperature.png";
+import humidityIcon from "../../images/indicators/humidity.png";
+import windIcon from "../../images/indicators/wind.png";
+import precipitationIcon from "../../images/indicators/precipitation.png";
+import radiationIcon from "../../images/indicators/radiation.png";
 
 function StrategyModal({ strategy, onClose }) {
   if (!strategy) return null;
