@@ -12,6 +12,7 @@
     transform 0.25s ease,
     box-shadow 0.25s ease,
     border-color 0.25s ease;
+  box-sizing: border-box;
 }
 
 .analysis-card:hover {
@@ -42,7 +43,7 @@
   opacity: 0.5;
 }
 
-.analysis-card__delete-icon:hover {
+.analysis-card__delete:hover .analysis-card__delete-icon {
   opacity: 1;
   transform: scale(1.15);
 }
@@ -125,4 +126,147 @@
   height: 40px;
   object-fit: contain;
   flex-shrink: 0;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1024px) {
+  .analysis-card {
+    gap: 20px;
+    padding: 28px;
+  }
+
+  .analysis-card__delete {
+    top: 28px;
+    right: 28px;
+  }
+
+  .analysis-card__climate-icon {
+    width: 72px;
+    height: 72px;
+  }
+
+  .analysis-card__city {
+    font-size: 24px;
+  }
+
+  .analysis-card__content {
+    padding-top: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .analysis-card {
+    gap: 18px;
+    padding: 24px;
+  }
+
+  .analysis-card__header {
+    gap: 10px;
+  }
+
+  .analysis-card__climate-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .analysis-card__badge {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .analysis-card__city {
+    font-size: 22px;
+  }
+
+  .analysis-card__subtitle {
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .analysis-card {
+    padding: 24px 20px;
+  }
+
+  .analysis-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .analysis-card__climate-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .analysis-card__city {
+    font-size: 22px;
+  }
+
+  .analysis-card__strategy {
+    gap: 14px;
+    font-size: 15px;
+  }
+
+  .analysis-card__strategy-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .analysis-card {
+    gap: 16px;
+    padding: 20px 16px;
+  }
+
+  .analysis-card__delete {
+    top: 20px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .analysis-card__delete-icon {
+    width: 24px;
+  }
+
+  .analysis-card__climate-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .analysis-card__badge {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .analysis-card__city {
+    font-size: 20px;
+  }
+
+  .analysis-card__date {
+    margin-top: -6px;
+    font-size: 13px;
+  }
+
+  .analysis-card__content {
+    gap: 12px;
+    padding-top: 20px;
+  }
+
+  .analysis-card__subtitle {
+    font-size: 16px;
+  }
+
+  .analysis-card__strategy {
+    gap: 12px;
+    font-size: 14px;
+  }
+
+  .analysis-card__strategy-icon {
+    width: 32px;
+    height: 32px;
+  }
 }

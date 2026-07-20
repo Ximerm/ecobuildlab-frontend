@@ -16,7 +16,7 @@ function StrategySection({
   const [isStrategyModalOpen, setIsStrategyModalOpen] = useState(false);
   const [selectedStrategy, setSelectedStrategy] = useState(null);
 
-  //Modal functions
+  // Modal functions
   const handleOpenStrategyModal = (strategy) => {
     setSelectedStrategy(strategy);
     setIsStrategyModalOpen(true);
@@ -39,7 +39,10 @@ function StrategySection({
           decisiones de diseño de la ubicación analizada.
         </p>
 
-        <StrategyCardList onOpenModal={handleOpenStrategyModal} />
+        <StrategyCardList
+          onOpenModal={handleOpenStrategyModal}
+          hasSaveSection={showSaveAnalysisSection}
+        />
 
         {showSaveAnalysisSection && (
           <SaveAnalysisSection

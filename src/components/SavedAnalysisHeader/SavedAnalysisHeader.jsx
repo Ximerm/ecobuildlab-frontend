@@ -38,7 +38,7 @@ function SavedAnalysisHeader({ userName, analysisCount, locations }) {
 
               {remainingLocations > 0 && (
                 <span className="saved-analysis-header__location">
-                  y {remainingLocations} más
+                  &#43; {remainingLocations}
                 </span>
               )}
             </div>

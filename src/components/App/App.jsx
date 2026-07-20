@@ -38,57 +38,57 @@ function App() {
 
   const handleLogout = () => {
     console.log("Cerrar sesión");
+    setIsLoggedIn(false);
   };
 
   return (
-    <>
-      <div className="page">
-        <Header
-          isLoggedIn={isLoggedIn}
-          handleOpenLoginModal={handleOpenLoginModal}
-          handleLogout={handleLogout}
+    <div className="page">
+      <Header
+        isLoggedIn={isLoggedIn}
+        handleOpenLoginModal={handleOpenLoginModal}
+        handleLogout={handleLogout}
+      />
+
+      {isLoginOpen && (
+        <LoginModal
+          onClose={handleCloseLogin}
+          onOpenRegister={handleOpenRegisterModal}
+        />
+      )}
+
+      {isRegisterOpen && (
+        <RegisterModal
+          onClose={handleCloseRegister}
+          onOpenLogin={handleOpenLoginModal}
+        />
+      )}
+
+      <Routes>
+        <Route path="/" element={<Main />} />
+
+        <Route
+          path="/results"
+          element={
+            <Results
+              isLoggedIn={isLoggedIn}
+              handleOpenLoginModal={handleOpenLoginModal}
+            />
+          }
         />
 
-        {isLoginOpen && (
-          <LoginModal
-            onClose={handleCloseLogin}
-            onOpenRegister={handleOpenRegisterModal}
-          />
-        )}
+        <Route
+          path="/saved-analysis"
+          element={<SavedAnalysis isLoggedIn={isLoggedIn} />}
+        />
 
-        {isRegisterOpen && (
-          <RegisterModal
-            onClose={handleCloseRegister}
-            onOpenLogin={handleOpenLoginModal}
-          />
-        )}
+        <Route
+          path="/analysis/:id"
+          element={<AnalysisPage isLoggedIn={isLoggedIn} />}
+        />
+      </Routes>
 
-        <Routes>
-          <Route path="/" element={<Main />} />
-
-          <Route
-            path="/results"
-            element={
-              <Results
-                isLoggedIn={isLoggedIn}
-                handleOpenLoginModal={handleOpenLoginModal}
-              />
-            }
-          />
-          <Route
-            path="/saved-analysis"
-            element={<SavedAnalysis isLoggedIn={isLoggedIn} />}
-          />
-
-          <Route
-            path="/analysis/:id"
-            element={<AnalysisPage isLoggedIn={isLoggedIn} />}
-          />
-        </Routes>
-
-        <Footer isLoggedIn={isLoggedIn} />
-      </div>
-    </>
+      <Footer isLoggedIn={isLoggedIn} />
+    </div>
   );
 }
 

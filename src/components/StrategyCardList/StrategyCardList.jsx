@@ -11,7 +11,7 @@ import thermalMassIcon from "../../images/strategies/thermal-mass.png";
 import insulationIcon from "../../images/strategies/insulation.png";
 import orientationIcon from "../../images/strategies/orientation.png";
 
-function StrategyCardList({ onOpenModal }) {
+function StrategyCardList({ onOpenModal, hasSaveSection = true }) {
   const [showAll, setShowAll] = useState(false);
 
   const strategies = [
@@ -68,7 +68,11 @@ function StrategyCardList({ onOpenModal }) {
   const visibleStrategies = showAll ? strategies : strategies.slice(0, 3);
 
   return (
-    <section className="strategy-card-list">
+    <section
+      className={`strategy-card-list ${
+        !hasSaveSection ? "strategy-card-list--analysis" : ""
+      }`}
+    >
       {visibleStrategies.map((strategy) => (
         <StrategyCard
           key={strategy.id}

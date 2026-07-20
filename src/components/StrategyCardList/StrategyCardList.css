@@ -3,7 +3,10 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   width: 100%;
-  padding-bottom: 80px;
+}
+
+.strategy-card-list--analysis {
+  padding-bottom: 0;
 }
 
 .strategy-card-list__button {
@@ -30,7 +33,7 @@
 @media screen and (max-width: 1024px) {
   .strategy-card-list {
     gap: 12px;
-    padding-bottom: 64px;
+    padding-bottom: 0;
   }
 
   .strategy-card-list__button {
@@ -45,7 +48,6 @@
   .strategy-card-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
-    padding-bottom: 56px;
   }
 
   .strategy-card-list__button {
@@ -57,7 +59,6 @@
   .strategy-card-list {
     grid-template-columns: 1fr;
     gap: 20px;
-    padding-bottom: 48px;
   }
 
   .strategy-card-list__button {
@@ -72,7 +73,6 @@
 @media screen and (max-width: 320px) {
   .strategy-card-list {
     gap: 16px;
-    padding-bottom: 40px;
   }
 
   .strategy-card-list__button {
