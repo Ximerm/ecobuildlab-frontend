@@ -5,8 +5,7 @@
 }
 
 .header__container {
-  max-width: 100%;
-  margin: 0 auto;
+  width: 100%;
   min-height: 80px;
   border-bottom: 1px solid #97b483;
 }

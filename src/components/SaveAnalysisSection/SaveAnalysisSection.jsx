@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import "./SaveAnalysisSection.css";
 
@@ -11,17 +11,15 @@ import Notification from "../Notification/Notification";
 function SaveAnalysisSection({ isLoggedIn, isSaved, onSaveAnalysis }) {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
-  useEffect(() => {
-    if (!isSaved) return;
+  const handleSave = () => {
+    onSaveAnalysis();
 
     setIsNotificationOpen(true);
 
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       setIsNotificationOpen(false);
     }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [isSaved]);
+  };
 
   return (
     <section className="save-analysis">
@@ -61,7 +59,7 @@ function SaveAnalysisSection({ isLoggedIn, isSaved, onSaveAnalysis }) {
             className={`save-analysis__button ${
               isSaved ? "save-analysis__button--saved" : ""
             }`}
-            onClick={onSaveAnalysis}
+            onClick={handleSave}
             disabled={isSaved}
           >
             {isSaved ? (

@@ -1,4 +1,4 @@
-import "./LoginModal.css";
+import "../AuthModal/AuthModal.css";
 
 import Modal from "../Modal/Modal";
 
@@ -11,59 +11,63 @@ function LoginModal({ onClose, onOpenRegister }) {
     emailInputRef.current?.focus();
   }, []);
   return (
-    <Modal onClose={onClose} className="login-modal">
-      <div className="login-modal__content">
-        <h2 className="login-modal__title">Iniciar sesión</h2>
+    <Modal onClose={onClose} className="auth-modal">
+      <div className="auth-modal__content">
+        <h2 className="auth-modal__title">Iniciar sesión</h2>
 
         <form
-          className="login-modal__form"
-          autoComplete="off"
+          className="auth-modal__form"
+          noValidate
           onSubmit={(e) => e.preventDefault()}
         >
-          <div className="login-modal__field">
-            <label htmlFor="email" className="login-modal__label">
+          <div className="auth-modal__field">
+            <label htmlFor="email" className="auth-modal__label">
               Correo electrónico
             </label>
 
             <input
               ref={emailInputRef}
               id="email"
+              name="email"
               type="email"
-              className="login-modal__input"
+              autoComplete="email"
+              className="auth-modal__input"
               placeholder="correo@ejemplo.com"
               required
             />
-            <span className="login-modal__error"></span>
+            <span className="auth-modal__error"></span>
           </div>
 
-          <div className="login-modal__field">
-            <label htmlFor="password" className="login-modal__label">
+          <div className="auth-modal__field">
+            <label htmlFor="password" className="auth-modal__label">
               Contraseña
             </label>
 
             <input
               id="password"
+              name="password"
               type="password"
-              className="login-modal__input"
+              autoComplete="current-password"
+              className="auth-modal__input"
               placeholder="Introduce tu contraseña"
               required
             />
-            <span className="login-modal__error"></span>
+            <span className="auth-modal__error"></span>
           </div>
 
-          <button type="button" className="login-modal__button">
+          <button type="submit" className="auth-modal__button">
             Iniciar sesión
           </button>
         </form>
 
-        <p className="login-modal__footer">
+        <p className="auth-modal__footer">
           ¿No tienes una cuenta?
           <button
             type="button"
-            className="login-modal__link"
+            className="auth-modal__link"
             onClick={onOpenRegister}
           >
-            <span>Crear cuenta</span>
+            Crear cuenta
           </button>
         </p>
       </div>

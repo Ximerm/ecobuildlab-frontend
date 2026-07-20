@@ -10,25 +10,6 @@
   padding: 32px;
 }
 
-/* Chrome, Edge, Brave */
-
-.strategy-modal__content::-webkit-scrollbar {
-  width: 6px;
-}
-
-.strategy-modal__content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.strategy-modal__content::-webkit-scrollbar-thumb {
-  background: #97b483;
-  border-radius: 100px;
-}
-
-.strategy-modal__content::-webkit-scrollbar-thumb:hover {
-  background: #516d3f;
-}
-
 /* HEADER */
 
 .strategy-modal__header {

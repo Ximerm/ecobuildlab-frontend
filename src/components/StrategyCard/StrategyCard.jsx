@@ -27,7 +27,7 @@ function StrategyCard({ icon, title, description, impact, onMoreInfo }) {
               <button
                 type="button"
                 className="strategy-card__info-button"
-                aria-label="Información sobre el impacto estimado"
+                aria-label="Información sobre el impacto"
               >
                 <img
                   src={infoIcon}

@@ -30,12 +30,7 @@ function Modal({ children, onClose, className = "" }) {
           aria-label="Cerrar"
           onClick={onClose}
         >
-          <img
-            src={closeIcon}
-            alt="Close"
-            aria-hidden="true"
-            className="modal__close-icon"
-          />
+          <img src={closeIcon} alt="Close" className="modal__close-icon" />
         </button>
 
         {children}

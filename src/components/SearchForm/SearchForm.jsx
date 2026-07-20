@@ -4,12 +4,18 @@ function SearchForm() {
   return (
     <form className="search-form">
       <div className="search-form__field">
+        <label htmlFor="city" className="search-form__label">
+          Ciudad, país
+        </label>
+
         <input
+          id="city"
           className="search-form__input"
           type="text"
           name="city"
-          autoComplete="off"
-          placeholder="Ingresa una ciudad, pais."
+          autoComplete="address-level2"
+          placeholder="Ingresa una ciudad, país"
+          required
         />
       </div>
 

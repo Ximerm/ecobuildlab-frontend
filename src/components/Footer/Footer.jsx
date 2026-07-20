@@ -1,6 +1,6 @@
 import "./Footer.css";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import githubIcon from "../../images/github.svg";
 import linkedinIcon from "../../images/linkedin.svg";
@@ -19,18 +19,18 @@ function Footer({ isLoggedIn }) {
 
         <div className="footer__top">
           <nav className="footer__navigation">
-            <Link className="footer__nav-link" to="/">
+            <NavLink className="footer__nav-link" to="/">
               Inicio
-            </Link>
+            </NavLink>
 
-            <Link className="footer__nav-link" to="/">
+            <NavLink className="footer__nav-link" to="/">
               Nuevo análisis
-            </Link>
+            </NavLink>
 
             {isLoggedIn && (
-              <Link className="footer__nav-link" to="/saved-analysis">
+              <NavLink className="footer__nav-link" to="/saved-analysis">
                 Mis análisis
-              </Link>
+              </NavLink>
             )}
           </nav>
 

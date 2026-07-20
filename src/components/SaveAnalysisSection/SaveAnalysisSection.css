@@ -1,5 +1,6 @@
 .save-analysis {
   width: 100%;
+  padding-top: 80px;
 }
 
 .save-analysis__content {
@@ -157,6 +158,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .save-analysis {
+    padding-top: 56px;
+  }
+
   .save-analysis__content {
     flex-direction: column;
     gap: 32px;
@@ -178,6 +183,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .save-analysis {
+    padding-top: 48px;
+  }
+
   .save-analysis__content {
     padding: 32px 24px;
   }
@@ -204,6 +213,10 @@
 }
 
 @media screen and (max-width: 320px) {
+  .save-analysis {
+    padding-top: 40px;
+  }
+
   .save-analysis__content {
     padding: 24px 20px;
   }

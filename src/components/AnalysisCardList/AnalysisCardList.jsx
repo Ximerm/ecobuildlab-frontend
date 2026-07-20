@@ -14,7 +14,6 @@ import highMountainIcon from "../../images/climates/high-mountain.png";
 
 import solarIcon from "../../images/strategies/protection-solar.png";
 import ventilationIcon from "../../images/strategies/ventilation.png";
-import humidityIcon from "../../images/strategies/control-humidity.png";
 import orientationIcon from "../../images/strategies/orientation.png";
 
 const analyses = [
