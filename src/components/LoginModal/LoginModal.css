@@ -17,13 +17,13 @@
 .login-modal__form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .login-modal__field {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
 .login-modal__error {
@@ -50,6 +50,7 @@
   transition:
     border-bottom-color 0.25s ease,
     border-bottom-width 0.25s ease;
+  box-sizing: border-box;
 }
 
 .login-modal__input::placeholder {
@@ -108,4 +109,83 @@
 .login-modal__link:hover {
   color: #3e5531;
   text-decoration: underline;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 480px) {
+  .login-modal {
+    max-width: 100%;
+  }
+
+  .login-modal__content {
+    padding: 32px 28px;
+  }
+
+  .login-modal__title {
+    margin-bottom: 28px;
+    font-size: 22px;
+  }
+
+  .login-modal__form {
+    gap: 20px;
+  }
+
+  .login-modal__field {
+    gap: 10px;
+  }
+
+  .login-modal__button {
+    height: 56px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .login-modal {
+    max-width: 100%;
+  }
+
+  .login-modal__content {
+    padding: 24px 20px;
+  }
+
+  .login-modal__title {
+    margin-bottom: 24px;
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .login-modal__form {
+    gap: 18px;
+  }
+
+  .login-modal__field {
+    gap: 8px;
+  }
+
+  .login-modal__label {
+    font-size: 13px;
+  }
+
+  .login-modal__input {
+    padding-bottom: 8px;
+    font-size: 13px;
+  }
+
+  .login-modal__button {
+    height: 52px;
+    margin-top: 8px;
+    font-size: 15px;
+  }
+
+  .login-modal__footer {
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .login-modal__link {
+    font-size: 13px;
+  }
 }

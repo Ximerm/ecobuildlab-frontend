@@ -1,6 +1,6 @@
 .strategy-card-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   width: 100%;
   padding-bottom: 80px;
@@ -24,4 +24,60 @@
 
 .strategy-card-list__button:hover {
   background: #516d3f;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .strategy-card-list {
+    gap: 12px;
+    padding-bottom: 64px;
+  }
+
+  .strategy-card-list__button {
+    width: 260px;
+    height: 56px;
+    font-size: 16px;
+    margin-top: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .strategy-card-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding-bottom: 56px;
+  }
+
+  .strategy-card-list__button {
+    width: 240px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .strategy-card-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-bottom: 48px;
+  }
+
+  .strategy-card-list__button {
+    width: 100%;
+    max-width: 320px;
+    height: 56px;
+    margin-top: 20px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .strategy-card-list {
+    gap: 16px;
+    padding-bottom: 40px;
+  }
+
+  .strategy-card-list__button {
+    max-width: 260px;
+    height: 52px;
+    font-size: 15px;
+  }
 }

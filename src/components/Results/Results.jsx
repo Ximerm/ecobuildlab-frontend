@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-import "./Results.css";
-
 import Hero from "../Hero/Hero";
 import ClimateSummary from "../ClimateSummary/ClimateSummary";
 import StrategySection from "../StrategySection/StrategySection";
+
+import Preloader from "../Preloader/Preloader";
+import NoResults from "../NoResults/NoResults";
 
 function Results({ isLoggedIn, handleOpenLoginModal }) {
   const [isSaved, setIsSaved] = useState(false);

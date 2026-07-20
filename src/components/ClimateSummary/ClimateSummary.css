@@ -1,13 +1,12 @@
 .climate-summary {
   width: 100%;
   background: #e6ece2;
+  padding: 80px;
 }
 
 .climate-summary__container {
-  max-width: 1232px;
-  min-height: 860px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 80px 0;
 }
 
 .climate-summary__header {
@@ -18,7 +17,7 @@
 }
 
 .climate-summary__content {
-  max-width: 555px;
+  max-width: 45%;
 }
 
 .climate-summary__city {
@@ -69,4 +68,135 @@
   font-size: 18px;
   color: #688556;
   padding-top: 48px;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1024px) {
+  .climate-summary {
+    padding: 80px 48px;
+  }
+
+  .climate-summary__header {
+    gap: 32px;
+  }
+
+  .climate-summary__content {
+    max-width: 52%;
+  }
+
+  .climate-summary__city {
+    font-size: 36px;
+  }
+
+  .climate-summary__title {
+    font-size: 32px;
+  }
+
+  .climate-summary__description {
+    font-size: 17px;
+  }
+
+  .climate-summary__location {
+    gap: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .climate-summary {
+    padding: 64px 32px;
+  }
+
+  .climate-summary__header {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .climate-summary__content {
+    max-width: 100%;
+  }
+
+  .climate-summary__location {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .climate-summary {
+    padding: 48px 20px;
+  }
+
+  .climate-summary__header {
+    text-align: justify;
+    align-items: center;
+  }
+
+  .climate-summary__city {
+    font-size: 32px;
+  }
+
+  .climate-summary__title {
+    font-size: 28px;
+  }
+
+  .climate-summary__description {
+    font-size: 18px;
+  }
+
+  .climate-summary__location {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .climate-summary__item {
+    font-size: 15px;
+  }
+
+  .climate-summary__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .climate-summary__source {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .climate-summary {
+    padding: 32px 16px;
+  }
+
+  .climate-summary__city {
+    font-size: 28px;
+  }
+
+  .climate-summary__title {
+    font-size: 24px;
+  }
+
+  .climate-summary__location {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .climate-summary__item {
+    width: 100%;
+    gap: 10px;
+    font-size: 15px;
+  }
+
+  .climate-summary__icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .climate-summary__source {
+    font-size: 15px;
+    text-align: center;
+  }
 }

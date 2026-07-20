@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./StrategySection.css";
 
 import StrategyCardList from "../StrategyCardList/StrategyCardList";
-import SaveAnalysis from "../SaveAnalysis/SaveAnalysis";
+import SaveAnalysisSection from "../SaveAnalysisSection/SaveAnalysisSection";
 import StrategyNote from "../StrategyNote/StrategyNote";
 import StrategyModal from "../StrategyModal/StrategyModal";
 
@@ -11,7 +11,7 @@ function StrategySection({
   isLoggedIn,
   isSaved,
   onSaveAnalysis,
-  showSaveAnalysis = true,
+  showSaveAnalysisSection = true,
 }) {
   const [isStrategyModalOpen, setIsStrategyModalOpen] = useState(false);
   const [selectedStrategy, setSelectedStrategy] = useState(null);
@@ -41,8 +41,8 @@ function StrategySection({
 
         <StrategyCardList onOpenModal={handleOpenStrategyModal} />
 
-        {showSaveAnalysis && (
-          <SaveAnalysis
+        {showSaveAnalysisSection && (
+          <SaveAnalysisSection
             isLoggedIn={isLoggedIn}
             isSaved={isSaved}
             onSaveAnalysis={onSaveAnalysis}

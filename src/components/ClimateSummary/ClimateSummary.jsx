@@ -1,6 +1,6 @@
 import "./ClimateSummary.css";
 
-import WeatherCardList from "../WeatherCardList/WeatherCardList";
+import IndicatorCardList from "../IndicatorCardList/IndicatorCardList";
 
 import latitudeIcon from "../../images/icons/latitude.png";
 import longitudeIcon from "../../images/icons/longitude.png";
@@ -55,7 +55,7 @@ function ClimateSummary() {
           </div>
         </div>
 
-        <WeatherCardList />
+        <IndicatorCardList />
 
         <p className="climate-summary__source">
           Fuente de datos climáticos: Open-Meteo.

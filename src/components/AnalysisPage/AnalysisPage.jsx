@@ -15,7 +15,7 @@ function AnalysisPage() {
 
         <ClimateSummary />
 
-        <StrategySection showSaveAnalysis={false} />
+        <StrategySection showSaveAnalysisSection={false} />
       </div>
     </main>
   );

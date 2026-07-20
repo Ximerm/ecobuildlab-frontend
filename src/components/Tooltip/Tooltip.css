@@ -15,7 +15,7 @@
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   color: #688556;
-  font-size: 14px;
+  font-size: 16px;
   text-align: justify;
   line-height: 1.5;
   opacity: 0;
@@ -46,4 +46,27 @@
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .tooltip__content {
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+
+    width: 240px;
+    max-width: calc(100vw - 48px);
+  }
+
+  .tooltip:hover .tooltip__content,
+  .tooltip:focus-within .tooltip__content {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .tooltip__content::before {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) rotate(45deg);
+  }
 }

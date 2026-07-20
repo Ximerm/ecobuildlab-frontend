@@ -17,13 +17,13 @@
 .register-modal__form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .register-modal__field {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
 .register-modal__error {
@@ -50,6 +50,7 @@
   transition:
     border-bottom-color 0.25s ease,
     border-bottom-width 0.25s ease;
+  box-sizing: border-box;
 }
 
 .register-modal__input::placeholder {
@@ -108,4 +109,83 @@
 .register-modal__link:hover {
   color: #3e5531;
   text-decoration: underline;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 480px) {
+  .register-modal {
+    max-width: 100%;
+  }
+
+  .register-modal__content {
+    padding: 32px 28px;
+  }
+
+  .register-modal__title {
+    margin-bottom: 28px;
+    font-size: 22px;
+  }
+
+  .register-modal__form {
+    gap: 20px;
+  }
+
+  .register-modal__field {
+    gap: 10px;
+  }
+
+  .register-modal__button {
+    height: 56px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .register-modal {
+    max-width: 100%;
+  }
+
+  .register-modal__content {
+    padding: 24px 20px;
+  }
+
+  .register-modal__title {
+    margin-bottom: 24px;
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .register-modal__form {
+    gap: 18px;
+  }
+
+  .register-modal__field {
+    gap: 8px;
+  }
+
+  .register-modal__label {
+    font-size: 13px;
+  }
+
+  .register-modal__input {
+    font-size: 13px;
+    padding-bottom: 8px;
+  }
+
+  .register-modal__button {
+    height: 52px;
+    margin-top: 8px;
+    font-size: 15px;
+  }
+
+  .register-modal__footer {
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .register-modal__link {
+    font-size: 13px;
+  }
 }

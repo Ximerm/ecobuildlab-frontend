@@ -16,7 +16,7 @@ import AnalysisPage from "../AnalysisPage/AnalysisPage";
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleOpenLoginModal = () => {
     setIsRegisterOpen(false);

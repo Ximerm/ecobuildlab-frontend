@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import "./StrategyCardList.css";
 
 import StrategyCard from "../StrategyCard/StrategyCard";
@@ -66,8 +67,6 @@ function StrategyCardList({ onOpenModal }) {
 
   const visibleStrategies = showAll ? strategies : strategies.slice(0, 3);
 
-  const remainingStrategies = strategies.length - 3;
-
   return (
     <section className="strategy-card-list">
       {visibleStrategies.map((strategy) => (
@@ -81,13 +80,13 @@ function StrategyCardList({ onOpenModal }) {
         />
       ))}
 
-      {remainingStrategies > 0 && (
+      {strategies.length > 3 && (
         <button
           type="button"
           className="strategy-card-list__button"
           onClick={() => setShowAll(!showAll)}
         >
-          {showAll ? "Mostrar menos" : `Ver todas las estrategias`}
+          {showAll ? "Mostrar menos" : "Ver todas las estrategias"}
         </button>
       )}
     </section>

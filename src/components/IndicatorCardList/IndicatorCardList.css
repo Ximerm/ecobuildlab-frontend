@@ -1,0 +1,34 @@
+.indicator-card-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+/* Responsive */
+/* 1024 */
+@media screen and (max-width: 1024px) {
+  .indicator-card-list {
+    gap: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .indicator-card-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .indicator-card-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .indicator-card-list {
+    gap: 16px;
+  }
+}

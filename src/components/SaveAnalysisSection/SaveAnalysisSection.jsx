@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import "./SaveAnalysis.css";
+import "./SaveAnalysisSection.css";
 
 import saveIcon from "../../images/icons/save.png";
 import lockIcon from "../../images/icons/lock.png";
@@ -8,7 +8,7 @@ import successIcon from "../../images/icons/success-light.png";
 
 import Notification from "../Notification/Notification";
 
-function SaveAnalysis({ isLoggedIn, isSaved, onSaveAnalysis }) {
+function SaveAnalysisSection({ isLoggedIn, isSaved, onSaveAnalysis }) {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
   useEffect(() => {
@@ -98,4 +98,4 @@ function SaveAnalysis({ isLoggedIn, isSaved, onSaveAnalysis }) {
   );
 }
 
-export default SaveAnalysis;
+export default SaveAnalysisSection;

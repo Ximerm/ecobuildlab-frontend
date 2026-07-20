@@ -1,12 +1,34 @@
 .strategy-modal {
-  min-width: 680px;
-  max-width: 80vh;
+  width: 100%;
+  max-width: 720px;
   max-height: 90vh;
 }
 
 .strategy-modal__content {
+  max-height: calc(90vh - 64px);
+  overflow-y: auto;
   padding: 32px;
 }
+
+/* Chrome, Edge, Brave */
+
+.strategy-modal__content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.strategy-modal__content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.strategy-modal__content::-webkit-scrollbar-thumb {
+  background: #97b483;
+  border-radius: 100px;
+}
+
+.strategy-modal__content::-webkit-scrollbar-thumb:hover {
+  background: #516d3f;
+}
+
 /* HEADER */
 
 .strategy-modal__header {
@@ -64,7 +86,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  width: 75%;
+  width: 410px;
 }
 
 .strategy-modal__progress {
@@ -88,7 +110,7 @@
 }
 
 .strategy-modal__chips {
-  width: 75%;
+  width: 410px;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -209,8 +231,239 @@
   font-weight: 500;
   padding-top: 14px;
 }
+
 .strategy-modal__variables-note-icon {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 480px) {
+  .strategy-modal {
+    width: calc(100vw - 32px);
+    max-width: none;
+  }
+
+  .strategy-modal__content {
+    padding: 24px;
+  }
+
+  /* Header */
+
+  .strategy-modal__header {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .strategy-modal__heading {
+    width: 100%;
+    align-items: center;
+  }
+
+  .strategy-modal__title {
+    font-size: 22px;
+  }
+
+  .strategy-modal__impact {
+    width: 100%;
+    align-items: center;
+  }
+
+  .strategy-modal__factors {
+    width: 100%;
+  }
+
+  .strategy-modal__chips {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 12px;
+  }
+
+  .strategy-modal__chip {
+    padding: 6px 10px;
+  }
+
+  .strategy-modal__chip span {
+    font-size: 13px;
+  }
+
+  .strategy-modal__progress-wrapper {
+    width: 100%;
+  }
+
+  /* Sections */
+
+  .strategy-modal__section-content {
+    padding-left: 44px;
+  }
+
+  .strategy-modal__recommendations {
+    padding-left: 44px;
+  }
+
+  .strategy-modal__variables {
+    width: 100%;
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px 24px;
+  }
+
+  .strategy-modal__variable {
+    width: 70px;
+  }
+
+  .strategy-modal__variables-note {
+    justify-content: center;
+    text-align: center;
+    padding-top: 18px;
+  }
+
+  .strategy-modal__variables-note-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .strategy-modal {
+    width: 100%;
+  }
+
+  .strategy-modal__content {
+    padding: 16px;
+  }
+
+  /* Header */
+
+  .strategy-modal__header {
+    gap: 16px;
+  }
+
+  .strategy-modal__icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .strategy-modal__title {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .strategy-modal__impact-label {
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .strategy-modal__chips {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .strategy-modal__chip {
+    padding: 6px 8px;
+    gap: 6px;
+  }
+
+  .strategy-modal__chip img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .strategy-modal__chip span {
+    font-size: 12px;
+  }
+
+  .strategy-modal__progress-wrapper {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .strategy-modal__impact-value {
+    font-size: 13px;
+  }
+
+  /* Sections */
+
+  .strategy-modal__section {
+    padding: 12px 0;
+  }
+
+  .strategy-modal__section-header {
+    gap: 10px;
+  }
+
+  .strategy-modal__section-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .strategy-modal__section-title {
+    font-size: 15px;
+  }
+
+  .strategy-modal__section-content {
+    padding-left: 34px;
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .strategy-modal__recommendations {
+    padding-left: 52px;
+    gap: 4px;
+  }
+
+  .strategy-modal__recommendations li {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  /* Variables */
+
+  .strategy-modal__variables {
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px 18px;
+  }
+
+  .strategy-modal__variable {
+    width: 60px;
+  }
+
+  .strategy-modal__variable img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .strategy-modal__variable span {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  /* Nota */
+
+  .strategy-modal__variables-note {
+    justify-content: center;
+    text-align: justify;
+    gap: 8px;
+    padding-top: 16px;
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .strategy-modal__variables-note-icon {
+    width: 20px;
+    height: 20px;
+  }
 }
