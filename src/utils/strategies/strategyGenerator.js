@@ -3,6 +3,8 @@ import { strategyCatalog } from "./strategyCatalog";
 import { strategyRecommendations } from "./strategyRecommendations";
 import { strategyMetricSelectors } from "./strategyMetricSelectors";
 
+import { calculateStrategyImpact } from "./impact/strategyImpact";
+
 import { RECOMMENDATION_PRIORITY } from "./strategyConstants";
 
 /**
@@ -34,7 +36,9 @@ const PRIORITY_ORDER = Object.freeze({
  */
 
 export function generateStrategies(analysis) {
-  return strategyCatalog.map((strategy) => buildStrategy(strategy, analysis));
+  return strategyCatalog
+    .map((strategy) => buildStrategy(strategy, analysis))
+    .sort(compareImpact);
 }
 
 /**
@@ -49,8 +53,11 @@ export function generateStrategies(analysis) {
 function buildStrategy(strategy, analysis) {
   const recommendations = getApplicableRecommendations(strategy.code, analysis);
 
+  const impact = calculateStrategyImpact(strategy.code, analysis);
+
   return {
     ...strategy,
+    impact,
     recommendations,
     hasRecommendations: recommendations.length > 0,
   };
@@ -204,4 +211,17 @@ function comparePriority(recommendationA, recommendationB) {
     PRIORITY_ORDER[recommendationA.priority] -
     PRIORITY_ORDER[recommendationB.priority]
   );
+}
+
+/**
+ * Ordena las estrategias según su impacto estimado.
+ *
+ * Las estrategias con mayor impacto aparecen primero.
+ *
+ * @param {Object} strategyA
+ * @param {Object} strategyB
+ * @returns {Number}
+ */
+function compareImpact(strategyA, strategyB) {
+  return strategyB.impact.score - strategyA.impact.score;
 }

@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import LoginModal from "../LoginModal/LoginModal";
@@ -13,10 +13,17 @@ import Results from "../Results/Results";
 import SavedAnalysis from "../SavedAnalysis/SavedAnalysis";
 import AnalysisPage from "../AnalysisPage/AnalysisPage";
 
+import { getClimateAnalysisData } from "../../utils/climate/climateApi";
+
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [analysis, setAnalysis] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleOpenLoginModal = () => {
     setIsRegisterOpen(false);
@@ -41,6 +48,24 @@ function App() {
     setIsLoggedIn(false);
   };
 
+  async function handleSearch(city) {
+    setError("");
+    setIsLoading(true);
+
+    navigate("/results");
+
+    try {
+      const analysis = await getClimateAnalysisData(city);
+
+      setAnalysis(analysis);
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <div className="page">
       <Header
@@ -64,7 +89,7 @@ function App() {
       )}
 
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Main onSearch={handleSearch} />} />
 
         <Route
           path="/results"
@@ -72,6 +97,10 @@ function App() {
             <Results
               isLoggedIn={isLoggedIn}
               handleOpenLoginModal={handleOpenLoginModal}
+              analysis={analysis}
+              isLoading={isLoading}
+              error={error}
+              onSearch={handleSearch}
             />
           }
         />
@@ -83,7 +112,7 @@ function App() {
 
         <Route
           path="/analysis/:id"
-          element={<AnalysisPage isLoggedIn={isLoggedIn} />}
+          element={<AnalysisPage isLoggedIn={isLoggedIn} analysis={analysis} />}
         />
       </Routes>
 

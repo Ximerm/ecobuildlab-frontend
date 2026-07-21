@@ -61,6 +61,7 @@
   line-height: 42px;
   display: flex;
   justify-content: center;
+  text-align: center;
   padding-bottom: 12px;
 }
 
@@ -100,7 +101,7 @@
 
 .indicator-card__number {
   font-family: "Roboto Slab";
-  font-size: 40px;
+  font-size: 38px;
   font-weight: 700;
   line-height: 42px;
   padding-bottom: 12px;

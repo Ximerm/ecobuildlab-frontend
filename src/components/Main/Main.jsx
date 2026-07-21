@@ -1,12 +1,15 @@
 import "./Main.css";
 
 import Hero from "../Hero/Hero";
+import SearchForm from "../SearchForm/SearchForm";
 import About from "../About/About";
 
-function Main() {
+function Main({ onSearch }) {
   return (
     <main className="main">
-      <Hero />
+      <Hero>
+        <SearchForm onSearch={onSearch} />
+      </Hero>
 
       <About />
     </main>

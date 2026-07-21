@@ -6,13 +6,19 @@ import latitudeIcon from "../../images/icons/latitude.png";
 import longitudeIcon from "../../images/icons/longitude.png";
 import elevationIcon from "../../images/icons/elevation.png";
 
-function ClimateSummary() {
+function ClimateSummary({ analysis }) {
+  if (!analysis) {
+    return null;
+  }
+
   return (
     <section className="climate-summary">
       <div className="climate-summary__container">
         <div className="climate-summary__header">
           <div className="climate-summary__content">
-            <h2 className="climate-summary__city">Bogotá, Colombia</h2>
+            <h2 className="climate-summary__city">
+              {analysis.location.name}, {analysis.location.country}
+            </h2>
 
             <h3 className="climate-summary__title">Indicadores climáticos </h3>
 
@@ -30,7 +36,7 @@ function ClimateSummary() {
                 className="climate-summary__icon"
               />
 
-              <span>4.71°</span>
+              <span>{analysis.location.latitude.toFixed(2)}°</span>
             </div>
 
             <div className="climate-summary__item">
@@ -40,7 +46,7 @@ function ClimateSummary() {
                 className="climate-summary__icon"
               />
 
-              <span>-74.07°</span>
+              <span>{analysis.location.longitude.toFixed(2)}°</span>
             </div>
 
             <div className="climate-summary__item">
@@ -50,12 +56,12 @@ function ClimateSummary() {
                 className="climate-summary__icon"
               />
 
-              <span>2640 msnm</span>
+              <span>{analysis.location.elevation} msnm</span>
             </div>
           </div>
         </div>
 
-        <IndicatorCardList />
+        <IndicatorCardList analysis={analysis} />
 
         <p className="climate-summary__source">
           Fuente de datos climáticos: Open-Meteo.

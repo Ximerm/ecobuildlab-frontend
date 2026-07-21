@@ -29,7 +29,7 @@
   border: 1px solid #cdd9c5;
   border-radius: 100px;
   outline: none;
-  font-size: 16px;
+  font-size: 22px;
   color: #516d3f;
   transition: border-color 0.2s ease;
 }
@@ -115,7 +115,7 @@
 
 @media screen and (max-width: 320px) {
   .search-form__input {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .search-form__button {

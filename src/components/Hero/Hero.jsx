@@ -1,10 +1,8 @@
 import "./Hero.css";
 
-import SearchForm from "../SearchForm/SearchForm";
-
 import heroImage from "../../images/heroImage.png";
 
-function Hero() {
+function Hero({ children }) {
   return (
     <section className="hero">
       <div className="hero__container">
@@ -18,7 +16,7 @@ function Hero() {
           </p>
 
           <div className="hero__search hero__search--desktop">
-            <SearchForm />
+            <div className="hero__search hero__search--desktop">{children}</div>
           </div>
         </div>
 
@@ -30,7 +28,8 @@ function Hero() {
           />
         </div>
         <div className="hero__search hero__search--mobile">
-          <SearchForm />
+          {children}
+          <div className="hero__search hero__search--desktop"></div>
         </div>
       </div>
     </section>

@@ -46,22 +46,22 @@ export const THERMAL_ZONES = Object.freeze([
         label: "Temperatura media anual",
         classificationRange: "< 12",
         unit: "°C",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
     ],
 
     climateCharacteristics: [
       {
         text: "Predominio de temperaturas muy bajas durante todo el año.",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
       {
         text: "Frecuentes condiciones de frío intenso.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
       {
         text: "Alta demanda de conservación del calor en las edificaciones.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
     ],
   },
@@ -84,22 +84,22 @@ export const THERMAL_ZONES = Object.freeze([
         label: "Temperatura media anual",
         classificationRange: "12–<17",
         unit: "°C",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
     ],
 
     climateCharacteristics: [
       {
         text: "Predominio de temperaturas bajas durante gran parte del año.",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
       {
         text: "Pueden presentarse pérdidas importantes de calor en las edificaciones.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
       {
         text: "Las ganancias solares contribuyen al confort térmico.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
     ],
   },
@@ -122,22 +122,22 @@ export const THERMAL_ZONES = Object.freeze([
         label: "Temperatura media anual",
         classificationRange: "17–<24",
         unit: "°C",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
     ],
 
     climateCharacteristics: [
       {
         text: "Predominio de temperaturas moderadas durante gran parte del año.",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
       {
         text: "Las condiciones favorecen la aplicación de estrategias pasivas de diseño.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
       {
         text: "Las necesidades de calefacción o enfriamiento suelen ser moderadas.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
     ],
   },
@@ -160,22 +160,22 @@ export const THERMAL_ZONES = Object.freeze([
         label: "Temperatura media anual",
         classificationRange: "≥ 24",
         unit: "°C",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
     ],
 
     climateCharacteristics: [
       {
         text: "Predominio de temperaturas elevadas durante gran parte del año.",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
       {
         text: "Existe riesgo de sobrecalentamiento en los edificios.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
       {
         text: "Las estrategias de protección solar y ventilación natural adquieren mayor importancia.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
     ],
   },
@@ -203,18 +203,18 @@ export const MOISTURE_ZONES = Object.freeze([
         label: "Índice de Lang",
         classificationRange: "< 20",
         unit: "",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
     ],
 
     climateCharacteristics: [
       {
         text: "Predominio de precipitaciones muy escasas durante el año.",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
       {
         text: "Largos períodos secos.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
     ],
   },
@@ -236,18 +236,18 @@ export const MOISTURE_ZONES = Object.freeze([
         label: "Índice de Lang",
         classificationRange: "20–<40",
         unit: "",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
     ],
 
     climateCharacteristics: [
       {
         text: "Predominio de precipitaciones limitadas durante el año.",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
       {
         text: "Períodos secos frecuentes.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
     ],
   },
@@ -269,18 +269,18 @@ export const MOISTURE_ZONES = Object.freeze([
         label: "Índice de Lang",
         classificationRange: "40–<60",
         unit: "",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
     ],
 
     climateCharacteristics: [
       {
         text: "Predominio de precipitaciones moderadas durante el año.",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
       {
         text: "Alternancia entre períodos húmedos y secos.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
     ],
   },
@@ -302,18 +302,18 @@ export const MOISTURE_ZONES = Object.freeze([
         label: "Índice de Lang",
         classificationRange: "60–<100",
         unit: "",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
     ],
 
     climateCharacteristics: [
       {
         text: "Predominio de precipitaciones abundantes durante el año.",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
       {
         text: "Períodos húmedos frecuentes.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
     ],
   },
@@ -335,18 +335,18 @@ export const MOISTURE_ZONES = Object.freeze([
         label: "Índice de Lang",
         classificationRange: "100–<160",
         unit: "",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
     ],
 
     climateCharacteristics: [
       {
         text: "Predominio de precipitaciones muy abundantes durante el año.",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
       {
         text: "Períodos húmedos persistentes.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
     ],
   },
@@ -368,18 +368,18 @@ export const MOISTURE_ZONES = Object.freeze([
         label: "Índice de Lang",
         classificationRange: "≥ 160",
         unit: "",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
     ],
 
     climateCharacteristics: [
       {
         text: "Predominio de precipitaciones extremadamente abundantes durante el año.",
-        priority: PRIORITY.HIGH,
+        priority: INDICATOR_PRIORITY.HIGH,
       },
       {
         text: "Ausencia o muy baja ocurrencia de períodos secos.",
-        priority: PRIORITY.MEDIUM,
+        priority: INDICATOR_PRIORITY.MEDIUM,
       },
     ],
   },

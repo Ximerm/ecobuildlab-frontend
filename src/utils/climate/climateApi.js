@@ -21,7 +21,28 @@ import { generateStrategies } from "../strategies/strategyGenerator";
  */
 function checkResponse(res) {
   if (!res.ok) {
-    throw new Error(`HTTP Error: ${res.status}`);
+    switch (res.status) {
+      case 400:
+        throw new Error(
+          "La solicitud es inválida. Verifica los parámetros de la búsqueda.",
+        );
+
+      case 404:
+        throw new Error("No se encontró la ciudad solicitada.");
+
+      case 429:
+        throw new Error(
+          "El servicio climático está recibiendo demasiadas solicitudes. Intenta nuevamente en unos minutos.",
+        );
+
+      case 500:
+        throw new Error(
+          "El servidor presentó un problema. Intenta nuevamente más tarde.",
+        );
+
+      default:
+        throw new Error("No fue posible obtener los datos climáticos.");
+    }
   }
 
   return res.json();
@@ -49,7 +70,7 @@ export function searchLocation(city) {
     .then(checkResponse)
     .then((data) => {
       if (!data.results?.length) {
-        throw new Error("Location not found.");
+        throw new Error("No se encontró la ciudad solicitada.");
       }
 
       const location = data.results[0];
@@ -59,6 +80,7 @@ export function searchLocation(city) {
         country: location.country,
         latitude: location.latitude,
         longitude: location.longitude,
+        elevation: location.elevation,
       };
     });
 }
@@ -83,13 +105,17 @@ export function fetchClimateData(latitude, longitude) {
   url.searchParams.set("start_date", CLIMATE_PERIOD.startDate);
   url.searchParams.set("end_date", CLIMATE_PERIOD.endDate);
 
+  url.searchParams.set("wind_speed_unit", "ms");
+
   url.searchParams.set(
     "daily",
     [
       "temperature_2m_max",
       "temperature_2m_mean",
       "temperature_2m_min",
+      "relative_humidity_2m_max",
       "relative_humidity_2m_mean",
+      "relative_humidity_2m_min",
       "wind_speed_10m_mean",
       "wind_direction_10m_dominant",
       "shortwave_radiation_sum",

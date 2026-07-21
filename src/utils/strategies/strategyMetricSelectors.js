@@ -27,3 +27,15 @@ export const strategyMetricSelectors = Object.freeze({
   [CLIMATE_METRICS.ANNUAL_PRECIPITATION]: (analysis) =>
     analysis.climateData.precipitation.annual,
 });
+
+export function getMetricValue(metric, analysis) {
+  const selector = strategyMetricSelectors[metric];
+
+  if (!selector) {
+    throw new Error(
+      `No existe un selector definido para la métrica climática: ${metric}.`,
+    );
+  }
+
+  return selector(analysis);
+}

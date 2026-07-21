@@ -79,14 +79,21 @@ function processHumidity(dailyData) {
 
 // Procesar viento
 function processWind(dailyData) {
+  console.log({
+    sample: dailyData.wind_speed_10m_mean.slice(0, 10),
+    average: calculateAverage(dailyData.wind_speed_10m_mean),
+  });
   const averageDirection = calculateAverageDirection(
     dailyData.wind_direction_10m_dominant,
   );
 
+  console.log({
+    sample: dailyData.wind_speed_10m_mean.slice(0, 10),
+    average: calculateAverage(dailyData.wind_speed_10m_mean),
+  });
   return {
     average: calculateAverage(dailyData.wind_speed_10m_mean),
     direction: degreesToCardinal(averageDirection),
-    unit: "m/s",
   };
 }
 
