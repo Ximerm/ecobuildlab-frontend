@@ -40,7 +40,7 @@
 .strategy-card__description {
   min-height: 100px;
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 22px;
   color: #688556;
   text-align: justify;
@@ -64,7 +64,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
 }
 
@@ -87,18 +87,45 @@
   height: 18px;
 }
 
+.strategy-card__impact-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .strategy-card__score {
+  display: flex;
+  align-items: center;
   font-family: "Roboto Slab", serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
 }
 
+.strategy-card__impact-label {
+  font-family: "Roboto Slab", serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.strategy-card__progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .strategy-card__progress {
-  width: 100%;
+  flex: 1;
   height: 10px;
   background: #ffffff;
   border-radius: 100px;
   overflow: hidden;
+}
+
+.strategy-card__score {
+  flex-shrink: 0;
+  font-family: "Roboto Slab", serif;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .strategy-card__progress-fill {
@@ -116,7 +143,7 @@
   border: none;
   background: transparent;
   color: #688556;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   cursor: pointer;
   transition: color 0.25s ease;
@@ -157,6 +184,21 @@
     line-height: 26px;
     text-align: center;
   }
+
+  .strategy-card__description {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .strategy-card__impact-title {
+    font-size: 16px;
+  }
+
+  .strategy-card__score,
+  .strategy-card__impact-label,
+  .strategy-card__link {
+    font-size: 15px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -180,7 +222,7 @@
   }
 
   .strategy-card__description {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .strategy-card__impact {
@@ -207,9 +249,15 @@
     line-height: 26px;
   }
 
+  .strategy-card__description {
+    font-size: 18px;
+  }
+
   .strategy-card__impact-title,
+  .strategy-card__impact-label,
+  .strategy-card__link,
   .strategy-card__score {
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 
@@ -229,6 +277,7 @@
   }
 
   .strategy-card__description {
+    font-size: 16px;
     text-align: justify;
   }
 
@@ -236,7 +285,8 @@
     font-size: 14px;
   }
 
-  .strategy-card__score {
+  .strategy-card__score,
+  .strategy-card__impact-label {
     font-size: 15px;
   }
 

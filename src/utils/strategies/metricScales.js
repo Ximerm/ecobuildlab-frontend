@@ -1,4 +1,4 @@
-import { CLIMATE_METRICS } from "../strategyConstants";
+import { CLIMATE_METRICS } from "./strategyConstants";
 
 /**
  * Escalas de referencia utilizadas para normalizar variables

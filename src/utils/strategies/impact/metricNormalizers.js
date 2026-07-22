@@ -1,4 +1,4 @@
-import { METRIC_SCALES } from "./metricScales";
+import { METRIC_SCALES } from "../metricScales";
 
 // Obtiene la escala
 export function normalizeMetric(metric, value) {

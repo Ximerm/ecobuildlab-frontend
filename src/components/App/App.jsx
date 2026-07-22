@@ -95,6 +95,7 @@ function App() {
           path="/results"
           element={
             <Results
+              key={analysis?.location?.name ?? "empty"}
               isLoggedIn={isLoggedIn}
               handleOpenLoginModal={handleOpenLoginModal}
               analysis={analysis}
@@ -109,10 +110,9 @@ function App() {
           path="/saved-analysis"
           element={<SavedAnalysis isLoggedIn={isLoggedIn} />}
         />
-
         <Route
           path="/analysis/:id"
-          element={<AnalysisPage isLoggedIn={isLoggedIn} analysis={analysis} />}
+          element={<AnalysisPage isLoggedIn={isLoggedIn} />}
         />
       </Routes>
 

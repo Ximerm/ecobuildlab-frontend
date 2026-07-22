@@ -8,6 +8,7 @@ import StrategyNote from "../StrategyNote/StrategyNote";
 import StrategyModal from "../StrategyModal/StrategyModal";
 
 function StrategySection({
+  strategies,
   isLoggedIn,
   isSaved,
   onSaveAnalysis,
@@ -40,6 +41,7 @@ function StrategySection({
         </p>
 
         <StrategyCardList
+          strategies={strategies}
           onOpenModal={handleOpenStrategyModal}
           hasSaveSection={showSaveAnalysisSection}
         />

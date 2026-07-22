@@ -1,1 +1,0 @@
-export const DEFAULT_VISIBLE_STRATEGIES = 3;

@@ -2,7 +2,11 @@ import "./SavedAnalysisHeader.css";
 
 import climateIllustration from "../../images/analysis-header.png";
 
-function SavedAnalysisHeader({ userName, analysisCount, locations }) {
+function SavedAnalysisHeader({ userName, analyses }) {
+  const analysisCount = analyses.length;
+  const locations = [
+    ...new Set(analyses.map(({ analysis }) => analysis?.city).filter(Boolean)),
+  ];
   const visibleLocations = locations.slice(0, 3);
   const remainingLocations = locations.length - visibleLocations.length;
 

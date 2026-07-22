@@ -2,15 +2,15 @@ import "./AnalysisCard.css";
 
 import deleteIcon from "../../images/delete.svg";
 
-function AnalysisCard({
-  city,
-  climate,
-  climateIcon,
-  date,
-  strategies,
-  onDelete,
-  onClick,
-}) {
+import { getClimateIcon } from "../../utils/presentation/climateIconPresentation";
+import { formatDate } from "../../utils/formatDate";
+import { STRATEGY_ICON_PRESENTATION } from "../../utils/presentation/strategyIconPresentation";
+
+function AnalysisCard({ savedAnalysis, onDelete, onClick }) {
+  const { analysis, createdAt } = savedAnalysis;
+  const mainStrategies = analysis.strategies.slice(0, 3);
+  const climateIcon = getClimateIcon(analysis.climate.code);
+
   return (
     <article className="analysis-card" onClick={onClick}>
       <button
@@ -32,25 +32,26 @@ function AnalysisCard({
       <div className="analysis-card__header">
         <img
           src={climateIcon}
-          alt={climate}
+          alt={analysis.climate.name}
           className="analysis-card__climate-icon"
         />
 
-        <span className="analysis-card__badge">{climate}</span>
+        <span className="analysis-card__badge">{analysis.climate.name}</span>
       </div>
 
-      <h2 className="analysis-card__city">{city}</h2>
-      <p className="analysis-card__date">Analizado el {date}</p>
+      <h2 className="analysis-card__city">{analysis.city}</h2>
+      <p className="analysis-card__date">
+        Analizado el {formatDate(createdAt)}
+      </p>
 
       <div className="analysis-card__content">
         <h3 className="analysis-card__subtitle">Estrategias principales</h3>
-
         <ul className="analysis-card__strategies">
-          {strategies.map((strategy) => (
-            <li key={strategy.name} className="analysis-card__strategy">
+          {mainStrategies.map((strategy) => (
+            <li key={strategy.code} className="analysis-card__strategy">
               <img
-                src={strategy.icon}
-                alt="Strategy icon"
+                src={STRATEGY_ICON_PRESENTATION[strategy.icon]}
+                alt={strategy.name}
                 className="analysis-card__strategy-icon"
               />
 

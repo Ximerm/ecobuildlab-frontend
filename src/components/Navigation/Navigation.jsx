@@ -104,7 +104,7 @@ function Navigation({
           >
             <img
               src={closeIconDark}
-              alt=""
+              alt="Close"
               aria-hidden="true"
               className="navigation__close-icon"
             />

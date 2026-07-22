@@ -30,7 +30,8 @@
 
 .analysis-card-list__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 400px));
+  justify-content: center;
   gap: 16px;
   padding-top: 48px;
 }
@@ -52,7 +53,8 @@
   }
 
   .analysis-card-list__grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(224px, 300px));
+    justify-content: flex-start;
     padding-top: 40px;
   }
 }

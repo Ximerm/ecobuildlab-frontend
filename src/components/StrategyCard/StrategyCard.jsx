@@ -39,14 +39,18 @@ function StrategyCard({ icon, title, description, impact, onMoreInfo }) {
             </Tooltip>
           </div>
 
-          <span className="strategy-card__score">{impact}/100</span>
+          <span className="strategy-card__impact-label">{impact.label}</span>
         </div>
 
-        <div className="strategy-card__progress">
-          <div
-            className="strategy-card__progress-fill"
-            style={{ width: `${impact}%` }}
-          />
+        <div className="strategy-card__progress-wrapper">
+          <div className="strategy-card__progress">
+            <div
+              className="strategy-card__progress-fill"
+              style={{ width: `${impact.score}%` }}
+            />
+          </div>
+
+          <span className="strategy-card__score">{impact.score} / 100</span>
         </div>
       </div>
 

@@ -4,66 +4,10 @@ import "./StrategyCardList.css";
 
 import StrategyCard from "../StrategyCard/StrategyCard";
 
-import solarIcon from "../../images/strategies/protection-solar.png";
-import ventilationIcon from "../../images/strategies/ventilation.png";
-import humidityIcon from "../../images/strategies/control-humidity.png";
-import thermalMassIcon from "../../images/strategies/thermal-mass.png";
-import insulationIcon from "../../images/strategies/insulation.png";
-import orientationIcon from "../../images/strategies/orientation.png";
+import { STRATEGY_ICON_PRESENTATION } from "../../utils/presentation/strategyIconPresentation";
 
-function StrategyCardList({ onOpenModal, hasSaveSection = true }) {
+function StrategyCardList({ strategies, onOpenModal, hasSaveSection = true }) {
   const [showAll, setShowAll] = useState(false);
-
-  const strategies = [
-    {
-      id: 1,
-      icon: solarIcon,
-      title: "Protección solar",
-      description:
-        "Reduce la ganancia térmica causada por la radiación solar y mejora el confort interior.",
-      impact: 92,
-    },
-    {
-      id: 2,
-      icon: ventilationIcon,
-      title: "Ventilación natural",
-      description:
-        "Favorece la circulación del aire para disipar el calor y mejorar la calidad ambiental interior.",
-      impact: 89,
-    },
-    {
-      id: 3,
-      icon: humidityIcon,
-      title: "Control de humedad",
-      description:
-        "Reduce los efectos del exceso o déficit de humedad para mejorar el confort y la durabilidad del edificio.",
-      impact: 84,
-    },
-    {
-      id: 4,
-      icon: thermalMassIcon,
-      title: "Masa térmica",
-      description:
-        "Estabiliza la temperatura interior mediante materiales que almacenan y liberan calor de forma gradual.",
-      impact: 70,
-    },
-    {
-      id: 5,
-      icon: insulationIcon,
-      title: "Aislamiento térmico",
-      description:
-        "Disminuye las pérdidas y ganancias de calor a través de la envolvente para mejorar la eficiencia energética.",
-      impact: 58,
-    },
-    {
-      id: 6,
-      icon: orientationIcon,
-      title: "Orientación",
-      description:
-        "Optimiza la ubicación del edificio para aprovechar el clima local, mejorar el confort y reducir la demanda energética.",
-      impact: 50,
-    },
-  ];
 
   const visibleStrategies = showAll ? strategies : strategies.slice(0, 3);
 
@@ -75,10 +19,10 @@ function StrategyCardList({ onOpenModal, hasSaveSection = true }) {
     >
       {visibleStrategies.map((strategy) => (
         <StrategyCard
-          key={strategy.id}
-          icon={strategy.icon}
-          title={strategy.title}
-          description={strategy.description}
+          key={strategy.code}
+          icon={STRATEGY_ICON_PRESENTATION[strategy.icon]}
+          title={strategy.name}
+          description={strategy.summary}
           impact={strategy.impact}
           onMoreInfo={() => onOpenModal(strategy)}
         />

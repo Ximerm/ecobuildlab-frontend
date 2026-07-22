@@ -2,6 +2,10 @@ import "./StrategyModal.css";
 
 import Modal from "../Modal/Modal";
 
+import { METRIC_SCALES } from "../../utils/strategies/metricScales";
+import { STRATEGY_METRIC_PRESENTATION } from "../../utils/presentation/strategyMetricPresentation";
+import { STRATEGY_ICON_PRESENTATION } from "../../utils/presentation/strategyIconPresentation";
+
 import infoIcon from "../../images/icons/info.png";
 
 import objectiveIcon from "../../images/icons/objective.png";
@@ -9,14 +13,56 @@ import questionIcon from "../../images/icons/question.png";
 import recommendationIcon from "../../images/icons/recommendation.png";
 import climateIcon from "../../images/icons/climate.png";
 
-import temperatureIcon from "../../images/indicators/temperature.png";
-import humidityIcon from "../../images/indicators/humidity.png";
-import windIcon from "../../images/indicators/wind.png";
-import precipitationIcon from "../../images/indicators/precipitation.png";
-import radiationIcon from "../../images/indicators/radiation.png";
-
 function StrategyModal({ strategy, onClose }) {
   if (!strategy) return null;
+
+  const impactMetrics = strategy.impact.metricBreakdown.map((item) => ({
+    ...item,
+    ...METRIC_SCALES[item.metric],
+    ...STRATEGY_METRIC_PRESENTATION[item.metric],
+  }));
+
+  const impactSummaryMetrics = [...impactMetrics]
+    .sort((a, b) => b.weight - a.weight)
+    .slice(0, 2);
+
+  const priorityOrder = {
+    high: 0,
+    medium: 1,
+    low: 2,
+  };
+
+  const sortedRecommendations = [...strategy.recommendations].sort(
+    (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority],
+  );
+
+  const groupedRecommendations = {
+    high: sortedRecommendations.filter((r) => r.priority === "high"),
+    medium: sortedRecommendations.filter((r) => r.priority === "medium"),
+    low: sortedRecommendations.filter((r) => r.priority === "low"),
+  };
+
+  const recommendationSections = [
+    {
+      key: "high",
+      title: "Esenciales",
+    },
+    {
+      key: "medium",
+      title: "Recomendadas",
+    },
+    {
+      key: "low",
+      title: "Complementarias",
+    },
+  ];
+  const formatMetricValue = (metric) => {
+    if (metric.metric === "annualPrecipitation") {
+      return Math.round(metric.value).toLocaleString();
+    }
+
+    return Number(metric.value.toFixed(1));
+  };
 
   return (
     <Modal onClose={onClose} className="strategy-modal">
@@ -24,39 +70,33 @@ function StrategyModal({ strategy, onClose }) {
         <header className="strategy-modal__header">
           <div className="strategy-modal__header-icon">
             <img
-              src={strategy.icon}
-              alt={strategy.title}
+              src={STRATEGY_ICON_PRESENTATION[strategy.icon]}
+              alt={strategy.name}
               className="strategy-modal__icon"
             />
           </div>
 
           <div className="strategy-modal__heading">
-            <h2 className="strategy-modal__title">{strategy.title}</h2>
+            <h2 className="strategy-modal__title">{strategy.name}</h2>
 
             <div className="strategy-modal__impact">
               <span className="strategy-modal__impact-label">
-                Impacto estimado a partir de:
+                Principales variables consideradas
               </span>
 
               <div className="strategy-modal__factors">
                 <div className="strategy-modal__chips">
-                  <div className="strategy-modal__chip">
-                    <img
-                      src={radiationIcon}
-                      alt="Radiation"
-                      aria-hidden="true"
-                    />
-                    <span>Radiación solar</span>
-                  </div>
+                  {impactSummaryMetrics.map((metric) => (
+                    <div key={metric.metric} className="strategy-modal__chip">
+                      <img
+                        src={metric.icon}
+                        alt={metric.label}
+                        aria-hidden="true"
+                      />
 
-                  <div className="strategy-modal__chip">
-                    <img
-                      src={temperatureIcon}
-                      alt="Temperature"
-                      aria-hidden="true"
-                    />
-                    <span>Temperatura máxima</span>
-                  </div>
+                      <span>{metric.label}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -64,11 +104,24 @@ function StrategyModal({ strategy, onClose }) {
                 <div className="strategy-modal__progress">
                   <div
                     className="strategy-modal__progress-fill"
-                    style={{ width: "92%" }}
+                    style={{ width: `${strategy.impact.score}%` }}
                   />
                 </div>
 
-                <span className="strategy-modal__impact-value">92/100</span>
+                <div className="strategy-modal__impact-score">
+                  <span className="strategy-modal__impact-value">
+                    {strategy.impact.score} / 100
+                  </span>
+
+                  <span
+                    className="strategy-modal__separator"
+                    aria-hidden="true"
+                  />
+
+                  <span className="strategy-modal__impact-level">
+                    {strategy.impact.label}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -87,7 +140,7 @@ function StrategyModal({ strategy, onClose }) {
           </div>
 
           <p className="strategy-modal__section-content">
-            Reducir la ganancia térmica causada por la radiación solar.
+            {strategy.objective}
           </p>
         </section>
 
@@ -106,10 +159,7 @@ function StrategyModal({ strategy, onClose }) {
           </div>
 
           <p className="strategy-modal__section-content">
-            La radiación solar directa incrementa el sobrecalentamiento del
-            edificio, especialmente durante las horas de mayor exposición.
-            Incorporar elementos de sombreado ayuda a mejorar el confort térmico
-            y reducir la carga de refrigeración.
+            {strategy.rationale}
           </p>
         </section>
 
@@ -127,12 +177,30 @@ function StrategyModal({ strategy, onClose }) {
             </h3>
           </div>
 
-          <ul className="strategy-modal__recommendations">
-            <li>Incorporar aleros horizontales.</li>
-            <li>Utilizar parasoles según la orientación.</li>
-            <li>Integrar vegetación de sombra.</li>
-            <li>Seleccionar materiales de baja absorción térmica.</li>
-          </ul>
+          <div className="strategy-modal__recommendations">
+            {recommendationSections.map((section) => {
+              const recommendations = groupedRecommendations[section.key];
+
+              if (recommendations.length === 0) return null;
+
+              return (
+                <div
+                  key={section.key}
+                  className="strategy-modal__recommendation-group"
+                >
+                  <h4 className="strategy-modal__recommendation-priority">
+                    {section.title}
+                  </h4>
+
+                  <ul>
+                    {recommendations.map((recommendation) => (
+                      <li key={recommendation.id}>{recommendation.text}</li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
         </section>
 
         <section className="strategy-modal__section">
@@ -145,35 +213,26 @@ function StrategyModal({ strategy, onClose }) {
             />
 
             <h3 className="strategy-modal__section-title">
-              Variables climáticas relacionadas
+              Condiciones climáticas analizadas
             </h3>
           </div>
 
           <div className="strategy-modal__variables">
-            <div className="strategy-modal__variable strategy-modal__variable--active">
-              <img src={temperatureIcon} alt="Temperature" />
-              <span>Temperatura</span>
-            </div>
+            {impactMetrics.map((metric) => (
+              <div key={metric.metric} className="strategy-modal__variable">
+                <img src={metric.icon} alt="" aria-hidden="true" />
 
-            <div className="strategy-modal__variable strategy-modal__variable--active">
-              <img src={humidityIcon} alt="Humidity" />
-              <span>Humedad</span>
-            </div>
+                <div className="strategy-modal__variable-content">
+                  <span className="strategy-modal__variable-name">
+                    {metric.label}
+                  </span>
 
-            <div className="strategy-modal__variable strategy-modal__variable--inactive">
-              <img src={windIcon} alt="Wind" />
-              <span>Viento</span>
-            </div>
-
-            <div className="strategy-modal__variable strategy-modal__variable--inactive">
-              <img src={precipitationIcon} alt="Precipitation" />
-              <span>Precipitación</span>
-            </div>
-
-            <div className="strategy-modal__variable strategy-modal__variable--active">
-              <img src={radiationIcon} alt="Radiation" />
-              <span>Radiación</span>
-            </div>
+                  <span className="strategy-modal__variable-value">
+                    {formatMetricValue(metric)} {metric.unit}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -186,8 +245,8 @@ function StrategyModal({ strategy, onClose }) {
           />
 
           <span>
-            Las variables destacadas tuvieron mayor influencia en esta
-            recomendación.
+            Estos valores corresponden a las condiciones climáticas del sitio
+            utilizadas en la evaluación de esta estrategia.
           </span>
         </div>
       </div>

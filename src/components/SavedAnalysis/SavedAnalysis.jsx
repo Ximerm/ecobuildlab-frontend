@@ -1,28 +1,21 @@
 import "./SavedAnalysis.css";
 
+import { useMemo } from "react";
+
 import SavedAnalysisHeader from "../SavedAnalysisHeader/SavedAnalysisHeader";
 import AnalysisCardList from "../AnalysisCardList/AnalysisCardList";
 
-const locations = [
-  "Pasto",
-  "Bogotá",
-  "Medellín",
-  "Villa de Leyva",
-  "Cartagena",
-  "La Guajira",
-  "Páramo de Sumapaz",
-];
+import { getSavedAnalyses } from "../../utils/storage/analysisStorage";
 
 function SavedAnalysis() {
+  const savedAnalyses = useMemo(() => getSavedAnalyses(), []);
+
   return (
     <main className="saved-analysis">
       <div className="saved-analysis__container">
-        <SavedAnalysisHeader
-          userName="Ximena"
-          analysisCount={locations.length}
-          locations={locations}
-        />
-        <AnalysisCardList />
+        <SavedAnalysisHeader userName="Ximena" analyses={savedAnalyses} />
+
+        <AnalysisCardList analyses={savedAnalyses} />
       </div>
     </main>
   );

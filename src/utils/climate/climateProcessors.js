@@ -78,22 +78,15 @@ function processHumidity(dailyData) {
 }
 
 // Procesar viento
-function processWind(dailyData) {
-  console.log({
-    sample: dailyData.wind_speed_10m_mean.slice(0, 10),
-    average: calculateAverage(dailyData.wind_speed_10m_mean),
-  });
+function processWind(dailyData, dailyUnits) {
   const averageDirection = calculateAverageDirection(
     dailyData.wind_direction_10m_dominant,
   );
 
-  console.log({
-    sample: dailyData.wind_speed_10m_mean.slice(0, 10),
-    average: calculateAverage(dailyData.wind_speed_10m_mean),
-  });
   return {
     average: calculateAverage(dailyData.wind_speed_10m_mean),
     direction: degreesToCardinal(averageDirection),
+    unit: dailyUnits.wind_speed_10m_mean,
   };
 }
 
@@ -133,11 +126,11 @@ function processRadiation(dailyData) {
 // Procesador principal
 // -----------------------------------------------------------------------------
 
-function processClimateData(dailyData) {
+function processClimateData(dailyData, dailyUnits) {
   return {
     temperature: processTemperature(dailyData),
     humidity: processHumidity(dailyData),
-    wind: processWind(dailyData),
+    wind: processWind(dailyData, dailyUnits),
     precipitation: processPrecipitation(dailyData),
     radiation: processRadiation(dailyData),
   };

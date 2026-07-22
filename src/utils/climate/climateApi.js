@@ -154,7 +154,10 @@ export async function getClimateAnalysisData(city) {
     location.longitude,
   );
 
-  const climateData = processClimateData(rawClimateData.daily);
+  const climateData = processClimateData(
+    rawClimateData.daily,
+    rawClimateData.daily_units,
+  );
 
   const classification = getClimateClassification(climateData);
 
