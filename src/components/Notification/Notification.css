@@ -1,0 +1,104 @@
+.notification {
+  position: absolute;
+  bottom: -5px;
+  right: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 320px;
+  padding: 18px 20px;
+  background: #ffffff;
+  border: 1px solid #d8e0d2;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  animation: notification-slide 0.3s ease;
+}
+
+.notification__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.notification__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.notification__title {
+  margin: 0;
+  font-family: "Roboto Slab";
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.notification__message {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #688556;
+}
+
+.notification--success {
+  border-left: 6px solid #516d3f;
+}
+
+.notification--error {
+  border-left: 6px solid #c95a5a;
+}
+
+@keyframes notification-slide {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+
+@media screen and (max-width: 768px) {
+  .notification {
+    right: 150px;
+    bottom: -5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .notification {
+    right: 30px;
+    bottom: -10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .notification {
+    width: calc(100vw - 64px);
+    right: -5px;
+    bottom: -5px;
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .notification__icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .notification__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .notification__message {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

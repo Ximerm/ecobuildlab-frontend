@@ -1,0 +1,37 @@
+.header {
+  width: 100%;
+  min-height: 80px;
+  padding: 0 80px;
+}
+
+.header__container {
+  width: 100%;
+  min-height: 80px;
+  border-bottom: 1px solid #97b483;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1024px) {
+  .header {
+    padding: 0 48px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 32px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 0 16px;
+  }
+}

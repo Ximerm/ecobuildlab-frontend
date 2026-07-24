@@ -1,0 +1,297 @@
+.strategy-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  background: #e6ece2;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+.strategy-card__header {
+  min-height: 150px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.strategy-card__icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.strategy-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.strategy-card__title {
+  margin: 0;
+  font-family: "Roboto Slab", serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.strategy-card__description {
+  min-height: 100px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 22px;
+  color: #688556;
+  text-align: justify;
+}
+
+.strategy-card__impact {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 24px;
+}
+
+.strategy-card__impact-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.strategy-card__impact-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.strategy-card__info-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.strategy-card__info-button:hover {
+  opacity: 0.8;
+}
+
+.strategy-card__info-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.strategy-card__impact-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.strategy-card__score {
+  display: flex;
+  align-items: center;
+  font-family: "Roboto Slab", serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.strategy-card__impact-label {
+  font-family: "Roboto Slab", serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.strategy-card__progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.strategy-card__progress {
+  flex: 1;
+  height: 10px;
+  background: #ffffff;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.strategy-card__score {
+  flex-shrink: 0;
+  font-family: "Roboto Slab", serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.strategy-card__progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: #516d3f;
+}
+
+.strategy-card__link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  padding-top: 24px;
+  border: none;
+  background: transparent;
+  color: #688556;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.strategy-card__link:hover {
+  color: #516d3f;
+  font-weight: 500;
+}
+
+.strategy-card__arrow {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: transform 0.25s ease;
+}
+
+.strategy-card__link:hover .strategy-card__arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1024px) {
+  .strategy-card {
+    padding: 20px;
+  }
+
+  .strategy-card__icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .strategy-card__title {
+    font-size: 18px;
+    line-height: 26px;
+    text-align: center;
+  }
+
+  .strategy-card__description {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .strategy-card__impact-title {
+    font-size: 16px;
+  }
+
+  .strategy-card__score,
+  .strategy-card__impact-label,
+  .strategy-card__link {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .strategy-card {
+    padding: 20px;
+  }
+
+  .strategy-card__header {
+    min-height: 150px;
+    gap: 12px;
+  }
+
+  .strategy-card__icon {
+    width: 72px;
+    height: 72px;
+  }
+
+  .strategy-card__title {
+    font-size: 21px;
+    line-height: 24px;
+  }
+
+  .strategy-card__description {
+    font-size: 17px;
+  }
+
+  .strategy-card__impact {
+    padding-top: 20px;
+    gap: 12px;
+  }
+
+  .strategy-card__link {
+    padding-top: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .strategy-card {
+    padding: 24px;
+  }
+
+  .strategy-card__header {
+    gap: 16px;
+  }
+
+  .strategy-card__title {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .strategy-card__description {
+    font-size: 18px;
+  }
+
+  .strategy-card__impact-title,
+  .strategy-card__impact-label,
+  .strategy-card__link,
+  .strategy-card__score {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .strategy-card {
+    padding: 20px;
+  }
+
+  .strategy-card__header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .strategy-card__text {
+    align-items: center;
+  }
+
+  .strategy-card__description {
+    font-size: 16px;
+    text-align: justify;
+  }
+
+  .strategy-card__impact-title {
+    font-size: 14px;
+  }
+
+  .strategy-card__score,
+  .strategy-card__impact-label {
+    font-size: 15px;
+  }
+
+  .strategy-card__link {
+    justify-content: center;
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,256 @@
+.save-analysis {
+  width: 100%;
+  padding-top: 80px;
+}
+
+.save-analysis__content {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  padding: 32px 103px;
+  background: #e6ece2;
+  border-radius: 24px;
+  box-sizing: border-box;
+}
+
+/* Columna izquierda */
+
+.save-analysis__left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex: 1;
+}
+
+.save-analysis__icon-wrapper {
+  flex-shrink: 0;
+}
+
+.save-analysis__icon {
+  width: 80px;
+  height: 80px;
+}
+
+.save-analysis__text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.save-analysis__title {
+  margin: 0;
+  font-family: "Roboto Slab", serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.save-analysis__description {
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+  color: #688556;
+}
+
+/* Columna derecha */
+
+.save-analysis__right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.save-analysis__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 288px;
+  height: 64px;
+  border: 2px solid #516d3f;
+  border-radius: 100px;
+  background: #ffffff;
+  color: #516d3f;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.save-analysis__button:hover {
+  background: #516d3f;
+  color: #e6ece2;
+}
+
+.save-analysis__button:disabled {
+  cursor: default;
+}
+
+.save-analysis__button--saved {
+  background-color: #516d3f;
+  color: #fff;
+}
+
+.save-analysis__button--saved:hover {
+  background-color: #516d3f;
+  color: #e6ece2;
+}
+
+.save-analysis__button-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.save-analysis__login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #688556;
+  text-align: center;
+}
+
+.save-analysis__lock {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1024px) {
+  .save-analysis__content {
+    gap: 40px;
+    padding: 32px 56px;
+  }
+
+  .save-analysis__icon {
+    width: 72px;
+    height: 72px;
+  }
+
+  .save-analysis__title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .save-analysis__description {
+    font-size: 16px;
+  }
+
+  .save-analysis__button {
+    width: 260px;
+    height: 56px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .save-analysis {
+    padding-top: 56px;
+  }
+
+  .save-analysis__content {
+    flex-direction: column;
+    gap: 32px;
+    padding: 40px;
+  }
+
+  .save-analysis__left {
+    width: 100%;
+  }
+
+  .save-analysis__right {
+    width: 100%;
+  }
+
+  .save-analysis__button {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .save-analysis {
+    padding-top: 48px;
+  }
+
+  .save-analysis__content {
+    padding: 32px 24px;
+  }
+
+  .save-analysis__left {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .save-analysis__text {
+    align-items: center;
+  }
+
+  .save-analysis__description {
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .save-analysis__button {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .save-analysis {
+    padding-top: 40px;
+  }
+
+  .save-analysis__content {
+    padding: 24px 20px;
+  }
+
+  .save-analysis__icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .save-analysis__title {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .save-analysis__description {
+    font-size: 15px;
+    line-height: 22px;
+    text-align: justify;
+  }
+
+  .save-analysis__button {
+    height: 52px;
+    font-size: 15px;
+  }
+
+  .save-analysis__button-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .save-analysis__login {
+    font-size: 13px;
+    line-height: 18px;
+    gap: 6px;
+    text-align: justify;
+  }
+}
