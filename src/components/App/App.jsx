@@ -36,6 +36,8 @@ import AnalysisPage from "../AnalysisPage/AnalysisPage";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+
 import { getClimateAnalysisData } from "../../utils/climate/climateApi";
 
 // ==============================
@@ -167,15 +169,17 @@ function App() {
           }
         />
 
-        <Route
-          path="/saved-analysis"
-          element={<SavedAnalysis isLoggedIn={isLoggedIn} />}
-        />
+        <Route element={<ProtectedRoute />}>
+          <Route
+            path="/saved-analysis"
+            element={<SavedAnalysis isLoggedIn={isLoggedIn} />}
+          />
 
-        <Route
-          path="/analysis/:id"
-          element={<AnalysisPage isLoggedIn={isLoggedIn} />}
-        />
+          <Route
+            path="/analysis/:id"
+            element={<AnalysisPage isLoggedIn={isLoggedIn} />}
+          />
+        </Route>
       </Routes>
 
       {/* Pie de página */}
