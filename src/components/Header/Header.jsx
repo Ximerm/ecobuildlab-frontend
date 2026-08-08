@@ -1,12 +1,19 @@
 import "./Header.css";
+
 import Navigation from "../Navigation/Navigation";
 
-function Header({ isLoggedIn, handleOpenLoginModal, handleLogout }) {
+function Header({
+  isLoggedIn,
+  currentUser,
+  handleOpenLoginModal,
+  handleLogout,
+}) {
   return (
     <header className="header">
       <div className="header__container">
         <Navigation
           isLoggedIn={isLoggedIn}
+          currentUser={currentUser}
           onLoginClick={handleOpenLoginModal}
           onLogout={handleLogout}
         />

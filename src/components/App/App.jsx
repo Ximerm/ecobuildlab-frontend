@@ -1,7 +1,28 @@
+/**
+ * --------------------------------------------------
+ * EcoBuildLab
+ * Archivo: App.jsx
+ * --------------------------------------------------
+ * Componente raíz de la aplicación.
+ *
+ * Gestiona la navegación principal, los modales de
+ * autenticación y el flujo de búsqueda de análisis
+ * bioclimáticos.
+ *
+ * El estado de autenticación se obtiene desde
+ * CurrentUserContext.
+ * --------------------------------------------------
+ */
+
+// ==============================
+// Dependencias
+// ==============================
+
 import "./App.css";
 
+import { useContext, useState } from "react";
+
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
@@ -13,17 +34,41 @@ import Results from "../Results/Results";
 import SavedAnalysis from "../SavedAnalysis/SavedAnalysis";
 import AnalysisPage from "../AnalysisPage/AnalysisPage";
 
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
 import { getClimateAnalysisData } from "../../utils/climate/climateApi";
 
+// ==============================
+// Componente
+// ==============================
+
 function App() {
+  // ==============================
+  // Contexto de autenticación
+  // ==============================
+
+  const { currentUser, isLoggedIn, logout } = useContext(CurrentUserContext);
+
+  // ==============================
+  // Estados de interfaz
+  // ==============================
+
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [analysis, setAnalysis] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // ==============================
+  // Navegación
+  // ==============================
+
   const navigate = useNavigate();
+
+  // ==============================
+  // Manejadores de modales
+  // ==============================
 
   const handleOpenLoginModal = () => {
     setIsRegisterOpen(false);
@@ -43,10 +88,17 @@ function App() {
     setIsRegisterOpen(false);
   };
 
+  // ==============================
+  // Autenticación
+  // ==============================
+
   const handleLogout = () => {
-    console.log("Cerrar sesión");
-    setIsLoggedIn(false);
+    logout();
   };
+
+  // ==============================
+  // Búsqueda de análisis
+  // ==============================
 
   async function handleSearch(city) {
     setError("");
@@ -55,9 +107,9 @@ function App() {
     navigate("/results");
 
     try {
-      const analysis = await getClimateAnalysisData(city);
+      const climateAnalysis = await getClimateAnalysisData(city);
 
-      setAnalysis(analysis);
+      setAnalysis(climateAnalysis);
     } catch (err) {
       console.error(err);
       setError(err.message);
@@ -66,14 +118,13 @@ function App() {
     }
   }
 
-  return (
-    <div className="page">
-      <Header
-        isLoggedIn={isLoggedIn}
-        handleOpenLoginModal={handleOpenLoginModal}
-        handleLogout={handleLogout}
-      />
+  // ==============================
+  // Render
+  // ==============================
 
+  return (
+    <div className="app">
+      {/* Modal de inicio de sesión */}
       {isLoginOpen && (
         <LoginModal
           onClose={handleCloseLogin}
@@ -81,6 +132,7 @@ function App() {
         />
       )}
 
+      {/* Modal de registro */}
       {isRegisterOpen && (
         <RegisterModal
           onClose={handleCloseRegister}
@@ -88,6 +140,15 @@ function App() {
         />
       )}
 
+      {/* Navegación principal */}
+      <Header
+        isLoggedIn={isLoggedIn}
+        currentUser={currentUser}
+        handleOpenLoginModal={handleOpenLoginModal}
+        handleLogout={handleLogout}
+      />
+
+      {/* Rutas principales */}
       <Routes>
         <Route path="/" element={<Main onSearch={handleSearch} />} />
 
@@ -110,12 +171,14 @@ function App() {
           path="/saved-analysis"
           element={<SavedAnalysis isLoggedIn={isLoggedIn} />}
         />
+
         <Route
           path="/analysis/:id"
           element={<AnalysisPage isLoggedIn={isLoggedIn} />}
         />
       </Routes>
 
+      {/* Pie de página */}
       <Footer isLoggedIn={isLoggedIn} />
     </div>
   );
