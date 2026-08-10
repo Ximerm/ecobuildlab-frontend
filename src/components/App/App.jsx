@@ -38,7 +38,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import { getClimateAnalysisData } from "../../utils/climate/climateApi";
+import analysisService from "../../services/analysisService";
 
 // ==============================
 // Componente
@@ -102,19 +102,20 @@ function App() {
   // Búsqueda de análisis
   // ==============================
 
-  async function handleSearch(city) {
+  async function handleSearch(location) {
     setError("");
+    setAnalysis(null);
     setIsLoading(true);
 
     navigate("/results");
 
     try {
-      const climateAnalysis = await getClimateAnalysisData(city);
+      const climateAnalysis = await analysisService.generateAnalysis(location);
 
       setAnalysis(climateAnalysis);
     } catch (err) {
       console.error(err);
-      setError(err.message);
+      setError(err.message || "No fue posible generar el análisis.");
     } finally {
       setIsLoading(false);
     }
@@ -158,7 +159,11 @@ function App() {
           path="/results"
           element={
             <Results
-              key={analysis?.location?.name ?? "empty"}
+              key={
+                analysis
+                  ? `${analysis.location.city}-${analysis.location.country}`
+                  : "empty"
+              }
               isLoggedIn={isLoggedIn}
               handleOpenLoginModal={handleOpenLoginModal}
               analysis={analysis}

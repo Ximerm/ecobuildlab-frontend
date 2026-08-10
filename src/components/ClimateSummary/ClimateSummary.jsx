@@ -1,3 +1,22 @@
+/**
+ * --------------------------------------------------------------------
+ * EcoBuildLab
+ * Archivo: ClimateSummary.jsx
+ * --------------------------------------------------------------------
+ * Presenta el resumen climático de una ubicación analizada.
+ *
+ * Muestra:
+ * - Ubicación
+ * - Coordenadas geográficas
+ * - Elevación
+ * - Indicadores climáticos
+ * --------------------------------------------------------------------
+ */
+
+// ==============================
+// Dependencias
+// ==============================
+
 import "./ClimateSummary.css";
 
 import IndicatorCardList from "../IndicatorCardList/IndicatorCardList";
@@ -5,6 +24,10 @@ import IndicatorCardList from "../IndicatorCardList/IndicatorCardList";
 import latitudeIcon from "../../images/icons/latitude.png";
 import longitudeIcon from "../../images/icons/longitude.png";
 import elevationIcon from "../../images/icons/elevation.png";
+
+// ==============================
+// Componente
+// ==============================
 
 function ClimateSummary({ analysis }) {
   if (!analysis) {
@@ -17,10 +40,10 @@ function ClimateSummary({ analysis }) {
         <div className="climate-summary__header">
           <div className="climate-summary__content">
             <h2 className="climate-summary__city">
-              {analysis.location.name}, {analysis.location.country}
+              {analysis.location.city}, {analysis.location.country}
             </h2>
 
-            <h3 className="climate-summary__title">Indicadores climáticos </h3>
+            <h3 className="climate-summary__title">Indicadores climáticos</h3>
 
             <p className="climate-summary__description">
               Basados en datos climáticos históricos de la ubicación

@@ -1,3 +1,26 @@
+/**
+ *
+  ---
+- EcoBuildLab
+- Archivo: AnalysisCard.jsx
+-
+  ---
+- Tarjeta que muestra un análisis bioclimático guardado.
+-
+- Presenta la clasificación climática, la ubicación,
+- la fecha de actualización y las principales estrategias
+- recomendadas.
+-
+- También permite iniciar la eliminación del análisis.
+-
+  ---
+*
+*/
+
+// ==============================
+// Dependencias
+// ==============================
+
 import "./AnalysisCard.css";
 
 import deleteIcon from "../../images/delete.svg";
@@ -6,10 +29,22 @@ import { getClimateIcon } from "../../utils/presentation/climateIconPresentation
 import { formatDate } from "../../utils/formatDate";
 import { STRATEGY_ICON_PRESENTATION } from "../../utils/presentation/strategyIconPresentation";
 
+// ==============================
+// Componente
+// ==============================
+
 function AnalysisCard({ savedAnalysis, onDelete, onClick }) {
-  const { analysis, createdAt } = savedAnalysis;
+  // ==============================
+  // Datos del análisis
+  // ==============================
+
+  const { analysis, updatedAt } = savedAnalysis;
   const mainStrategies = analysis.strategies.slice(0, 3);
   const climateIcon = getClimateIcon(analysis.climate.code);
+
+  // ==============================
+  // Render
+  // ==============================
 
   return (
     <article className="analysis-card" onClick={onClick}>
@@ -41,7 +76,7 @@ function AnalysisCard({ savedAnalysis, onDelete, onClick }) {
 
       <h2 className="analysis-card__city">{analysis.city}</h2>
       <p className="analysis-card__date">
-        Analizado el {formatDate(createdAt)}
+        Analizado el {formatDate(updatedAt)}
       </p>
 
       <div className="analysis-card__content">

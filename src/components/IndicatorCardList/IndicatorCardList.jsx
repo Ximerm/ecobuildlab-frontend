@@ -1,3 +1,31 @@
+/**
+ *
+ * -----------------------------------------------------------------------------
+ * EcoBuildLab
+ * Archivo: IndicatorCardList.jsx
+ *
+ * -----------------------------------------------------------------------------
+ * Lista de indicadores climáticos del análisis.
+ *
+ * Presenta las principales variables climáticas procesadas por el backend:
+ *
+ * • Clasificación climática
+ * • Temperatura
+ * • Humedad relativa
+ * • Viento
+ * • Precipitación
+ * • Radiación solar
+ *
+ * La información se obtiene directamente de la estructura
+ * generada por el análisis climático del backend.
+ *
+ * -----------------------------------------------------------------------------
+ */
+
+// ==============================
+// Dependencias
+// ==============================
+
 import "./IndicatorCardList.css";
 
 import IndicatorCard from "../IndicatorCard/IndicatorCard";
@@ -9,10 +37,36 @@ import windIcon from "../../images/indicators/wind.png";
 import precipitationIcon from "../../images/indicators/precipitation.png";
 import radiationIcon from "../../images/indicators/radiation.png";
 
+// ==============================
+// Componente
+// ==============================
+
 function IndicatorCardList({ analysis }) {
   if (!analysis) {
     return null;
   }
+
+  const { statistics, windRose } = analysis;
+
+  // ==============================
+  // Datos climáticos
+  // ==============================
+
+  const temperature = statistics?.temperature?.annual;
+
+  const humidity = statistics?.humidity?.annual;
+
+  const wind = statistics?.wind?.annual?.speed;
+
+  const precipitation = statistics?.precipitation?.annual;
+
+  const radiation = statistics?.radiation?.annual;
+
+  const prevailingDirection = windRose?.prevailingDirection;
+
+  // ==============================
+  // Render
+  // ==============================
 
   return (
     <section className="indicator-card-list">
@@ -20,35 +74,34 @@ function IndicatorCardList({ analysis }) {
         icon={climateClassificationIcon}
         title="Clasificación climática"
       >
-        <p className="indicator-card__subtitle">
-          {analysis.classification.method.name}
-        </p>
+        <p className="indicator-card__subtitle">Caldas-Lang</p>
 
-        <p className="indicator-card__value">
-          {analysis.classification.climate.name}
-        </p>
+        <p className="indicator-card__value">{analysis.classification.name}</p>
       </IndicatorCard>
 
       <IndicatorCard icon={temperatureIcon} title="Temperatura (°C)">
         <div className="indicator-card__stats">
           <div className="indicator-card__stat">
             <span className="indicator-card__label">Máxima</span>
+
             <span className="indicator-card__number">
-              {analysis.climateData.temperature.max}
+              {temperature?.maximum ?? "—"}
             </span>
           </div>
 
           <div className="indicator-card__stat">
             <span className="indicator-card__label">Media</span>
+
             <span className="indicator-card__number">
-              {analysis.climateData.temperature.average}
+              {temperature?.mean ?? "—"}
             </span>
           </div>
 
           <div className="indicator-card__stat">
             <span className="indicator-card__label">Mínima</span>
+
             <span className="indicator-card__number">
-              {analysis.climateData.temperature.min}
+              {temperature?.minimum ?? "—"}
             </span>
           </div>
         </div>
@@ -58,22 +111,25 @@ function IndicatorCardList({ analysis }) {
         <div className="indicator-card__stats">
           <div className="indicator-card__stat">
             <span className="indicator-card__label">Máxima</span>
+
             <span className="indicator-card__number">
-              {analysis.climateData.humidity.max}
+              {humidity?.maximum ?? "—"}
             </span>
           </div>
 
           <div className="indicator-card__stat">
             <span className="indicator-card__label">Media</span>
+
             <span className="indicator-card__number">
-              {analysis.climateData.humidity.average}
+              {humidity?.mean ?? "—"}
             </span>
           </div>
 
           <div className="indicator-card__stat">
             <span className="indicator-card__label">Mínima</span>
+
             <span className="indicator-card__number">
-              {analysis.climateData.humidity.min}
+              {humidity?.minimum ?? "—"}
             </span>
           </div>
         </div>
@@ -83,16 +139,17 @@ function IndicatorCardList({ analysis }) {
         <div className="indicator-card__stats">
           <div className="indicator-card__stat">
             <span className="indicator-card__label">Velocidad</span>
+
             <span className="indicator-card__number">
-              {analysis.climateData.wind.average}{" "}
-              {analysis.climateData.wind.unit}
+              {wind?.mean ?? "—"} m/s
             </span>
           </div>
 
           <div className="indicator-card__stat">
             <span className="indicator-card__label">Dirección</span>
+
             <span className="indicator-card__number">
-              {analysis.climateData.wind.direction}
+              {prevailingDirection?.name ?? "No disponible"}
             </span>
           </div>
         </div>
@@ -102,18 +159,14 @@ function IndicatorCardList({ analysis }) {
         <p className="indicator-card__subtitle">Anual</p>
 
         <p className="indicator-card__value">
-          {analysis.climateData.precipitation.annual}{" "}
-          {analysis.climateData.precipitation.unit}
+          {precipitation?.total ?? "—"} mm
         </p>
       </IndicatorCard>
 
       <IndicatorCard icon={radiationIcon} title="Radiación solar">
         <p className="indicator-card__subtitle">Radiación global media</p>
 
-        <p className="indicator-card__value">
-          {analysis.climateData.radiation.average}{" "}
-          {analysis.climateData.radiation.unit}
-        </p>
+        <p className="indicator-card__value">{radiation?.mean ?? "—"}</p>
       </IndicatorCard>
     </section>
   );
