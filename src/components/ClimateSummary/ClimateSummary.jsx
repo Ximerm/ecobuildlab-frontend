@@ -35,7 +35,7 @@ function ClimateSummary({ analysis }) {
   }
 
   return (
-    <section className="climate-summary">
+    <section id="climate-summary" className="climate-summary">
       <div className="climate-summary__container">
         <div className="climate-summary__header">
           <div className="climate-summary__content">

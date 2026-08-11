@@ -44,7 +44,13 @@ import closeIconDark from "../../images/icons/closedark.svg";
 // Componente
 // ==============================
 
-function Navigation({ isLoggedIn, currentUser, onLoginClick, onLogout }) {
+function Navigation({
+  isLoggedIn,
+  currentUser,
+  onLoginClick,
+  onLogout,
+  onNewAnalysis,
+}) {
   // ==============================
   // Ubicación actual
   // ==============================
@@ -222,17 +228,16 @@ function Navigation({ isLoggedIn, currentUser, onLoginClick, onLogout }) {
                 ---------------------------- */}
 
             {isSavedAnalysisPage ? (
-              <NavLink
-                to="/"
-                onClick={closeMenu}
-                className={({ isActive }) =>
-                  `navigation__link ${
-                    isActive ? "navigation__link--active" : ""
-                  }`
-                }
+              <button
+                type="button"
+                className="navigation__link"
+                onClick={() => {
+                  closeMenu();
+                  onNewAnalysis();
+                }}
               >
                 Nuevo análisis
-              </NavLink>
+              </button>
             ) : (
               <NavLink
                 to="/saved-analysis"

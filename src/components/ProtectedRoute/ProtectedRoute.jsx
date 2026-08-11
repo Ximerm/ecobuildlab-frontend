@@ -54,7 +54,16 @@ function ProtectedRoute() {
   // ==============================
 
   if (!isLoggedIn) {
-    return <Navigate to="/" replace state={{ from: location }} />;
+    return (
+      <Navigate
+        to="/"
+        replace
+        state={{
+          from: location,
+          requireAuth: true,
+        }}
+      />
+    );
   }
 
   // ==============================

@@ -161,21 +161,6 @@ class MainApi {
 
   /**
    *
-   * Realiza una solicitud PUT.
-   *
-   * @param {string} endpoint
-   * @param {Object} data
-   * @returns {Promise}
-   */
-  put(endpoint, data) {
-    return this.request(endpoint, {
-      method: "PUT",
-      body: JSON.stringify(data),
-    });
-  }
-
-  /**
-   *
    * Realiza una solicitud PATCH.
    *
    * @param {string} endpoint

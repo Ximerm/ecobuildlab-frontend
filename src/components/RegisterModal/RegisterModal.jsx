@@ -1,5 +1,4 @@
 /**
- *
  * -----------------------------------------------------------------------------
  * EcoBuildLab
  * Archivo: RegisterModal.jsx
@@ -9,10 +8,9 @@
  * Gestiona la validación del formulario y el registro
  * del usuario mediante el backend.
  *
- * Después de crear correctamente la cuenta, muestra
- * una confirmación y permite continuar con el inicio
- * de sesión.
- *
+ * Después de crear correctamente la cuenta, inicia
+ * sesión automáticamente y muestra una confirmación
+ * al usuario antes de cerrar el modal.
  * -----------------------------------------------------------------------------
  */
 
@@ -20,7 +18,7 @@
 // Dependencias
 // ==============================
 
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import "../AuthModal/AuthModal.css";
 
@@ -29,6 +27,8 @@ import Modal from "../Modal/Modal";
 import useFormValidation from "../../hooks/useFormValidation";
 
 import authService from "../../services/authService";
+
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 // ==============================
 // Componente
@@ -39,6 +39,12 @@ function RegisterModal({ onClose, onOpenLogin }) {
   // Referencias
   // ==============================
   const userNameInputRef = useRef(null);
+
+  // ==============================
+  // Contexto de autenticación
+  // ==============================
+
+  const { login } = useContext(CurrentUserContext);
 
   // ==============================
   // Estado del formulario
@@ -80,7 +86,7 @@ function RegisterModal({ onClose, onOpenLogin }) {
   }, [isRegistrationSuccessful]);
 
   // ==============================
-  // Manejadores
+  // Registro e inicio de sesión
   // ==============================
 
   const handleSubmit = async (event) => {
@@ -96,18 +102,41 @@ function RegisterModal({ onClose, onOpenLogin }) {
     setServerError("");
 
     try {
-      // El backend recibe únicamente los datos
-      // necesarios para crear el usuario.
+      // ==============================
+      // Crear cuenta
+      // ==============================
+
       await authService.register({
         name: values.name,
         email: values.email,
         password: values.password,
       });
 
-      // El registro fue completado correctamente.
-      // Se muestra la confirmación antes de pasar
-      // al formulario de inicio de sesión.
+      // ==============================
+      // Inicio de sesión automático
+      // ==============================
+
+      // El registro fue exitoso. Se utilizan las
+      // mismas credenciales para autenticar al usuario.
+      await login({
+        email: values.email,
+        password: values.password,
+      });
+
+      // ==============================
+      // Confirmación
+      // ==============================
+
+      // Se muestra una confirmación para cumplir
+      // con el requisito de informar al usuario
+      // que el registro fue completado correctamente.
       setIsRegistrationSuccessful(true);
+
+      // Cierra el modal después de mostrar
+      // brevemente la confirmación.
+      setTimeout(() => {
+        onClose();
+      }, 3000);
     } catch (error) {
       console.error("Error al registrar usuario:", error);
 
@@ -115,14 +144,6 @@ function RegisterModal({ onClose, onOpenLogin }) {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  // ==============================
-  // Continuar con inicio de sesión
-  // ==============================
-
-  const handleContinueToLogin = () => {
-    onOpenLogin();
   };
 
   // ==============================
@@ -143,16 +164,8 @@ function RegisterModal({ onClose, onOpenLogin }) {
           </p>
 
           <p className="auth-modal__success-message">
-            Ya puedes iniciar sesión para guardar tus análisis climáticos.
+            Has iniciado sesión automáticamente.
           </p>
-
-          <button
-            type="button"
-            className="auth-modal__button auth-modal__success-button"
-            onClick={handleContinueToLogin}
-          >
-            Iniciar sesión
-          </button>
         </div>
       ) : (
         <>

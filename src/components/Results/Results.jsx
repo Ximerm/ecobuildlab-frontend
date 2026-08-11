@@ -27,7 +27,7 @@
 // Dependencias
 // ==============================
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Hero from "../Hero/Hero";
 import SearchForm from "../SearchForm/SearchForm";
@@ -72,6 +72,25 @@ function Results({
   // ==============================
 
   const [notification, setNotification] = useState(null);
+
+  // ==============================
+  // Posición del scroll al finalizar
+  // ==============================
+
+  // Lleva la vista al inicio de los indicadores
+  // cuando el análisis termina de cargarse.
+  useEffect(() => {
+    if (!isLoading && analysis) {
+      const climateSummary = document.getElementById("climate-summary");
+
+      if (climateSummary) {
+        climateSummary.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
+  }, [isLoading, analysis]);
 
   // ==============================
   // Búsqueda de una nueva ubicación
@@ -224,7 +243,11 @@ function Results({
       </Hero>
 
       {/* Estado de carga */}
-      {isLoading && <Preloader />}
+      {isLoading && (
+        <div id="analysis-preloader">
+          <Preloader />
+        </div>
+      )}
 
       {/* Estado de error */}
       {error && !isLoading && <NoResults message={error} />}

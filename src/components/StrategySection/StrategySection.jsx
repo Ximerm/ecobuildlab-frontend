@@ -30,7 +30,7 @@ import "./StrategySection.css";
 
 import StrategyCardList from "../StrategyCardList/StrategyCardList";
 import SaveAnalysisSection from "../SaveAnalysisSection/SaveAnalysisSection";
-import StrategyNote from "../StrategyNote/StrategyNote";
+import AnalysisNote from "../AnalysisNote/AnalysisNote";
 import StrategyModal from "../StrategyModal/StrategyModal";
 
 // ==============================
@@ -99,7 +99,7 @@ function StrategySection({
           />
         )}
 
-        <StrategyNote />
+        <AnalysisNote />
 
         {isStrategyModalOpen && (
           <StrategyModal

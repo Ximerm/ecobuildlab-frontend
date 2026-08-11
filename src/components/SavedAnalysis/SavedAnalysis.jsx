@@ -1,22 +1,22 @@
 /**
  *
-  ---
-- EcoBuildLab
-- Archivo: SavedAnalysis.jsx
--
-  ---
-- Página que muestra los análisis bioclimáticos guardados
-- por el usuario autenticado.
--
-- Obtiene los análisis desde el backend y adapta la información
-- recibida al formato utilizado por las tarjetas de análisis.
--
-- También gestiona la selección de un análisis para eliminarlo
-- y la confirmación de dicha operación.
--
-  ---
-*
-*/
+ * ---
+ * EcoBuildLab
+ * Archivo: SavedAnalysis.jsx
+ *
+ * ---
+ * Página que muestra los análisis bioclimáticos guardados
+ * por el usuario autenticado.
+ *
+ * Obtiene los análisis desde el backend y adapta la información
+ * recibida al formato utilizado por las tarjetas de análisis.
+ *
+ * También gestiona la selección de un análisis para eliminarlo
+ * y la confirmación de dicha operación.
+ *
+ * ---
+ *
+ */
 
 // ==============================
 // Dependencias
@@ -50,6 +50,7 @@ function SavedAnalysis() {
   // ==============================
 
   const [savedAnalyses, setSavedAnalyses] = useState([]);
+  const [error, setError] = useState("");
 
   // ==============================
   // Estado del borrado
@@ -65,43 +66,42 @@ function SavedAnalysis() {
   useEffect(() => {
     const loadSavedAnalyses = async () => {
       try {
+        // Limpia cualquier error anterior antes
+        // de solicitar nuevamente los análisis.
+        setError("");
+
         // Obtiene los análisis guardados del usuario
         // desde el backend.
         const analyses = await analysisService.getAnalyses();
 
         // Adapta la estructura del backend al formato
         // que utilizan AnalysisCardList y AnalysisCard.
-        const formattedAnalyses = analyses.map((savedAnalysis) => {
-          console.log(
-            "Análisis guardado:",
-            savedAnalysis.location.city,
-            "| Código:",
-            savedAnalysis.classification.code,
-            "| Clasificación:",
-            savedAnalysis.classification.name,
-          );
+        const formattedAnalyses = analyses.map((savedAnalysis) => ({
+          id: savedAnalysis._id,
+          updatedAt: savedAnalysis.updatedAt,
 
-          return {
-            id: savedAnalysis._id,
-            updatedAt: savedAnalysis.updatedAt,
+          analysis: {
+            city: savedAnalysis.location.city,
+            country: savedAnalysis.location.country,
 
-            analysis: {
-              city: savedAnalysis.location.city,
-              country: savedAnalysis.location.country,
-
-              climate: {
-                code: savedAnalysis.classification.code,
-                name: savedAnalysis.classification.name,
-              },
-
-              strategies: savedAnalysis.strategies || [],
+            climate: {
+              code: savedAnalysis.classification.code,
+              name: savedAnalysis.classification.name,
             },
-          };
-        });
+
+            strategies: savedAnalysis.strategies || [],
+          },
+        }));
 
         setSavedAnalyses(formattedAnalyses);
       } catch (error) {
         console.error("Error al obtener los análisis guardados:", error);
+
+        // Informa al usuario cuando no es posible
+        // cargar sus análisis guardados.
+        setError(
+          error.message || "No fue posible cargar tus análisis guardados.",
+        );
       }
     };
 
@@ -113,6 +113,7 @@ function SavedAnalysis() {
   // ==============================
 
   const handleOpenDeleteModal = (analysis) => {
+    setError("");
     setSelectedAnalysis(analysis);
   };
 
@@ -138,6 +139,7 @@ function SavedAnalysis() {
     }
 
     setIsDeleting(true);
+    setError("");
 
     try {
       // Elimina el análisis seleccionado
@@ -156,6 +158,10 @@ function SavedAnalysis() {
       setSelectedAnalysis(null);
     } catch (error) {
       console.error("Error al eliminar el análisis:", error);
+
+      // Informa al usuario cuando no es posible
+      // eliminar el análisis seleccionado.
+      setError(error.message || "No fue posible eliminar el análisis.");
     } finally {
       setIsDeleting(false);
     }
@@ -168,6 +174,12 @@ function SavedAnalysis() {
   return (
     <main className="saved-analysis">
       <div className="saved-analysis__container">
+        {error && (
+          <p className="saved-analysis__error" role="alert">
+            {error}
+          </p>
+        )}
+
         <SavedAnalysisHeader
           userName={currentUser?.name || ""}
           analyses={savedAnalyses}

@@ -22,7 +22,7 @@ import "./App.css";
 
 import { useContext, useState } from "react";
 
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
@@ -39,6 +39,8 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import analysisService from "../../services/analysisService";
+
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
 
 // ==============================
 // Componente
@@ -67,6 +69,45 @@ function App() {
   // ==============================
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // ==============================
+  // Navegación al buscador
+  // ==============================
+
+  const handleNewAnalysis = () => {
+    const scrollToSearch = () => {
+      const targetId =
+        window.innerWidth <= 768 ? "search-mobile" : "search-desktop";
+
+      const searchElement = document.getElementById(targetId);
+
+      if (!searchElement) {
+        return;
+      }
+
+      searchElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+
+      const searchInput = searchElement.querySelector(".search-form__input");
+
+      if (searchInput) {
+        setTimeout(() => {
+          searchInput.focus();
+        }, 500);
+      }
+    };
+
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(scrollToSearch, 100);
+      return;
+    }
+
+    scrollToSearch();
+  };
 
   // ==============================
   // Manejadores de modales
@@ -79,6 +120,13 @@ function App() {
 
   const handleCloseLogin = () => {
     setIsLoginOpen(false);
+
+    if (location.state?.requireAuth) {
+      navigate("/", {
+        replace: true,
+        state: null,
+      });
+    }
   };
 
   const handleOpenRegisterModal = () => {
@@ -96,6 +144,7 @@ function App() {
 
   const handleLogout = () => {
     logout();
+    navigate("/", { replace: true });
   };
 
   // ==============================
@@ -108,6 +157,17 @@ function App() {
     setIsLoading(true);
 
     navigate("/results");
+
+    setTimeout(() => {
+      const preloader = document.getElementById("analysis-preloader");
+
+      if (preloader) {
+        preloader.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 100);
 
     try {
       const climateAnalysis = await analysisService.generateAnalysis(location);
@@ -128,7 +188,7 @@ function App() {
   return (
     <div className="app">
       {/* Modal de inicio de sesión */}
-      {isLoginOpen && (
+      {(isLoginOpen || location.state?.requireAuth) && (
         <LoginModal
           onClose={handleCloseLogin}
           onOpenRegister={handleOpenRegisterModal}
@@ -149,7 +209,10 @@ function App() {
         currentUser={currentUser}
         handleOpenLoginModal={handleOpenLoginModal}
         handleLogout={handleLogout}
+        onNewAnalysis={handleNewAnalysis}
       />
+
+      <ScrollToTop />
 
       {/* Rutas principales */}
       <Routes>
@@ -159,11 +222,6 @@ function App() {
           path="/results"
           element={
             <Results
-              key={
-                analysis
-                  ? `${analysis.location.city}-${analysis.location.country}`
-                  : "empty"
-              }
               isLoggedIn={isLoggedIn}
               handleOpenLoginModal={handleOpenLoginModal}
               analysis={analysis}
@@ -188,7 +246,7 @@ function App() {
       </Routes>
 
       {/* Pie de página */}
-      <Footer isLoggedIn={isLoggedIn} />
+      <Footer isLoggedIn={isLoggedIn} onNewAnalysis={handleNewAnalysis} />
     </div>
   );
 }

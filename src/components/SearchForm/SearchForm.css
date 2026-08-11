@@ -59,12 +59,25 @@
   transition: background-color 0.2s ease;
 }
 
-.search-form__button:hover {
+.search-form__button:hover:not(:disabled) {
   background-color: #516d3f;
 }
 
 .search-form__button:active {
   transform: scale(0.98);
+}
+
+.search-form__button:disabled {
+  background-color: #d1d8cd;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+.search-form__error {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #c95a5a;
 }
 
 /* Responsive */

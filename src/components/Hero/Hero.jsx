@@ -15,8 +15,11 @@ function Hero({ children }) {
             arquitectónico.
           </p>
 
-          <div className="hero__search hero__search--desktop">
-            <div className="hero__search hero__search--desktop">{children}</div>
+          <div
+            id="search-desktop"
+            className="hero__search hero__search--desktop"
+          >
+            {children}
           </div>
         </div>
 
@@ -27,9 +30,8 @@ function Hero({ children }) {
             className="hero__image-element"
           />
         </div>
-        <div className="hero__search hero__search--mobile">
+        <div id="search-mobile" className="hero__search hero__search--mobile">
           {children}
-          <div className="hero__search hero__search--desktop"></div>
         </div>
       </div>
     </section>
