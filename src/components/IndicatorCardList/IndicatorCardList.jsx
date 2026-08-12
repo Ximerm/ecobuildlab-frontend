@@ -209,7 +209,7 @@ function IndicatorCardList({ analysis }) {
         <p className="indicator-card__subtitle">Anual</p>
 
         <p className="indicator-card__value">
-          {formatValue(precipitation?.total)}
+          {formatValue(precipitation?.total)} mm
         </p>
       </IndicatorCard>
 
