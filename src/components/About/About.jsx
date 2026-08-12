@@ -62,12 +62,16 @@ function About() {
           </p>
 
           <p className="about__paragraph">
-            La herramienta está concebida como un recurso inicial para el
-            análisis de condiciones climáticas en contextos tropicales. Sus
-            resultados son orientativos y no sustituyen un estudio bioclimático
-            detallado, la información meteorológica local ni las condiciones
-            particulares de cada proyecto, por lo que deben corroborarse antes
-            de tomar decisiones definitivas de diseño.
+            La herramienta está concebida como un recurso inicial para{" "}
+            <strong>
+              {" "}
+              el análisis de condiciones climáticas en contextos
+              tropicales.{" "}
+            </strong>{" "}
+            Sus resultados son orientativos y no sustituyen un estudio
+            bioclimático detallado, la información meteorológica local ni las
+            condiciones particulares de cada proyecto, por lo que deben
+            corroborarse antes de tomar decisiones definitivas de diseño.
           </p>
         </div>
       </div>

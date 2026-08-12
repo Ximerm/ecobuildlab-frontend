@@ -60,7 +60,7 @@ function IndicatorCardList({ analysis }) {
 
   const precipitation = statistics?.precipitation?.annual;
 
-  const radiation = statistics?.radiation?.annual;
+  const solarIrradiation = statistics?.solarIrradiation?.annual;
 
   const prevailingDirection = windRose?.prevailingDirection;
 
@@ -163,10 +163,14 @@ function IndicatorCardList({ analysis }) {
         </p>
       </IndicatorCard>
 
-      <IndicatorCard icon={radiationIcon} title="Radiación solar">
-        <p className="indicator-card__subtitle">Radiación global media</p>
+      <IndicatorCard icon={radiationIcon} title="Irradiación solar">
+        <p className="indicator-card__subtitle">
+          Irradiación solar global media
+        </p>
 
-        <p className="indicator-card__value">{radiation?.mean ?? "—"}</p>
+        <p className="indicator-card__value">
+          {solarIrradiation?.mean ?? "—"} kWh/m²·día
+        </p>
       </IndicatorCard>
     </section>
   );
