@@ -90,7 +90,7 @@ function AnalysisPage() {
   // ==============================
 
   if (isLoading) {
-    return <Preloader />;
+    return <Preloader message="Cargando análisis guardado..." />;
   }
 
   if (error || !savedAnalysis) {
@@ -115,6 +115,7 @@ function AnalysisPage() {
     strategies,
     createdAt,
     location,
+    units,
   } = savedAnalysis;
 
   const analysis = {
@@ -123,6 +124,7 @@ function AnalysisPage() {
     classification,
     windRose,
     location,
+    units,
   };
 
   // ==============================

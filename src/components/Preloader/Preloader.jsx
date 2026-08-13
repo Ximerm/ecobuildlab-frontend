@@ -1,18 +1,16 @@
 /**
+ *
  * -----------------------------------------------------------------------------
  * EcoBuildLab
  * Archivo: Preloader.jsx
  *
  * -----------------------------------------------------------------------------
- * Indicador visual de carga utilizado mientras se procesa
- * una solicitud de análisis climático.
+ * Indicador visual de carga utilizado durante las operaciones
+ * que requieren esperar una respuesta del backend.
  *
- * Muestra mensajes dinámicos para informar al usuario que
- * el análisis continúa en ejecución.
- *
- * Los mensajes representan de forma general las etapas del
- * procesamiento y no corresponden necesariamente a procesos
- * independientes del backend.
+ * Para la generación de un análisis nuevo utiliza mensajes dinámicos.
+ * Para otras operaciones, como abrir un análisis guardado, puede
+ * recibir un mensaje estático mediante la prop `message`.
  *
  * -----------------------------------------------------------------------------
  */
@@ -41,14 +39,25 @@ const LOADING_MESSAGES = [
 // Componente
 // ==============================
 
-function Preloader() {
+function Preloader({ message = null }) {
   const [messageIndex, setMessageIndex] = useState(0);
 
   // ==============================
   // Cambio de mensaje
   // ==============================
 
+  /**
+   * Los mensajes cambian únicamente cuando no se
+   * proporciona un mensaje estático.
+   *
+   * Esto permite reutilizar el componente para operaciones
+   * diferentes a la generación de un análisis.
+   */
   useEffect(() => {
+    if (message) {
+      return undefined;
+    }
+
     const interval = setInterval(() => {
       setMessageIndex((currentIndex) => {
         return (currentIndex + 1) % LOADING_MESSAGES.length;
@@ -56,7 +65,7 @@ function Preloader() {
     }, 1200);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [message]);
 
   // ==============================
   // Render
