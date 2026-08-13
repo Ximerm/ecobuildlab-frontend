@@ -1,6 +1,34 @@
+/**
+ *
+ * -----------------------------------------------------------------------------
+ * EcoBuildLab
+ *
+ * Archivo: About.jsx
+ * -----------------------------------------------------------------------------
+ *
+ * Sección informativa sobre la autora y el propósito de EcoBuildLab.
+ *
+ * Presenta:
+ *
+ * - Perfil profesional de la autora.
+ * - Relación entre arquitectura, tecnología y sostenibilidad.
+ * - Propósito de EcoBuildLab.
+ * - Alcance y carácter orientativo de los resultados de la plataforma.
+ *
+ * -----------------------------------------------------------------------------
+ */
+
+// ==============================
+// Dependencias
+// ==============================
+
 import "./About.css";
 
-import profileImage from "../../images/profileImage.png";
+import profileImage from "../../images/profileImage.webp";
+
+// ==============================
+// Componente
+// ==============================
 
 function About() {
   return (
@@ -15,22 +43,35 @@ function About() {
         </div>
 
         <div className="about__content">
-          <h2 className="about__title">Sobre mí</h2>
-
+          <h2 className="about__title">Sobre EcoBuildLab</h2>
           <p className="about__paragraph">
-            Soy <strong>Full Stack Web Developer</strong> apasionada por crear
-            aplicaciones web modernas, accesibles y responsivas. Trabajo con
-            JavaScript, React, HTML5, CSS3, Node.js, Express y MongoDB,
-            desarrollando soluciones intuitivas mediante la integración de APIs
-            y una experiencia de usuario centrada en el diseño.
+            <strong>EcoBuildLab</strong> nace de la integración entre
+            arquitectura, datos climáticos y tecnología. La plataforma analiza
+            información climática histórica de una ubicación y la transforma en
+            indicadores y estrategias bioclimáticas que pueden apoyar las
+            primeras decisiones de diseño arquitectónico.
           </p>
 
           <p className="about__paragraph">
-            Mi formación como arquitecta complementa mi perfil como
-            desarrolladora, permitiéndome crear herramientas digitales
-            orientadas a resolver problemas reales. <strong>EcoBuildLab</strong>
-            , transforma datos climáticos en estrategias bioclimáticas para
-            apoyar las primeras decisiones de diseño arquitectónico.
+            Soy <strong>Arquitecta y Full Stack Web Developer</strong>,
+            apasionada por crear soluciones digitales que integren tecnología,
+            diseño y sostenibilidad. Mi formación y experiencia en arquitectura
+            bioclimática complementan mi perfil como desarrolladora,
+            permitiéndome abordar problemas reales desde una perspectiva
+            interdisciplinaria.
+          </p>
+
+          <p className="about__paragraph">
+            La herramienta está concebida como un recurso inicial para{" "}
+            <strong>
+              {" "}
+              el análisis de condiciones climáticas en contextos
+              tropicales.{" "}
+            </strong>{" "}
+            Sus resultados son orientativos y no sustituyen un estudio
+            bioclimático detallado, la información meteorológica local ni las
+            condiciones particulares de cada proyecto, por lo que deben
+            corroborarse antes de tomar decisiones definitivas de diseño.
           </p>
         </div>
       </div>
@@ -38,4 +79,7 @@ function About() {
   );
 }
 
+// ==============================
+// Exportaciones
+// ==============================
 export default About;

@@ -1,37 +1,113 @@
-import "./Navigation.css";
+/**
+ * --------------------------------------------------
+ * EcoBuildLab
+ * Archivo: Navigation.jsx
+ * --------------------------------------------------
+ * Navegación principal de la aplicación.
+ *
+ * Gestiona:
+ * - Navegación entre las páginas principales.
+ * - Menú responsive.
+ * - Inicio de sesión.
+ * - Información del usuario autenticado.
+ * - Cierre de sesión.
+ * --------------------------------------------------
+ */
+
+// ==============================
+// Dependencias
+// ==============================
 
 import { useEffect, useState } from "react";
+
 import { NavLink, useLocation } from "react-router-dom";
 
+// ==============================
+// Estilos
+// ==============================
+
+import "./Navigation.css";
+
+// ==============================
+// Recursos gráficos
+// ==============================
+
 import logo from "../../images/logo.png";
+
 import logoutDarkIcon from "../../images/logout-dark.svg";
 import logoutLightIcon from "../../images/logout-light.svg";
+
 import menuIcon from "../../images/icons/menu.svg";
 import closeIconDark from "../../images/icons/closedark.svg";
 
+// ==============================
+// Componente
+// ==============================
+
 function Navigation({
   isLoggedIn,
+  currentUser,
   onLoginClick,
   onLogout,
-  userName = "Ximena",
+  onNewAnalysis,
 }) {
+  // ==============================
+  // Ubicación actual
+  // ==============================
+
   const location = useLocation();
+
+  // ==============================
+  // Estado del menú móvil
+  // ==============================
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // ==============================
+  // Estado de navegación
+  // ==============================
+
   const isSavedAnalysisPage = location.pathname === "/saved-analysis";
 
-  const closeMenu = () => setIsMenuOpen(false);
+  // ==============================
+  // Información del usuario
+  // ==============================
+
+  // El nombre se obtiene del usuario autenticado.
+  // Se mantiene "Usuario" como valor de respaldo
+  // mientras se carga o si el backend no devuelve
+  // un nombre.
+  const userName = currentUser?.name || currentUser?.username || "Usuario";
+
+  // ==============================
+  // Cerrar menú
+  // ==============================
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  // ==============================
+  // Inicio de sesión
+  // ==============================
 
   const handleLogin = () => {
     closeMenu();
     onLoginClick();
   };
 
+  // ==============================
+  // Cierre de sesión
+  // ==============================
+
   const handleLogout = () => {
     closeMenu();
     onLogout();
   };
+
+  // ==============================
+  // Bloqueo del scroll
+  // ==============================
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -41,8 +117,14 @@ function Navigation({
     };
   }, [isMenuOpen]);
 
+  // ==============================
+  // Cerrar menú con Escape
+  // ==============================
+
   useEffect(() => {
-    if (!isMenuOpen) return;
+    if (!isMenuOpen) {
+      return;
+    }
 
     const handleEsc = (event) => {
       if (event.key === "Escape") {
@@ -57,11 +139,23 @@ function Navigation({
     };
   }, [isMenuOpen]);
 
+  // ==============================
+  // Render
+  // ==============================
+
   return (
     <nav className="navigation">
+      {/* ============================
+          Logo
+          ============================ */}
+
       <NavLink to="/" className="navigation__logo" onClick={closeMenu}>
         <img src={logo} alt="EcoBuildLab" className="navigation__logo-image" />
       </NavLink>
+
+      {/* ============================
+          Botón menú móvil
+          ============================ */}
 
       <button
         type="button"
@@ -79,9 +173,17 @@ function Navigation({
         />
       </button>
 
+      {/* ============================
+          Overlay del menú móvil
+          ============================ */}
+
       {isMenuOpen && (
         <div className="navigation__overlay" onClick={closeMenu} />
       )}
+
+      {/* ============================
+          Acciones de navegación
+          ============================ */}
 
       <div
         id="mobile-menu"
@@ -89,6 +191,10 @@ function Navigation({
           isMenuOpen ? "navigation__actions--open" : ""
         }`}
       >
+        {/* ============================
+            Cabecera del menú móvil
+            ============================ */}
+
         <div className="navigation__mobile-header">
           <img
             src={logo}
@@ -104,27 +210,34 @@ function Navigation({
           >
             <img
               src={closeIconDark}
-              alt="Close"
+              alt="Cerrar"
               aria-hidden="true"
               className="navigation__close-icon"
             />
           </button>
         </div>
 
+        {/* ============================
+            Usuario autenticado
+            ============================ */}
+
         {isLoggedIn ? (
           <>
+            {/* ----------------------------
+                Navegación de análisis
+                ---------------------------- */}
+
             {isSavedAnalysisPage ? (
-              <NavLink
-                to="/"
-                onClick={closeMenu}
-                className={({ isActive }) =>
-                  `navigation__link ${
-                    isActive ? "navigation__link--active" : ""
-                  }`
-                }
+              <button
+                type="button"
+                className="navigation__link"
+                onClick={() => {
+                  closeMenu();
+                  onNewAnalysis();
+                }}
               >
                 Nuevo análisis
-              </NavLink>
+              </button>
             ) : (
               <NavLink
                 to="/saved-analysis"
@@ -138,6 +251,10 @@ function Navigation({
                 Mis análisis
               </NavLink>
             )}
+
+            {/* ----------------------------
+                Usuario y cerrar sesión
+                ---------------------------- */}
 
             <button
               type="button"
@@ -162,6 +279,10 @@ function Navigation({
             </button>
           </>
         ) : (
+          /* ============================
+             Usuario no autenticado
+             ============================ */
+
           <button
             type="button"
             className="navigation__button"
@@ -174,5 +295,9 @@ function Navigation({
     </nav>
   );
 }
+
+// ==============================
+// Exportaciones
+// ==============================
 
 export default Navigation;

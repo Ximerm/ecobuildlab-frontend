@@ -1,12 +1,39 @@
+/**
+ *
+  ---
+- EcoBuildLab
+- Archivo: AnalysisCardList.jsx
+-
+  ---
+- Lista de análisis bioclimáticos guardados.
+-
+- Permite acceder al detalle de cada análisis
+- y solicitar la eliminación de un análisis.
+-
+  ---
+*
+*/
+
+// ==============================
+// Dependencias
+// ==============================
+
 import "./AnalysisCardList.css";
 
 import { useNavigate } from "react-router-dom";
 
 import AnalysisCard from "../AnalysisCard/AnalysisCard";
 
-function AnalysisCardList({ analyses }) {
+// ==============================
+// Componente
+// ==============================
+
+function AnalysisCardList({ analyses, onDelete }) {
   const navigate = useNavigate();
 
+  // ==============================
+  // Render
+  // ==============================
   return (
     <section className="analysis-card-list">
       <div className="analysis-card-list__content">
@@ -23,7 +50,7 @@ function AnalysisCardList({ analyses }) {
               key={savedAnalysis.id}
               savedAnalysis={savedAnalysis}
               onClick={() => navigate(`/analysis/${savedAnalysis.id}`)}
-              onDelete={() => console.log("Eliminar")}
+              onDelete={() => onDelete(savedAnalysis)}
             />
           ))}
         </div>

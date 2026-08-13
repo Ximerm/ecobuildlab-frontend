@@ -1,7 +1,28 @@
+/**
+ * --------------------------------------------------
+ * EcoBuildLab
+ * Archivo: App.jsx
+ * --------------------------------------------------
+ * Componente raíz de la aplicación.
+ *
+ * Gestiona la navegación principal, los modales de
+ * autenticación y el flujo de búsqueda de análisis
+ * bioclimáticos.
+ *
+ * El estado de autenticación se obtiene desde
+ * CurrentUserContext.
+ * --------------------------------------------------
+ */
+
+// ==============================
+// Dependencias
+// ==============================
+
 import "./App.css";
 
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
@@ -13,17 +34,84 @@ import Results from "../Results/Results";
 import SavedAnalysis from "../SavedAnalysis/SavedAnalysis";
 import AnalysisPage from "../AnalysisPage/AnalysisPage";
 
-import { getClimateAnalysisData } from "../../utils/climate/climateApi";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+
+import analysisService from "../../services/analysisService";
+
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
+
+// ==============================
+// Componente
+// ==============================
 
 function App() {
+  // ==============================
+  // Contexto de autenticación
+  // ==============================
+
+  const { currentUser, isLoggedIn, logout } = useContext(CurrentUserContext);
+
+  // ==============================
+  // Estados de interfaz
+  // ==============================
+
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [analysis, setAnalysis] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // ==============================
+  // Navegación
+  // ==============================
+
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // ==============================
+  // Navegación al buscador
+  // ==============================
+
+  const handleNewAnalysis = () => {
+    const scrollToSearch = () => {
+      const targetId =
+        window.innerWidth <= 768 ? "search-mobile" : "search-desktop";
+
+      const searchElement = document.getElementById(targetId);
+
+      if (!searchElement) {
+        return;
+      }
+
+      searchElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+
+      const searchInput = searchElement.querySelector(".search-form__input");
+
+      if (searchInput) {
+        setTimeout(() => {
+          searchInput.focus();
+        }, 500);
+      }
+    };
+
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(scrollToSearch, 100);
+      return;
+    }
+
+    scrollToSearch();
+  };
+
+  // ==============================
+  // Manejadores de modales
+  // ==============================
 
   const handleOpenLoginModal = () => {
     setIsRegisterOpen(false);
@@ -32,6 +120,13 @@ function App() {
 
   const handleCloseLogin = () => {
     setIsLoginOpen(false);
+
+    if (location.state?.requireAuth) {
+      navigate("/", {
+        replace: true,
+        state: null,
+      });
+    }
   };
 
   const handleOpenRegisterModal = () => {
@@ -43,44 +138,64 @@ function App() {
     setIsRegisterOpen(false);
   };
 
+  // ==============================
+  // Autenticación
+  // ==============================
+
   const handleLogout = () => {
-    console.log("Cerrar sesión");
-    setIsLoggedIn(false);
+    logout();
+    navigate("/", { replace: true });
   };
 
-  async function handleSearch(city) {
+  // ==============================
+  // Búsqueda de análisis
+  // ==============================
+
+  async function handleSearch(location) {
     setError("");
+    setAnalysis(null);
     setIsLoading(true);
 
     navigate("/results");
 
-    try {
-      const analysis = await getClimateAnalysisData(city);
+    setTimeout(() => {
+      const preloader = document.getElementById("analysis-preloader");
 
-      setAnalysis(analysis);
+      if (preloader) {
+        preloader.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 100);
+
+    try {
+      const climateAnalysis = await analysisService.generateAnalysis(location);
+
+      setAnalysis(climateAnalysis);
     } catch (err) {
       console.error(err);
-      setError(err.message);
+      setError(err.message || "No fue posible generar el análisis.");
     } finally {
       setIsLoading(false);
     }
   }
 
-  return (
-    <div className="page">
-      <Header
-        isLoggedIn={isLoggedIn}
-        handleOpenLoginModal={handleOpenLoginModal}
-        handleLogout={handleLogout}
-      />
+  // ==============================
+  // Render
+  // ==============================
 
-      {isLoginOpen && (
+  return (
+    <div className="app">
+      {/* Modal de inicio de sesión */}
+      {(isLoginOpen || location.state?.requireAuth) && (
         <LoginModal
           onClose={handleCloseLogin}
           onOpenRegister={handleOpenRegisterModal}
         />
       )}
 
+      {/* Modal de registro */}
       {isRegisterOpen && (
         <RegisterModal
           onClose={handleCloseRegister}
@@ -88,6 +203,18 @@ function App() {
         />
       )}
 
+      {/* Navegación principal */}
+      <Header
+        isLoggedIn={isLoggedIn}
+        currentUser={currentUser}
+        handleOpenLoginModal={handleOpenLoginModal}
+        handleLogout={handleLogout}
+        onNewAnalysis={handleNewAnalysis}
+      />
+
+      <ScrollToTop />
+
+      {/* Rutas principales */}
       <Routes>
         <Route path="/" element={<Main onSearch={handleSearch} />} />
 
@@ -95,7 +222,6 @@ function App() {
           path="/results"
           element={
             <Results
-              key={analysis?.location?.name ?? "empty"}
               isLoggedIn={isLoggedIn}
               handleOpenLoginModal={handleOpenLoginModal}
               analysis={analysis}
@@ -106,17 +232,21 @@ function App() {
           }
         />
 
-        <Route
-          path="/saved-analysis"
-          element={<SavedAnalysis isLoggedIn={isLoggedIn} />}
-        />
-        <Route
-          path="/analysis/:id"
-          element={<AnalysisPage isLoggedIn={isLoggedIn} />}
-        />
+        <Route element={<ProtectedRoute />}>
+          <Route
+            path="/saved-analysis"
+            element={<SavedAnalysis isLoggedIn={isLoggedIn} />}
+          />
+
+          <Route
+            path="/analysis/:id"
+            element={<AnalysisPage isLoggedIn={isLoggedIn} />}
+          />
+        </Route>
       </Routes>
 
-      <Footer isLoggedIn={isLoggedIn} />
+      {/* Pie de página */}
+      <Footer isLoggedIn={isLoggedIn} onNewAnalysis={handleNewAnalysis} />
     </div>
   );
 }

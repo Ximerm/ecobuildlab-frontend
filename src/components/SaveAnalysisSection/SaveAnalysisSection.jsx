@@ -1,25 +1,66 @@
-import { useState } from "react";
+/**
+ *
+ * -----------------------------------------------------------------------------
+ * EcoBuildLab
+ *
+ * Archivo: SaveAnalysisSection.jsx
+ *
+ * -----------------------------------------------------------------------------
+ * Sección que permite guardar un análisis climático.
+ *
+ * Gestiona:
+ *
+ * • El acceso al guardado según el estado de autenticación.
+ * • El estado visual del análisis cuando ya fue guardado.
+ * • La notificación de guardado exitoso.
+ *
+ * El resultado de la operación de guardado es gestionado
+ * por el componente Results.
+ *
+ * -----------------------------------------------------------------------------
+ */
+
+// ==============================
+// Dependencias
+// ==============================
 
 import "./SaveAnalysisSection.css";
 
-import saveIcon from "../../images/icons/save.png";
+import Notification from "../Notification/Notification";
+
+import saveIcon from "../../images/icons/save.webp";
 import lockIcon from "../../images/icons/lock.png";
 import successIcon from "../../images/icons/success-light.png";
 
-import Notification from "../Notification/Notification";
+// ==============================
+// Componente
+// ==============================
 
-function SaveAnalysisSection({ isLoggedIn, isSaved, onSaveAnalysis }) {
-  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+function SaveAnalysisSection({
+  isLoggedIn,
+  isSaved,
+  onSaveAnalysis,
+  notification,
+}) {
+  // ==============================
+  // Guardar análisis
+  // ==============================
 
-  const handleSave = () => {
-    onSaveAnalysis();
+  const handleSave = async () => {
+    // No permite repetir la operación si el análisis
+    // ya fue guardado.
+    if (isSaved) {
+      return;
+    }
 
-    setIsNotificationOpen(true);
-
-    setTimeout(() => {
-      setIsNotificationOpen(false);
-    }, 3000);
+    // Results determina qué acción corresponde:
+    // guardar el análisis si el usuario está autenticado
+    // o abrir el modal de inicio de sesión si no lo está.
+    await onSaveAnalysis();
   };
+  // ==============================
+  // Render
+  // ==============================
 
   return (
     <section className="save-analysis">
@@ -47,12 +88,17 @@ function SaveAnalysisSection({ isLoggedIn, isSaved, onSaveAnalysis }) {
         </div>
 
         <div className="save-analysis__right">
-          <Notification
-            isOpen={isNotificationOpen}
-            type="success"
-            title="Análisis guardado"
-            message="Disponible en Mis análisis."
-          />
+          {/* ============================== */}
+          {/* Notificación de guardado */}
+          {/* ============================== */}
+          {notification && (
+            <Notification
+              isOpen={true}
+              type="success"
+              title={notification.title}
+              message={notification.message}
+            />
+          )}
 
           <button
             type="button"

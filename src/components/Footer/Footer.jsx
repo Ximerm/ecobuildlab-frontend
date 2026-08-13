@@ -1,12 +1,49 @@
+/**
+ * -----------------------------------------------------------------------------
+ * EcoBuildLab
+ * Archivo: Footer.jsx
+ * -----------------------------------------------------------------------------
+ * Pie de página de la aplicación.
+ *
+ * Contiene los enlaces de navegación principales y los enlaces
+ * a los perfiles y medios de contacto de EcoBuildLab.
+ *
+ * -----------------------------------------------------------------------------
+ */
+
+// ==============================
+// Dependencias
+// ==============================
+
 import "./Footer.css";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+
+// ==============================
+// Recursos gráficos
+// ==============================
 
 import githubIcon from "../../images/github.svg";
 import linkedinIcon from "../../images/linkedin.svg";
 import emailIcon from "../../images/email.svg";
 
-function Footer({ isLoggedIn }) {
+// ==============================
+// Componente
+// ==============================
+
+function Footer({ isLoggedIn, onNewAnalysis }) {
+  const location = useLocation();
+
+  const handleHomeClick = () => {
+    if (location.pathname === "/") {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="footer__container">
@@ -19,13 +56,21 @@ function Footer({ isLoggedIn }) {
 
         <div className="footer__top">
           <nav className="footer__navigation">
-            <NavLink className="footer__nav-link" to="/">
+            <NavLink
+              className="footer__nav-link"
+              to="/"
+              onClick={handleHomeClick}
+            >
               Inicio
             </NavLink>
 
-            <NavLink className="footer__nav-link" to="/">
+            <button
+              type="button"
+              className="footer__nav-link footer__nav-button"
+              onClick={onNewAnalysis}
+            >
               Nuevo análisis
-            </NavLink>
+            </button>
 
             {isLoggedIn && (
               <NavLink className="footer__nav-link" to="/saved-analysis">
@@ -68,5 +113,9 @@ function Footer({ isLoggedIn }) {
     </footer>
   );
 }
+
+// ==============================
+// Exportaciones
+// ==============================
 
 export default Footer;

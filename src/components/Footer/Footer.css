@@ -82,6 +82,14 @@
   opacity: 1;
 }
 
+.footer__nav-button {
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
 .footer__social {
   width: 170px;
   display: flex;

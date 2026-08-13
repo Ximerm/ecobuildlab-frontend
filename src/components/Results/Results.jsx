@@ -1,4 +1,33 @@
-import { useMemo, useState } from "react";
+/**
+ *
+ * ---
+ * EcoBuildLab
+ *
+ * Archivo: Results.jsx
+ *
+ * ---
+ * Componente encargado de mostrar los resultados del análisis climático.
+ *
+ * Gestiona:
+ *
+ * - Estado de carga y errores.
+ * - Búsqueda de nuevas ubicaciones.
+ * - Resumen climático.
+ * - Estrategias bioclimáticas.
+ * - Guardado de análisis para usuarios autenticados.
+ * - Detección de análisis duplicados.
+ * - Reemplazo de análisis existentes.
+ * - Notificaciones de las operaciones de guardado.
+ *
+ * ---
+ *
+ */
+
+// ==============================
+// Dependencias
+// ==============================
+
+import { useEffect, useState } from "react";
 
 import Hero from "../Hero/Hero";
 import SearchForm from "../SearchForm/SearchForm";
@@ -6,11 +35,13 @@ import ClimateSummary from "../ClimateSummary/ClimateSummary";
 import StrategySection from "../StrategySection/StrategySection";
 import Preloader from "../Preloader/Preloader";
 import NoResults from "../NoResults/NoResults";
+import DuplicateAnalysisModal from "../DuplicateAnalysisModal/DuplicateAnalysisModal";
 
-import { generateStrategies } from "../../utils/strategies/strategyGenerator";
+import analysisService from "../../services/analysisService";
 
-import { createSavedAnalysis } from "../../utils/analysis/createSavedAnalysis";
-import { addAnalysis } from "../../utils/storage/analysisStorage";
+// ==============================
+// Componente
+// ==============================
 
 function Results({
   isLoggedIn,
@@ -20,46 +51,236 @@ function Results({
   error,
   onSearch,
 }) {
+  // ==============================
+  // Estado del guardado
+  // ==============================
+
   const [isSaved, setIsSaved] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
 
-  const handleSaveAnalysis = () => {
-    if (!analysis) return;
+  // ==============================
+  // Estado del análisis duplicado
+  // ==============================
 
-    const savedAnalysis = createSavedAnalysis(analysis);
+  const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false);
+  const [duplicateAnalysisId, setDuplicateAnalysisId] = useState(null);
+  const [isReplacing, setIsReplacing] = useState(false);
 
-    addAnalysis(savedAnalysis);
+  // ==============================
+  // Estado de la notificación
+  // ==============================
 
-    setIsSaved(true);
+  const [notification, setNotification] = useState(null);
+
+  // ==============================
+  // Posición del scroll al finalizar
+  // ==============================
+
+  // Lleva la vista al inicio de los indicadores
+  // cuando el análisis termina de cargarse.
+  useEffect(() => {
+    if (!isLoading && analysis) {
+      const climateSummary = document.getElementById("climate-summary");
+
+      if (climateSummary) {
+        climateSummary.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
+  }, [isLoading, analysis]);
+
+  // ==============================
+  // Búsqueda de una nueva ubicación
+  // ==============================
+
+  const handleSearch = (location) => {
+    // Reinicia el estado relacionado con el análisis anterior.
+    setIsSaved(false);
+    setIsSaving(false);
+    setSaveError("");
+
+    // Cierra cualquier modal pendiente de la búsqueda anterior.
+    setIsDuplicateModalOpen(false);
+    setDuplicateAnalysisId(null);
+    setIsReplacing(false);
+
+    // Cierra cualquier notificación anterior.
+    setNotification(null);
+
+    // Ejecuta la búsqueda en el componente padre.
+    onSearch(location);
   };
 
-  const strategies = useMemo(
-    () => (analysis ? generateStrategies(analysis) : []),
-    [analysis],
-  );
+  // ==============================
+  // Mostrar notificación
+  // ==============================
+
+  const showNotification = (title) => {
+    setNotification({
+      title,
+      message: "Disponible en Mis análisis.",
+    });
+
+    setTimeout(() => {
+      setNotification(null);
+    }, 3000);
+  };
+
+  // ==============================
+  // Guardar análisis
+  // ==============================
+
+  const handleSaveAnalysis = async () => {
+    if (!analysis || isSaving || isSaved) {
+      return false;
+    }
+
+    setIsSaving(true);
+    setSaveError("");
+
+    try {
+      // Guarda directamente el análisis que ya fue generado
+      // y que actualmente se está mostrando en pantalla.
+      await analysisService.saveAnalysis(analysis);
+
+      // El análisis se guardó correctamente.
+      setIsSaved(true);
+
+      // Muestra la notificación de guardado exitoso.
+      showNotification("Análisis guardado");
+
+      return true;
+    } catch (error) {
+      console.error("Error al guardar el análisis:", error);
+
+      // ==============================
+      // Análisis duplicado
+      // ==============================
+
+      if (error.status === 409) {
+        // Guarda el identificador del análisis existente
+        // para utilizarlo si el usuario decide reemplazarlo.
+        setDuplicateAnalysisId(error.analysisId);
+
+        // Abre el modal de análisis duplicado.
+        setIsDuplicateModalOpen(true);
+
+        return false;
+      }
+
+      // ==============================
+      // Otros errores
+      // ==============================
+
+      setSaveError(error.message || "No se pudo guardar el análisis.");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  // ==============================
+  // Cerrar modal de duplicado
+  // ==============================
+
+  const handleCloseDuplicateModal = () => {
+    if (isReplacing) {
+      return;
+    }
+
+    setIsDuplicateModalOpen(false);
+    setDuplicateAnalysisId(null);
+  };
+
+  // ==============================
+  // Reemplazar análisis existente
+  // ==============================
+
+  const handleReplaceAnalysis = async () => {
+    if (!analysis || !duplicateAnalysisId || isReplacing) {
+      return;
+    }
+
+    setIsReplacing(true);
+    setSaveError("");
+
+    try {
+      // Reemplaza el análisis existente utilizando
+      // el identificador proporcionado por el backend.
+      await analysisService.replaceAnalysis(duplicateAnalysisId, analysis);
+
+      // El análisis actual queda guardado como
+      // la versión más reciente.
+      setIsSaved(true);
+
+      // Cierra el modal después de completar
+      // correctamente el reemplazo.
+      setIsDuplicateModalOpen(false);
+      setDuplicateAnalysisId(null);
+
+      // Muestra la notificación correspondiente
+      // a la actualización.
+      showNotification("Análisis actualizado");
+    } catch (error) {
+      console.error("Error al reemplazar el análisis:", error);
+
+      setSaveError(error.message || "No se pudo reemplazar el análisis.");
+    } finally {
+      setIsReplacing(false);
+    }
+  };
+
+  // ==============================
+  // Render
+  // ==============================
 
   return (
-    <main className="main">
+    <main className="results">
       <Hero>
-        <SearchForm onSearch={onSearch} />
+        <SearchForm onSearch={handleSearch} isLoading={isLoading} />
       </Hero>
 
-      {isLoading && <Preloader />}
+      {/* Estado de carga */}
+      {isLoading && (
+        <div id="analysis-preloader">
+          <Preloader />
+        </div>
+      )}
 
-      {error && <NoResults message={error} />}
+      {/* Estado de error */}
+      {error && !isLoading && <NoResults message={error} />}
 
-      {analysis && (
+      {/* Resultados del análisis */}
+      {!isLoading && !error && analysis && (
         <>
           <ClimateSummary analysis={analysis} />
 
           <StrategySection
-            strategies={strategies}
+            strategies={analysis?.strategies ?? []}
             isLoggedIn={isLoggedIn}
             isSaved={isSaved}
             onSaveAnalysis={
               isLoggedIn ? handleSaveAnalysis : handleOpenLoginModal
             }
+            notification={notification}
           />
+
+          {/* Error relacionado con el guardado o reemplazo */}
+          {saveError && <p className="results__save-error">{saveError}</p>}
         </>
+      )}
+
+      {/* Modal para análisis duplicados */}
+      {isDuplicateModalOpen && (
+        <DuplicateAnalysisModal
+          city={analysis?.location?.city}
+          country={analysis?.location?.country}
+          isReplacing={isReplacing}
+          onClose={handleCloseDuplicateModal}
+          onReplace={handleReplaceAnalysis}
+        />
       )}
     </main>
   );
