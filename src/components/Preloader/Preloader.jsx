@@ -5,12 +5,15 @@
  * Archivo: Preloader.jsx
  *
  * -----------------------------------------------------------------------------
- * Indicador visual de carga utilizado durante las operaciones
- * que requieren esperar una respuesta del backend.
+ * Indicador visual de carga utilizado mientras se procesa
+ * una solicitud de análisis climático o mientras se recupera
+ * un análisis guardado.
  *
- * Para la generación de un análisis nuevo utiliza mensajes dinámicos.
- * Para otras operaciones, como abrir un análisis guardado, puede
- * recibir un mensaje estático mediante la prop `message`.
+ * Cuando recibe un mensaje mediante la prop "message", muestra
+ * ese mensaje de forma fija.
+ *
+ * Cuando no recibe un mensaje, utiliza los mensajes dinámicos
+ * definidos para el proceso de generación de un nuevo análisis.
  *
  * -----------------------------------------------------------------------------
  */
@@ -62,7 +65,7 @@ function Preloader({ message = null }) {
       setMessageIndex((currentIndex) => {
         return (currentIndex + 1) % LOADING_MESSAGES.length;
       });
-    }, 1200);
+    }, 1500);
 
     return () => clearInterval(interval);
   }, [message]);
@@ -76,7 +79,9 @@ function Preloader({ message = null }) {
       <div className="preloader__container">
         <div className="preloader__spinner" aria-hidden="true"></div>
 
-        <h2 className="preloader__title">{LOADING_MESSAGES[messageIndex]}</h2>
+        <h2 className="preloader__title">
+          {message || LOADING_MESSAGES[messageIndex]}
+        </h2>
       </div>
     </section>
   );
