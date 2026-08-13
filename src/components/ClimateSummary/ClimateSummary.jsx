@@ -21,9 +21,9 @@ import "./ClimateSummary.css";
 
 import IndicatorCardList from "../IndicatorCardList/IndicatorCardList";
 
-import latitudeIcon from "../../images/icons/latitude.png";
-import longitudeIcon from "../../images/icons/longitude.png";
-import elevationIcon from "../../images/icons/elevation.png";
+import latitudeIcon from "../../images/icons/latitude.webp";
+import longitudeIcon from "../../images/icons/longitude.webp";
+import elevationIcon from "../../images/icons/elevation.webp";
 
 // ==============================
 // Componente

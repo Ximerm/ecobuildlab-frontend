@@ -17,14 +17,14 @@
 // Dependencias
 // ==============================
 
-import coldHumidIcon from "../../images/climates/cold-humid.png";
-import coldDryIcon from "../../images/climates/cold-dry.png";
-import temperateHumidIcon from "../../images/climates/temperate-humid.png";
-import temperateDryIcon from "../../images/climates/temperate-dry.png";
-import warmHumidIcon from "../../images/climates/warm-humid.png";
-import warmDryIcon from "../../images/climates/warm-dry.png";
-import paramoIcon from "../../images/climates/paramo.png";
-import defaultClimateIcon from "../../images/climates/default.png";
+import coldHumidIcon from "../../images/climates/cold-humid.webp";
+import coldDryIcon from "../../images/climates/cold-dry.webp";
+import temperateHumidIcon from "../../images/climates/temperate-humid.webp";
+import temperateDryIcon from "../../images/climates/temperate-dry.webp";
+import warmHumidIcon from "../../images/climates/warm-humid.webp";
+import warmDryIcon from "../../images/climates/warm-dry.webp";
+import paramoIcon from "../../images/climates/paramo.webp";
+import defaultClimateIcon from "../../images/climates/default.webp";
 
 // ==============================
 // Iconos de presentación

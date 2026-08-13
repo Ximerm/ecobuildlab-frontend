@@ -28,7 +28,7 @@ import "./SaveAnalysisSection.css";
 
 import Notification from "../Notification/Notification";
 
-import saveIcon from "../../images/icons/save.png";
+import saveIcon from "../../images/icons/save.webp";
 import lockIcon from "../../images/icons/lock.png";
 import successIcon from "../../images/icons/success-light.png";
 

@@ -24,7 +24,7 @@
 
 import "./About.css";
 
-import profileImage from "../../images/profileImage.png";
+import profileImage from "../../images/profileImage.webp";
 
 // ==============================
 // Componente
