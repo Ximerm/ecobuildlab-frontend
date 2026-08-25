@@ -34,7 +34,7 @@ import climateClassificationIcon from "../../images/indicators/climate-classific
 import temperatureIcon from "../../images/indicators/temperature.png";
 import humidityIcon from "../../images/indicators/humidity.png";
 import windIcon from "../../images/indicators/wind.png";
-import precipitationIcon from "../../images/indicators/precipitation.png";
+import precipitationIcon from "../../images/indicators/Precipitation.png";
 import radiationIcon from "../../images/indicators/radiation.png";
 
 // ==============================
